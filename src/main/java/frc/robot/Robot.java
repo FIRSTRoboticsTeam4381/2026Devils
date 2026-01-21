@@ -57,9 +57,8 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
 
     // Radio logging setup
-    // TODO set IPs based on team numbers
-    //robotRadioLogger = new RadioLogger("http://10.xx.yy.1/status");
-    //apRadioLogger = new RadioLogger("http://10.xx.yy.4/status");
+    robotRadioLogger = new RadioLogger("http://10.43.81.1/status");
+    apRadioLogger = new RadioLogger("http://10.43.81.4/status");
   }
 
   @Override
