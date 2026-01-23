@@ -67,7 +67,10 @@ public class RobotContainer {
     // Add auto controls to the dashboard
     SmartDashboard.putData("Choose Auto:", autoChooser);
     SmartDashboard.putData(CommandScheduler.getInstance());
-    autoChooser.onChange((listener) -> listener.showPreview());
+    autoChooser.onChange((listener) -> {
+      if(listener!=null)
+        listener.showPreview();
+      });
     SmartDashboard.putNumber("Start Delay",0);
 
     
