@@ -23,6 +23,10 @@ import frc.lib.commands.TeleopSwerve;
 import frc.lib.subsystems.PhotonCam;
 import frc.robot.commands.Autos;
 import frc.robot.subsystems.Swerve;
+import frc.robot.subsystems.Climb;
+import frc.robot.subsystems.Indexer;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Shooter;
 
 @Logged
 public class RobotContainer {
@@ -41,6 +45,10 @@ public class RobotContainer {
 
   // Subsystems
   public final Swerve swerve = new Swerve();
+  public final Climb climb = new Climb();
+  public final Indexer indexer = new Indexer();
+  public final Intake intake = new Intake();
+  public final Shooter shooter = new Shooter();
 
   // TODO set camera names, coordinates, and angles relative to the robot's center
   //public final PhotonCam camA = new PhotonCam("Camera A", new Transform3d(new Translation3d(Units.inchesToMeters(-10.375), Units.inchesToMeters(-7.3125),  Units.inchesToMeters(8.5)), new Rotation3d(0,Math.PI/-6,Math.PI/-4-Math.PI)) );
