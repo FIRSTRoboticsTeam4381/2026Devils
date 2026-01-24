@@ -9,19 +9,7 @@ import java.util.Map;
 /** Constants file for CAN IDs */
 public final class CanIDs {
 
-    // Map of CAN IDs for URCL
-    // Keep this up to date with the actual CAN IDs so logs make sense!
-    public static final Map<Integer, String> URCL_IDS = Map.ofEntries(
-          Map.entry(10, "Swerve/FL/Drive"),
-          Map.entry(11, "Swerve/FL/Angle"),
-          Map.entry(20, "Swerve/FR/Drive"),
-          Map.entry(21, "Swerve/FR/Angle"),
-          Map.entry(30, "Swerve/BR/Drive"),
-          Map.entry(31, "Swerve/BR/Angle"),
-          Map.entry(40, "Swerve/BL/Drive"),
-          Map.entry(41, "Swerve/BL/Angle")
-      );
-
+    
     // Swerve CAN IDs
     public static final class SwerveModules {
         // FL
@@ -42,7 +30,7 @@ public final class CanIDs {
     }
 
     // TODO Put constants for your other CAN devices here
-
+    //public static final int EXAMPLE_MOTOR_ID = 45;
 
 
 
@@ -61,4 +49,19 @@ public final class CanIDs {
         }
     }
     
+
+    // Map of CAN IDs for URCL
+    // TODO Keep this up to date with the actual CAN IDs so logs make sense!
+    public static final Map<Integer, String> URCL_IDS = Map.ofEntries(
+          Map.entry(10, "Swerve/FL/Drive"),
+          Map.entry(11, "Swerve/FL/Angle"),
+          Map.entry(20, "Swerve/FR/Drive"),
+          Map.entry(21, "Swerve/FR/Angle"),
+          Map.entry(30, "Swerve/BR/Drive"),
+          Map.entry(31, "Swerve/BR/Angle"),
+          Map.entry(40, "Swerve/BL/Drive"),
+          Map.entry(41, "Swerve/BL/Angle")//,
+          //Map.entry(EXAMPLE_MOTOR_ID, "Example/motor1")
+      );
+
 }
