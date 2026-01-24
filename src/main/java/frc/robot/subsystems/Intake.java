@@ -4,14 +4,28 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.spark.SparkFlex;
+import com.revrobotics.spark.SparkLowLevel.MotorType;
+import com.revrobotics.spark.SparkMax;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.CanIDs;
+import frc.robot.Constants;
 
 public class Intake extends SubsystemBase {
-  /** Creates a new Intake. */
-  public Intake() {}
+  
+  public SparkFlex intakePivotMotor;
+  public SparkFlex intakeMotionMotor;
+
+  public Intake() 
+  {
+    intakePivotMotor = new SparkFlex(CanIDs.INTAKE_PIVOT_MOTOR_ID, MotorType.kBrushless);
+    intakeMotionMotor = new SparkFlex(CanIDs.INTAKE_MOTION_MOTOR_ID, MotorType.kBrushless);
+  }
 
   @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
+  public void periodic() 
+  {
+    
   }
 }

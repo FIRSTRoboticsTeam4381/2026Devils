@@ -4,9 +4,12 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.CanIDs;
+import frc.robot.Constants;
 
 public class TurretShoot extends SubsystemBase {
 
@@ -14,11 +17,15 @@ public class TurretShoot extends SubsystemBase {
   public SparkMax shootMotor2;
   
 
-  public TurretShoot() {}
+  public TurretShoot() 
+  {
+    shootMotor1 = new SparkMax(CanIDs.SHOOT_MOTOR_1_ID, MotorType.kBrushless);
+  }
 
   @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
+  public void periodic() 
+  {
+
   }
 
   /*

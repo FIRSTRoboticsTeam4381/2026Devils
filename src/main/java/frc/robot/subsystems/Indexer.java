@@ -4,14 +4,27 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.spark.SparkFlex;
+import com.revrobotics.spark.SparkLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.CanIDs;
+import frc.robot.Constants;
 
 public class Indexer extends SubsystemBase {
-  /** Creates a new Indexer. */
-  public Indexer() {}
+
+  public SparkFlex indexerMotor;
+  public SparkFlex pushMotor;
+  
+  public Indexer() 
+  {
+    indexerMotor = new SparkFlex(CanIDs.INDEX_MOTOR_ID, MotorType.kBrushless);
+    pushMotor = new SparkFlex(CanIDs.PUSH_MOTOR_ID, MotorType.kBrushless);
+  }
 
   @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
+  public void periodic() 
+  {
+    
   }
 }

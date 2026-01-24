@@ -4,18 +4,25 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.CanIDs;
+import frc.robot.Constants;
 
 public class TurretHood extends SubsystemBase {
 
   public SparkMax hoodMotor;
   
-  public TurretHood() {}
+  public TurretHood() 
+  {
+    hoodMotor = new SparkMax(CanIDs.HOOD_MOTOR_ID, MotorType.kBrushless);
+  }
 
   @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
+  public void periodic() 
+  {
+    
   }
 }
