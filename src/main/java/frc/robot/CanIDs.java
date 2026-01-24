@@ -29,8 +29,21 @@ public final class CanIDs {
             new SwerveModuleCanIDs(30, 31);
     }
 
+    public static final int SHOOT_MOTOR_1_ID = 0;
+    public static final int SHOOT_MOTOR_2_ID = 0;
+    public static final int ROTATE_MOTOR_ID = 0;
+    public static final int HOOD_MOTOR_ID = 0;
+    public static final int INTAKE_MOTION_MOTOR_ID = 0;
+    public static final int INTAKE_PIVOT_MOTOR_ID = 0;
+    public static final int INDEX_MOTOR_ID = 0;
+    public static final int PUSH_MOTOR_ID = 0;
+    public static final int CLIMB_PIVOT_MOTOR_ID = 0;
+    public static final int CLIMB_ELEVATOR_MOTOR_1_ID = 0;
+    public static final int CLIMB_ELEVATOR_MOTOR_2_ID = 0;
+
+
     // TODO Put constants for your other CAN devices here
-    //public static final int EXAMPLE_MOTOR_ID = 45;
+    // public static final int EXAMPLE_MOTOR_ID = 45;
 
 
 

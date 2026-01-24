@@ -4,11 +4,15 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.spark.SparkMax;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class Shooter extends SubsystemBase {
-  /** Creates a new Shooter. */
-  public Shooter() {}
+public class TurretHood extends SubsystemBase {
+
+  public SparkMax hoodMotor;
+  
+  public TurretHood() {}
 
   @Override
   public void periodic() {
