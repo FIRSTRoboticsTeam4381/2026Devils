@@ -6,8 +6,12 @@ package frc.robot.subsystems;
 
 import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
+import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
+import com.revrobotics.spark.config.SparkFlexConfig;
 
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.lib.commands.SparkPosition;
 import frc.robot.CanIDs;
 import frc.robot.Constants;
 
@@ -22,11 +26,49 @@ public class Climb extends SubsystemBase {
     climbPivotMotor = new SparkFlex(CanIDs.CLIMB_PIVOT_MOTOR_ID, MotorType.kBrushless);
     climbElevatorMotor1 = new SparkFlex(CanIDs.CLIMB_ELEVATOR_MOTOR_1_ID, MotorType.kBrushless);
     climbElevatorMotor2 = new SparkFlex(CanIDs.CLIMB_ELEVATOR_MOTOR_2_ID, MotorType.kBrushless);
+
+    SparkFlexConfig climbPivot1Config = new SparkFlexConfig();
+      climbPivot1Config
+        .smartCurrentLimit(60)
+        .idleMode(IdleMode.kBrake)
+        ;
+
+    SparkFlexConfig climbElevator1Config = new SparkFlexConfig();
+      climbElevator1Config
+        .smartCurrentLimit(60)
+        .idleMode(IdleMode.kBrake)
+        ;
+    
+    SparkFlexConfig climbElevator2Config = new SparkFlexConfig();
+      climbElevator2Config
+        .apply(climbElevator1Config)
+        .follow(climbElevatorMotor1,true)
+        ;
   }
 
   @Override
   public void periodic() 
   {
     
+  }
+
+  public Command climbPivotTo(double distance) 
+  {
+    return new SparkPosition(climbPivotMotor, distance, 1.0, this);
+  } 
+  
+  public Command climbElevatorTo(double distance) 
+  {
+    return new SparkPosition(climbElevatorMotor1, distance, 2.0, this);
+  } 
+  
+  public Command prepPivot()
+  {
+    return climbPivotTo(0).withName("Prep Climb Pivot");
+  } 
+  
+  public Command prepElevator()
+  {
+    return climbElevatorTo(0).withName("Prep Climb Elevator");
   }
 }

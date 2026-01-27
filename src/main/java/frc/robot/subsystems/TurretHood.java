@@ -6,6 +6,8 @@ package frc.robot.subsystems;
 
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
+import com.revrobotics.spark.config.SparkMaxConfig;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.CanIDs;
@@ -18,6 +20,12 @@ public class TurretHood extends SubsystemBase {
   public TurretHood() 
   {
     hoodMotor = new SparkMax(CanIDs.HOOD_MOTOR_ID, MotorType.kBrushless);
+
+    SparkMaxConfig hoodMotorConfig = new SparkMaxConfig();
+      hoodMotorConfig
+        .smartCurrentLimit(60)
+        .idleMode(IdleMode.kBrake)
+        ;
   }
 
   @Override
@@ -25,4 +33,22 @@ public class TurretHood extends SubsystemBase {
   {
     
   }
+
+
+
+
+
+  /*
+   * NUMBERS
+   * 
+   * Blue Hub Coordinates:
+   *  x = 4.621
+   *  y = 4.041
+   * 
+   * Red Hub Coordinates:
+   *  x = 11.919
+   *  y = 4.041
+   */
+
+
 }
