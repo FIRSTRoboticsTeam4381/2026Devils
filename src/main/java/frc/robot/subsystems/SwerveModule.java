@@ -39,7 +39,7 @@ public class SwerveModule {
     private static final SparkFlexConfig DRIVE_CONFIG = new SparkFlexConfig(){{
         
             closedLoopRampRate(0.0);
-            openLoopRampRate(0.075);
+            openLoopRampRate(0.025);
             smartCurrentLimit(80);
             idleMode(IdleMode.kBrake);
             inverted(true);    

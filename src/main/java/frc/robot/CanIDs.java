@@ -66,14 +66,14 @@ public final class CanIDs {
     // Map of CAN IDs for URCL
     // TODO Keep this up to date with the actual CAN IDs so logs make sense!
     public static final Map<Integer, String> URCL_IDS = Map.ofEntries(
-          Map.entry(10, "Swerve/FL/Drive"),
-          Map.entry(11, "Swerve/FL/Angle"),
-          Map.entry(20, "Swerve/FR/Drive"),
-          Map.entry(21, "Swerve/FR/Angle"),
-          Map.entry(30, "Swerve/BR/Drive"),
-          Map.entry(31, "Swerve/BR/Angle"),
-          Map.entry(40, "Swerve/BL/Drive"),
-          Map.entry(41, "Swerve/BL/Angle")//,
+          Map.entry(SwerveModules.MOD0.driveMotorID, "Swerve/FL/Drive"),
+          Map.entry(SwerveModules.MOD0.angleMotorID, "Swerve/FL/Angle"),
+          Map.entry(SwerveModules.MOD1.driveMotorID, "Swerve/FR/Drive"),
+          Map.entry(SwerveModules.MOD1.angleMotorID, "Swerve/FR/Angle"),
+          Map.entry(SwerveModules.MOD2.driveMotorID, "Swerve/BR/Drive"),
+          Map.entry(SwerveModules.MOD2.angleMotorID, "Swerve/BR/Angle"),
+          Map.entry(SwerveModules.MOD3.driveMotorID, "Swerve/BL/Drive"),
+          Map.entry(SwerveModules.MOD3.angleMotorID, "Swerve/BL/Angle")//,
           //Map.entry(EXAMPLE_MOTOR_ID, "Example/motor1")
       );
 

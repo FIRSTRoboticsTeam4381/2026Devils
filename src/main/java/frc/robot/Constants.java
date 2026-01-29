@@ -38,10 +38,10 @@ public final class Constants {
         /* Drivetrain Constants */
         public static final double TRACK_WIDTH = Units.inchesToMeters(24.75); 
         public static final double WHEEL_BASE = Units.inchesToMeters(18.75); 
-        public static final double WHEEL_DIAMETER = Units.inchesToMeters(3.0 + 7.0/8.8);
+        public static final double WHEEL_DIAMETER = Units.inchesToMeters(4.0); // This may reduce as wheel tread wears down!
         public static final double WHEEL_CIRCUMFERENCE = WHEEL_DIAMETER * Math.PI;
 
-        public static final double driveGearRatio = (425.0 / 72.0);  
+        public static final double driveGearRatio = (425.0 / 72.0);  //Mk4i L2+
 
         public static final SwerveDriveKinematics SWERVE_KINEMATICS = new SwerveDriveKinematics(
             new Translation2d(WHEEL_BASE / 2.0, TRACK_WIDTH / 2.0),
@@ -56,8 +56,8 @@ public final class Constants {
         );
 
         /* Swerve Profiling Values */
-        public static final double MAX_SPEED = 6; //meters per second
-        public static final double MAX_ANGULAR_VELOCITY = 11.5;
+        public static final double MAX_SPEED = 6.126; //meters per second
+        public static final double MAX_ANGULAR_VELOCITY = 11.5; //TODO this can probably be increased
 
         /* Motor Inverts */
         public static final boolean driveMotorInvert = true;
