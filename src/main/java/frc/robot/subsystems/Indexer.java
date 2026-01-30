@@ -6,7 +6,11 @@ package frc.robot.subsystems;
 
 import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
+import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
+import com.revrobotics.spark.config.SparkFlexConfig;
 
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.CanIDs;
 import frc.robot.Constants;
@@ -20,7 +24,21 @@ public class Indexer extends SubsystemBase {
   {
     indexerMotor = new SparkFlex(CanIDs.INDEX_MOTOR_ID, MotorType.kBrushless);
     pushMotor = new SparkFlex(CanIDs.PUSH_MOTOR_ID, MotorType.kBrushless);
+
+    // Not sure if these flex configs are correct
+    SparkFlexConfig indexerMotorConfig = new SparkFlexConfig();
+      indexerMotorConfig
+      .smartCurrentLimit(50)
+      .idleMode(IdleMode.kBrake);
+
+    SparkFlexConfig pushMotorConfig = new SparkFlexConfig();
+      pushMotorConfig
+      .smartCurrentLimit(50)
+      .idleMode(IdleMode.kBrake);
+
   }
+
+  // TODO add commands
 
   @Override
   public void periodic() 
