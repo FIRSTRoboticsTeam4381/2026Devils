@@ -38,11 +38,12 @@ public class Indexer extends SubsystemBase {
 
   }
 
-  // TODO add commands
-
   @Override
   public void periodic() 
   {
     
   }
+
+  // TODO add commands
+
 }

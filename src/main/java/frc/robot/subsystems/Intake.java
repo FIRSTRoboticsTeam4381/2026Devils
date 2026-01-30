@@ -38,6 +38,12 @@ public class Intake extends SubsystemBase {
       .idleMode(IdleMode.kBrake);
   }
 
+  @Override
+  public void periodic() 
+  {
+    
+  }
+
   public Command intake()
   {
     return new InstantCommand(() -> intakeMotionMotor.set(0.5), this);
@@ -63,9 +69,4 @@ public class Intake extends SubsystemBase {
     return intakePivotPos(0).withName("Intake Away");
   }
 
-  @Override
-  public void periodic() 
-  {
-    
-  }
 }
