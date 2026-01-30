@@ -9,7 +9,9 @@ import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.config.SparkMaxConfig;
 
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.lib.commands.SparkPosition;
 import frc.robot.CanIDs;
 import frc.robot.Constants;
 
@@ -24,8 +26,12 @@ public class TurretHood extends SubsystemBase {
     SparkMaxConfig hoodMotorConfig = new SparkMaxConfig();
       hoodMotorConfig
         .smartCurrentLimit(60)
-        .idleMode(IdleMode.kBrake)
-        ;
+        .idleMode(IdleMode.kBrake);
+      hoodMotorConfig.closedLoop
+        .p( 0.001)
+        .i(0.0)
+        .d(0.0);
+      hoodMotorConfig.closedLoop.feedForward.kV(0.0);    
   }
 
   @Override
@@ -34,7 +40,15 @@ public class TurretHood extends SubsystemBase {
     
   }
 
+  public Command hoodTo(double pos) 
+  {
+    return new SparkPosition(hoodMotor, pos, .5, this); // Change
+  } 
 
+  public void angle(double pos)
+  {
+    hoodTo(pos);
+  }
 
 
 

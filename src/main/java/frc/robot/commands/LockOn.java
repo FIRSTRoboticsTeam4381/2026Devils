@@ -4,28 +4,63 @@
 
 package frc.robot.commands;
 
+import java.util.Optional;
+
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.subsystems.Swerve;
+import frc.robot.subsystems.TurretHood;
+import frc.robot.subsystems.TurretRotate;
+import frc.robot.subsystems.TurretShoot;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
 public class LockOn extends Command {
-  /** Creates a new LockOn. */
+  
+  public Swerve swerve;
+  public TurretHood hood;
+  public TurretRotate rotate;
+  public TurretShoot shoot;
+
+  public Pose2d current;
+  public Pose2d hub;
+  public Optional<Alliance> allaince;
+  public Translation2d vector;
+
   public LockOn() {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(swerve, hood, rotate, shoot);
   }
 
-  // Called when the command is initially scheduled.
+  
   @Override
-  public void initialize() {}
+  public void initialize() 
+  {
+    allaince = DriverStation.getAlliance();
+    current = swerve.getPose();
+    if(allaince.get() == Alliance.Blue) {hub = new Pose2d(4.621,4.041,new Rotation2d());}
+    if(allaince.get() == Alliance.Red) {hub = new Pose2d(11.919,4.041,new Rotation2d());}
+  }
 
-  // Called every time the scheduler runs while the command is scheduled.
+  
   @Override
-  public void execute() {}
+  public void execute() 
+  {
+    current = swerve.getPose();
+    vector = hub.minus(current).getTranslation();
+    rotate.rotateTo
+    (
+      current.getRotation().getDegrees()-vector.getAngle().getDegrees()
+    );
+  }
 
-  // Called once the command ends or is interrupted.
+  
   @Override
   public void end(boolean interrupted) {}
 
-  // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     return false;

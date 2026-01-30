@@ -7,9 +7,13 @@ package frc.robot.subsystems;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
+import com.revrobotics.spark.config.SparkFlexConfig;
+import com.revrobotics.spark.config.FeedForwardConfig;
 import com.revrobotics.spark.config.SparkMaxConfig;
 
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.lib.commands.SparkPosition;
 import frc.robot.CanIDs;
 import frc.robot.Constants;
 
@@ -24,8 +28,12 @@ public class TurretRotate extends SubsystemBase {
     SparkMaxConfig rotateMotorConfig = new SparkMaxConfig();
       rotateMotorConfig
         .smartCurrentLimit(60)
-        .idleMode(IdleMode.kBrake)
-        ;
+        .idleMode(IdleMode.kBrake);
+      rotateMotorConfig.closedLoop
+        .p( 0.001)
+        .i(0.0)
+        .d(0.0);
+      rotateMotorConfig.closedLoop.feedForward.kV(0.0);    
   }
 
   @Override
@@ -34,7 +42,15 @@ public class TurretRotate extends SubsystemBase {
     
   }
 
+  public Command rotateTo(double pos) 
+  {
+    return new SparkPosition(rotateMotor, pos, .5, this); // Change
+  } 
 
+  public void angle(double pos)
+  {
+    rotateTo(pos);
+  }
 
 
   /*
