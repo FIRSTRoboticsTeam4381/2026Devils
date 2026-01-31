@@ -22,11 +22,15 @@ public class Intake extends SubsystemBase {
   public SparkFlex intakePivotMotor;
   public SparkFlex intakeMotionMotor;
 
+  public Boolean intakeStatus;
+
   public Intake() 
   {
     intakePivotMotor = new SparkFlex(CanIDs.INTAKE_PIVOT_MOTOR_ID, MotorType.kBrushless);
     intakeMotionMotor = new SparkFlex(CanIDs.INTAKE_MOTION_MOTOR_ID, MotorType.kBrushless);
-  
+
+    Boolean intakeStatus = false;
+
     SparkFlexConfig intakePivotConfig = new SparkFlexConfig();
       intakePivotConfig
       .smartCurrentLimit(50)
@@ -69,4 +73,19 @@ public class Intake extends SubsystemBase {
     return intakePivotPos(0).withName("Intake Away");
   }
 
+  public Command intakeStateSet()
+  {
+    intakeStatus = !intakeStatus;
+
+    if(intakeStatus)
+    {
+      intake();
+      return intakePivotPos(0).withName("Intake Ready");
+    }
+    else
+    {
+      intakeStop();
+      return intakePivotPos(0).withName("Intake Away");
+    }
+  }
 }

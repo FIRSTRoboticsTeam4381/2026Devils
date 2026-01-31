@@ -52,6 +52,11 @@ public class TurretShoot extends SubsystemBase {
     return new InstantCommand(() -> shootMotor1.set(.5));
   }
 
+  public Command shootOff()
+  {
+    return new InstantCommand(() -> shootMotor1.set(0));
+  }
+
   /*
    * NUMBERS
    * 

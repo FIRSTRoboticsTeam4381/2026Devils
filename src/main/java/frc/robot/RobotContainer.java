@@ -4,6 +4,9 @@
 
 package frc.robot;
 
+import java.time.Instant;
+import java.util.concurrent.locks.Lock;
+
 import edu.wpi.first.epilogue.Logged;
 import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.math.geometry.Rotation3d;
@@ -29,6 +32,7 @@ import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.TurretShoot;
 import frc.robot.subsystems.TurretHood;
 import frc.robot.subsystems.TurretRotate;
+import frc.robot.commands.LockOn;
 
 @Logged
 public class RobotContainer {
@@ -53,6 +57,7 @@ public class RobotContainer {
   public final TurretShoot shoot = new TurretShoot();
   public final TurretHood hood = new TurretHood();
   public final TurretRotate rotate = new TurretRotate();
+  public final LockOn lockOn = new LockOn();
 
   // TODO set camera names, coordinates, and angles relative to the robot's center
   //public final PhotonCam camA = new PhotonCam("Camera A", new Transform3d(new Translation3d(Units.inchesToMeters(-10.375), Units.inchesToMeters(-7.3125),  Units.inchesToMeters(8.5)), new Rotation3d(0,Math.PI/-6,Math.PI/-4-Math.PI)) );
@@ -128,8 +133,13 @@ public class RobotContainer {
     
             
     // TODO Your Controls Here!
-
-
+    specialist.b().onTrue(intake.intakeStateSet());
+    specialist.y().onTrue(shoot.shootOn());
+    specialist.x().onTrue(shoot.shootOff());
+    specialist.a().toggleOnTrue(lockOn);
+    specialist.leftBumper().onTrue(indexer.pushOff());
+    specialist.rightBumper().onTrue(indexer.pushOn());
+    // Climb later
 
 
   }
