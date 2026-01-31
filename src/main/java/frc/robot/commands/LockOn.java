@@ -51,7 +51,7 @@ public class LockOn extends Command {
   {
     current = swerve.getPose();
     vector = hub.minus(current).getTranslation();
-    rotate.rotateTo
+    rotate.point
     (
       current.getRotation().getDegrees()-vector.getAngle().getDegrees()
     );

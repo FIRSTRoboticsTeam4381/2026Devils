@@ -28,7 +28,7 @@ public class TurretHood extends SubsystemBase {
         .smartCurrentLimit(60)
         .idleMode(IdleMode.kBrake);
       hoodMotorConfig.closedLoop
-        .p( 0.001)
+        .p(0.001)
         .i(0.0)
         .d(0.0);
       hoodMotorConfig.closedLoop.feedForward.kV(0.0);    

@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.spark.SparkLowLevel.MotorType;
+import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.config.SparkFlexConfig;
@@ -20,10 +21,12 @@ import frc.robot.Constants;
 public class TurretRotate extends SubsystemBase {
 
   public SparkMax rotateMotor;
+  public AbsoluteEncoder encoder;
   
   public TurretRotate() 
   {
     rotateMotor = new SparkMax(CanIDs.ROTATE_MOTOR_ID, MotorType.kBrushless);
+    encoder = rotateMotor.getAbsoluteEncoder();
     
     SparkMaxConfig rotateMotorConfig = new SparkMaxConfig();
       rotateMotorConfig
@@ -34,6 +37,8 @@ public class TurretRotate extends SubsystemBase {
         .i(0.0)
         .d(0.0);
       rotateMotorConfig.closedLoop.feedForward.kV(0.0);    
+
+
   }
 
   @Override
@@ -42,15 +47,12 @@ public class TurretRotate extends SubsystemBase {
     
   }
 
-  public Command rotateTo(double pos) 
+  public void point(double pos) 
   {
-    return new SparkPosition(rotateMotor, pos, .5, this); // Change
+    rotateMotor.set(pos/360);
   } 
 
-  public void angle(double pos)
-  {
-    rotateTo(pos);
-  }
+  
 
 
   /*
