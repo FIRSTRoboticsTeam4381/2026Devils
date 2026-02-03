@@ -32,7 +32,9 @@ public class LockOn extends Command {
 
   public LockOn() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(swerve, hood, rotate, shoot);
+    addRequirements(hood, rotate); // add shoot back later when ready
+
+    // Add subsytems here
   }
 
   

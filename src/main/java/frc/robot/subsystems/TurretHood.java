@@ -25,7 +25,8 @@ public class TurretHood extends SubsystemBase {
 
     SparkMaxConfig hoodMotorConfig = new SparkMaxConfig();
       hoodMotorConfig
-        .smartCurrentLimit(60)
+        .advanceCommutation(60)
+        .smartCurrentLimit(20)
         .idleMode(IdleMode.kBrake);
       hoodMotorConfig.closedLoop
         .p(0.001)

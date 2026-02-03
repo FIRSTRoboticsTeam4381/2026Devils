@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.config.SparkFlexConfig;
 import com.revrobotics.spark.config.FeedForwardConfig;
@@ -30,7 +31,9 @@ public class TurretRotate extends SubsystemBase {
     
     SparkMaxConfig rotateMotorConfig = new SparkMaxConfig();
       rotateMotorConfig
-        .smartCurrentLimit(60)
+        // Rotation Limit
+        .advanceCommutation(60)
+        .smartCurrentLimit(20)
         .idleMode(IdleMode.kBrake);
       rotateMotorConfig.closedLoop
         .p( 0.001)
@@ -49,7 +52,7 @@ public class TurretRotate extends SubsystemBase {
 
   public void point(double pos) 
   {
-    rotateMotor.set(pos/360);
+    rotateMotor.getClosedLoopController().setSetpoint(pos, ControlType.kPosition);
   } 
 
   

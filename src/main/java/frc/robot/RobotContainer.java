@@ -130,10 +130,9 @@ public class RobotContainer {
 
     // Button to cancel running actions
     specialist.back().onTrue(new InstantCommand(() -> CommandScheduler.getInstance().cancelAll()));
-    
             
     // TODO Your Controls Here!
-    specialist.b().onTrue(intake.intakeStateSet());
+    specialist.b().onTrue(intake.intakeStateSet()); // change to toggleOnTrue
     specialist.y().onTrue(shoot.shootOn());
     specialist.x().onTrue(shoot.shootOff());
     specialist.a().toggleOnTrue(lockOn);

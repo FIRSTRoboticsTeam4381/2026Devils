@@ -29,15 +29,15 @@ public class TurretShoot extends SubsystemBase {
 
     SparkMaxConfig shootMotor1Config = new SparkMaxConfig();
       shootMotor1Config
-        .smartCurrentLimit(60)
-        .idleMode(IdleMode.kBrake)
+        .advanceCommutation(60)
+        .smartCurrentLimit(30)
+        .idleMode(IdleMode.kCoast)
         ;
     
     SparkMaxConfig shootMotor2Config = new SparkMaxConfig();
       shootMotor2Config
         .apply(shootMotor1Config)
         .follow(shootMotor1,true)
-        .inverted(true)
         ;
   }
 
