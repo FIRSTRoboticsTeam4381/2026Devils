@@ -49,7 +49,7 @@ public class TurretRotate extends SubsystemBase {
 
   public void point(double pos) 
   {
-    rotateMotor.set(pos/360);
+    rotateMotor.set(pos/180);
   } 
 
   
