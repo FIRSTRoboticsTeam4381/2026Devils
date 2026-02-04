@@ -132,7 +132,7 @@ public class RobotContainer {
     specialist.back().onTrue(new InstantCommand(() -> CommandScheduler.getInstance().cancelAll()));
             
     // TODO Your Controls Here!
-    specialist.b().toggleOnTrue(intake.intakeReady()); // Toggle intake on, once toggles off it return to its default command in Intake subsystem    specialist.y().onTrue(shoot.shootOn());
+    specialist.b().toggleOnTrue(intake.intakeReady()); // Toggle intake on, once toggles off it return to its default command in Intake subsystem
     specialist.x().toggleOnTrue(shoot.shootOn());
     specialist.a().toggleOnTrue(lockOn);
     specialist.leftBumper().onTrue(indexer.pushOff());
