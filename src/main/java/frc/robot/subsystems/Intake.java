@@ -73,7 +73,7 @@ public class Intake extends SubsystemBase {
     );
   }
 
-  public Command intakeReady()
+  public Command intakeReady() // TODO automatically turn this on
   {
     return new ParallelCommandGroup(
       intake(),
