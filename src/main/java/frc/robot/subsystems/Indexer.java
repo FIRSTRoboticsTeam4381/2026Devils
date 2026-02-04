@@ -26,8 +26,6 @@ public class Indexer extends SubsystemBase {
     indexerMotor = new SparkFlex(CanIDs.INDEX_MOTOR_ID, MotorType.kBrushless);
     pushMotor = new SparkFlex(CanIDs.PUSH_MOTOR_ID, MotorType.kBrushless);
 
-    // Add default command for intake position
-
     SparkFlexConfig indexerMotorConfig = new SparkFlexConfig();
       indexerMotorConfig
       .smartCurrentLimit(50)
