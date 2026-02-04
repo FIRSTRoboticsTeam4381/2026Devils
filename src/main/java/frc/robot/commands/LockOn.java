@@ -34,7 +34,10 @@ public class LockOn extends Command {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(hood, rotate); // add shoot back later when ready
 
-    // Add subsytems here
+    swerve = new Swerve();
+    hood = new TurretHood();
+    rotate = new TurretRotate();
+    shoot = new TurretShoot();
   }
 
   
@@ -43,6 +46,7 @@ public class LockOn extends Command {
   {
     allaince = DriverStation.getAlliance();
     current = swerve.getPose();
+    
     if(allaince.get() == Alliance.Blue) {hub = new Pose2d(4.621,4.041,new Rotation2d());}
     if(allaince.get() == Alliance.Red) {hub = new Pose2d(11.919,4.041,new Rotation2d());}
   }
@@ -65,6 +69,7 @@ public class LockOn extends Command {
 
   @Override
   public boolean isFinished() {
+    rotate.point(0);
     return false;
   }
 }

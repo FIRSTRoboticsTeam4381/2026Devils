@@ -133,8 +133,7 @@ public class RobotContainer {
             
     // TODO Your Controls Here!
     specialist.b().onTrue(intake.intakeStateSet()); // change to toggleOnTrue
-    specialist.y().onTrue(shoot.shootOn());
-    specialist.x().onTrue(shoot.shootOff());
+    specialist.x().toggleOnTrue(shoot.shootOn());
     specialist.a().toggleOnTrue(lockOn);
     specialist.leftBumper().onTrue(indexer.pushOff());
     specialist.rightBumper().onTrue(indexer.pushOn());

@@ -31,7 +31,6 @@ public class TurretRotate extends SubsystemBase {
     
     SparkMaxConfig rotateMotorConfig = new SparkMaxConfig();
       rotateMotorConfig
-        // Rotation Limit
         .advanceCommutation(60)
         .smartCurrentLimit(20)
         .idleMode(IdleMode.kBrake);
@@ -40,7 +39,9 @@ public class TurretRotate extends SubsystemBase {
         .i(0.0)
         .d(0.0);
       rotateMotorConfig.closedLoop.feedForward.kV(0.0);    
-
+      rotateMotorConfig.softLimit
+        .forwardSoftLimit(90)
+        .reverseSoftLimit(-90);
 
   }
 

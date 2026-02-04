@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
@@ -48,7 +49,7 @@ public class TurretHood extends SubsystemBase {
 
   public void angle(double pos)
   {
-    hoodTo(pos);
+    hoodMotor.getClosedLoopController().setSetpoint(pos, ControlType.kPosition);
   }
 
 

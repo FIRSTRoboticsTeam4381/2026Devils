@@ -39,6 +39,7 @@ public class TurretShoot extends SubsystemBase {
         .apply(shootMotor1Config)
         .follow(shootMotor1,true)
         ;
+    setDefaultCommand(shootOff()); 
   }
 
   @Override
