@@ -61,6 +61,7 @@ public class LockOn extends Command {
     (
       current.getRotation().getDegrees()-vector.getAngle().getDegrees()
     );
+    hood.angleFromDist(vector.getNorm());
   }
 
   

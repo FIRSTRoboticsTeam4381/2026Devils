@@ -10,6 +10,7 @@ import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.config.SparkMaxConfig;
 
+import edu.wpi.first.math.interpolation.InterpolatingDoubleTreeMap;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.lib.commands.SparkPosition;
@@ -19,11 +20,13 @@ import frc.robot.Constants;
 public class TurretHood extends SubsystemBase {
 
   public SparkMax hoodMotor;
+  public InterpolatingDoubleTreeMap map;
   
   public TurretHood() 
   {
+    map = new InterpolatingDoubleTreeMap();
     hoodMotor = new SparkMax(CanIDs.HOOD_MOTOR_ID, MotorType.kBrushless);
-
+    setUpMap();
     SparkMaxConfig hoodMotorConfig = new SparkMaxConfig();
       hoodMotorConfig
         .advanceCommutation(60)
@@ -36,6 +39,11 @@ public class TurretHood extends SubsystemBase {
       hoodMotorConfig.closedLoop.feedForward.kV(0.0);    
   }
 
+  public void setUpMap()
+  {
+    // map.put(0.0,0.0);
+  }
+
   @Override
   public void periodic() 
   {
@@ -46,6 +54,11 @@ public class TurretHood extends SubsystemBase {
   {
     return new SparkPosition(hoodMotor, pos, .5, this); // Change
   } 
+
+  public void angleFromDist(double dist)
+  {
+    angle(map.get(dist));
+  }
 
   public void angle(double pos)
   {
