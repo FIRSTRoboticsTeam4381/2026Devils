@@ -11,6 +11,7 @@ import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.SparkMaxConfig;
+import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.config.SparkFlexConfig;
 
 import frc.robot.CanIDs;
@@ -106,7 +107,12 @@ public class SwerveModule {
 
     public void setDesiredState(SwerveModuleState desiredState, boolean isOpenLoop)
     {
+        // Allow wheel to flip to reverse if that angle is closer
         desiredState.optimize(getState().angle);
+
+        // Slow down drive wheel if it is off-target
+        // This should save on energy, tread wear, and odometry accuracy
+        desiredState.speedMetersPerSecond *= desiredState.angle.minus(getAngle()).getCos();
 
          if(isOpenLoop){ // TELEOP 
             double percentOutput = desiredState.speedMetersPerSecond / Constants.Swerve.MAX_SPEED; 
