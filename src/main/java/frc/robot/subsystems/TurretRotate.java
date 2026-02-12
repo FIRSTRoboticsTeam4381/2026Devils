@@ -13,12 +13,16 @@ import com.revrobotics.spark.config.SparkFlexConfig;
 import com.revrobotics.spark.config.FeedForwardConfig;
 import com.revrobotics.spark.config.SparkMaxConfig;
 
+import edu.wpi.first.epilogue.Logged;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.lib.commands.SparkPosition;
+import frc.lib.commands.SparkSysIDTest;
 import frc.robot.CanIDs;
 import frc.robot.Constants;
 
+@Logged
 public class TurretRotate extends SubsystemBase {
 
   public SparkMax rotateMotor;
@@ -43,6 +47,8 @@ public class TurretRotate extends SubsystemBase {
         .forwardSoftLimit(90)
         .reverseSoftLimit(-90);
 
+    SmartDashboard.putData("Subsystem/TurretRotate",this);
+    SmartDashboard.putData(new SparkSysIDTest(rotateMotor, this, 0));
   }
 
   @Override

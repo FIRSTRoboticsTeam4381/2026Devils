@@ -10,12 +10,15 @@ import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.config.SparkFlexConfig;
 import com.revrobotics.spark.config.SparkMaxConfig;
 
+import edu.wpi.first.epilogue.Logged;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.CanIDs;
 import frc.robot.Constants;
 
+@Logged
 public class TurretShoot extends SubsystemBase {
 
   public SparkMax shootMotor1;
@@ -40,6 +43,8 @@ public class TurretShoot extends SubsystemBase {
         .follow(shootMotor1,true)
         ;
     setDefaultCommand(shootOff()); 
+
+    SmartDashboard.putData("Subsystem/TurretShoot",this);
   }
 
   @Override
@@ -50,12 +55,12 @@ public class TurretShoot extends SubsystemBase {
 
   public Command shootOn()
   {
-    return new InstantCommand(() -> shootMotor1.set(.5));
+    return new InstantCommand(() -> shootMotor1.set(.5)).withName("ShooterOn");
   }
 
   public Command shootOff()
   {
-    return new InstantCommand(() -> shootMotor1.set(0));
+    return new InstantCommand(() -> shootMotor1.set(0)).withName("ShooterOff");
   }
 
   /*

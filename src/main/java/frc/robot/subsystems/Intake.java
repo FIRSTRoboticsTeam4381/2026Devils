@@ -10,6 +10,8 @@ import com.revrobotics.spark.config.SparkFlexConfig;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.SparkMax;
 
+import edu.wpi.first.epilogue.Logged;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
@@ -19,6 +21,7 @@ import frc.lib.commands.SparkPosition;
 import frc.robot.CanIDs;
 import frc.robot.Constants;
 
+@Logged
 public class Intake extends SubsystemBase {
   
   public SparkFlex intakePivotMotor;
@@ -42,6 +45,8 @@ public class Intake extends SubsystemBase {
       intakeMotionConfig
       .smartCurrentLimit(50)
       .idleMode(IdleMode.kBrake);
+
+    SmartDashboard.putData("Subsystem/Intake",this);
   }
 
   @Override

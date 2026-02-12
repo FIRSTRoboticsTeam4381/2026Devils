@@ -10,13 +10,16 @@ import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.config.SparkMaxConfig;
 
+import edu.wpi.first.epilogue.Logged;
 import edu.wpi.first.math.interpolation.InterpolatingDoubleTreeMap;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.lib.commands.SparkPosition;
 import frc.robot.CanIDs;
 import frc.robot.Constants;
 
+@Logged
 public class TurretHood extends SubsystemBase {
 
   public SparkMax hoodMotor;
@@ -37,6 +40,7 @@ public class TurretHood extends SubsystemBase {
         .i(0.0)
         .d(0.0);
       hoodMotorConfig.closedLoop.feedForward.kV(0.0);    
+    SmartDashboard.putData("Subsystem/TurretHood",this);
   }
 
   public void setUpMap()

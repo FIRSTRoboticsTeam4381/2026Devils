@@ -9,12 +9,15 @@ import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.config.SparkFlexConfig;
 
+import edu.wpi.first.epilogue.Logged;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.lib.commands.SparkPosition;
 import frc.robot.CanIDs;
 import frc.robot.Constants;
 
+@Logged
 public class Climb extends SubsystemBase {
 
   public SparkFlex climbPivotMotor;
@@ -44,6 +47,8 @@ public class Climb extends SubsystemBase {
         .apply(climbElevator1Config)
         .follow(climbElevatorMotor1,true)
         ;
+
+    SmartDashboard.putData("Subsystem/Climb",this);
   }
 
   @Override
