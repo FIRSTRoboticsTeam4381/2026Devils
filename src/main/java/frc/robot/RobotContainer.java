@@ -139,6 +139,9 @@ public class RobotContainer {
     specialist.rightBumper().onTrue(indexer.pushOn());
     // Climb later
 
+    // Temp Manual
+    //specialist.     hood.joystickCont()
+
 
   }
 

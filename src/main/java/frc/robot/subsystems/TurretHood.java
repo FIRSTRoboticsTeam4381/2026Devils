@@ -14,6 +14,7 @@ import edu.wpi.first.epilogue.Logged;
 import edu.wpi.first.math.interpolation.InterpolatingDoubleTreeMap;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.lib.commands.SparkPosition;
 import frc.robot.CanIDs;
@@ -24,6 +25,7 @@ public class TurretHood extends SubsystemBase {
 
   public SparkMax hoodMotor;
   public InterpolatingDoubleTreeMap map;
+  //public double goTo;
   
   public TurretHood() 
   {
@@ -47,6 +49,8 @@ public class TurretHood extends SubsystemBase {
         .maxMotionSetpointVelocityAlwaysOn(true)
         .setSetpointAlwaysOn(true);
     SmartDashboard.putData("Subsystem/TurretHood",this);
+    //SmartDashboard.putData("Subsystem/TurretHood/HoodPos", goTo);
+    //SmartDashboard.putData("Subsystem/TurretHood/HoodPosSet", new InstantCommand(()->hoodTo(goTo)));
   }
 
   public void setUpMap()
@@ -57,7 +61,12 @@ public class TurretHood extends SubsystemBase {
   @Override
   public void periodic() 
   {
-    
+
+  }
+  
+  public void joystickCont(double speed)
+  {
+    hoodMotor.set(speed);
   }
 
   public Command hoodTo(double pos) 
