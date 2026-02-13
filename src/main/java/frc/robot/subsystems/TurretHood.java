@@ -40,6 +40,12 @@ public class TurretHood extends SubsystemBase {
         .i(0.0)
         .d(0.0);
       hoodMotorConfig.closedLoop.feedForward.kV(0.0);    
+      hoodMotorConfig.signals
+        .absoluteEncoderPositionAlwaysOn(true)
+        .isAtSetpointAlwaysOn(true)
+        .maxMotionSetpointPositionAlwaysOn(true)
+        .maxMotionSetpointVelocityAlwaysOn(true)
+        .setSetpointAlwaysOn(true);
     SmartDashboard.putData("Subsystem/TurretHood",this);
   }
 

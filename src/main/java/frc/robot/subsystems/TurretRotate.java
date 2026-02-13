@@ -46,6 +46,12 @@ public class TurretRotate extends SubsystemBase {
       rotateMotorConfig.softLimit
         .forwardSoftLimit(90)
         .reverseSoftLimit(-90);
+      rotateMotorConfig.signals
+        .absoluteEncoderPositionAlwaysOn(true)
+        .isAtSetpointAlwaysOn(true)
+        .maxMotionSetpointPositionAlwaysOn(true)
+        .maxMotionSetpointVelocityAlwaysOn(true)
+        .setSetpointAlwaysOn(true);
 
     SmartDashboard.putData("Subsystem/TurretRotate",this);
     SmartDashboard.putData(new SparkSysIDTest(rotateMotor, this, 0));
