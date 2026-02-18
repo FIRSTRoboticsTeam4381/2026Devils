@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.config.SparkFlexConfig;
 import com.revrobotics.spark.config.SparkMaxConfig;
@@ -21,23 +22,23 @@ import frc.robot.Constants;
 @Logged
 public class TurretShoot extends SubsystemBase {
 
-  public SparkMax shootMotor1;
-  public SparkMax shootMotor2;
+  public SparkFlex shootMotor1;
+  public SparkFlex shootMotor2;
   
 
   public TurretShoot() 
   {
-    shootMotor1 = new SparkMax(CanIDs.SHOOT_MOTOR_1_ID, MotorType.kBrushless);
-    shootMotor2 = new SparkMax(CanIDs.SHOOT_MOTOR_2_ID, MotorType.kBrushless);
+    shootMotor1 = new SparkFlex(CanIDs.SHOOT_MOTOR_1_ID, MotorType.kBrushless);
+    shootMotor2 = new SparkFlex(CanIDs.SHOOT_MOTOR_2_ID, MotorType.kBrushless);
 
-    SparkMaxConfig shootMotor1Config = new SparkMaxConfig();
+    SparkFlexConfig shootMotor1Config = new SparkFlexConfig();
       shootMotor1Config
         .advanceCommutation(60)
         .smartCurrentLimit(20)
         .idleMode(IdleMode.kCoast)
         ;
     
-    SparkMaxConfig shootMotor2Config = new SparkMaxConfig();
+    SparkFlexConfig shootMotor2Config = new SparkFlexConfig();
       shootMotor2Config
         .apply(shootMotor1Config)
         .follow(shootMotor1,true)
