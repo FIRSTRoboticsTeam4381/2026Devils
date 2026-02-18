@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.spark.SparkFlex;
+import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.config.SparkFlexConfig;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
@@ -25,14 +26,14 @@ import frc.robot.Constants;
 public class Intake extends SubsystemBase {
   
   public SparkFlex intakePivotMotor;
-  public SparkFlex intakeMotionMotor;
+  public SparkMax intakeMotionMotor;
 
   public Boolean intakeStatus;
 
   public Intake() 
   {
     intakePivotMotor = new SparkFlex(CanIDs.INTAKE_PIVOT_MOTOR_ID, MotorType.kBrushless);
-    intakeMotionMotor = new SparkFlex(CanIDs.INTAKE_MOTION_MOTOR_ID, MotorType.kBrushless);
+    intakeMotionMotor = new SparkMax(CanIDs.INTAKE_MOTION_MOTOR_ID, MotorType.kBrushless);
 
     this.setDefaultCommand(intakeResting());
 
@@ -41,7 +42,7 @@ public class Intake extends SubsystemBase {
       .smartCurrentLimit(50)
       .idleMode(IdleMode.kBrake);
 
-    SparkFlexConfig intakeMotionConfig = new SparkFlexConfig();
+    SparkMaxConfig intakeMotionConfig = new SparkMaxConfig();
       intakeMotionConfig
       .smartCurrentLimit(50)
       .idleMode(IdleMode.kBrake);
