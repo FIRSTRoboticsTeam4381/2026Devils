@@ -6,6 +6,10 @@ package frc.robot.subsystems;
 
 import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
+import com.revrobotics.AbsoluteEncoder;
+import com.revrobotics.PersistMode;
+import com.revrobotics.ResetMode;
+import com.revrobotics.spark.FeedbackSensor;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.config.SparkMaxConfig;
@@ -25,12 +29,14 @@ public class TurretHood extends SubsystemBase {
 
   public SparkMax hoodMotor;
   public InterpolatingDoubleTreeMap map;
+  public AbsoluteEncoder encoder;
   //public double goTo;
   
   public TurretHood() 
   {
     map = new InterpolatingDoubleTreeMap();
     hoodMotor = new SparkMax(CanIDs.HOOD_MOTOR_ID, MotorType.kBrushless);
+    encoder = hoodMotor.getAbsoluteEncoder();
     setUpMap();
     SparkMaxConfig hoodMotorConfig = new SparkMaxConfig();
       hoodMotorConfig
@@ -40,7 +46,8 @@ public class TurretHood extends SubsystemBase {
       hoodMotorConfig.closedLoop
         .p(0.001)
         .i(0.0)
-        .d(0.0);
+        .d(0.0)
+        .feedbackSensor(FeedbackSensor.kAbsoluteEncoder);
       hoodMotorConfig.closedLoop.feedForward.kV(0.0);    
       hoodMotorConfig.signals
         .absoluteEncoderPositionAlwaysOn(true)
@@ -48,6 +55,8 @@ public class TurretHood extends SubsystemBase {
         .maxMotionSetpointPositionAlwaysOn(true)
         .maxMotionSetpointVelocityAlwaysOn(true)
         .setSetpointAlwaysOn(true);
+
+    hoodMotor.configure(hoodMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     SmartDashboard.putData("Subsystem/TurretHood",this);
     //SmartDashboard.putData("Subsystem/TurretHood/HoodPos", goTo);
     //SmartDashboard.putData("Subsystem/TurretHood/HoodPosSet", new InstantCommand(()->hoodTo(goTo)));

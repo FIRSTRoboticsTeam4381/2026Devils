@@ -4,10 +4,15 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.AbsoluteEncoder;
+import com.revrobotics.PersistMode;
+import com.revrobotics.ResetMode;
+import com.revrobotics.spark.FeedbackSensor;
 import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.config.SparkFlexConfig;
+import com.revrobotics.spark.config.SparkMaxConfig;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.SparkMax;
 
@@ -27,6 +32,7 @@ public class Intake extends SubsystemBase {
   
   public SparkFlex intakePivotMotor;
   public SparkMax intakeMotionMotor;
+  public AbsoluteEncoder encoder;
 
   public Boolean intakeStatus;
 
@@ -34,19 +40,28 @@ public class Intake extends SubsystemBase {
   {
     intakePivotMotor = new SparkFlex(CanIDs.INTAKE_PIVOT_MOTOR_ID, MotorType.kBrushless);
     intakeMotionMotor = new SparkMax(CanIDs.INTAKE_MOTION_MOTOR_ID, MotorType.kBrushless);
-
+    encoder = intakePivotMotor.getAbsoluteEncoder();
     this.setDefaultCommand(intakeResting());
 
     SparkFlexConfig intakePivotConfig = new SparkFlexConfig();
       intakePivotConfig
       .smartCurrentLimit(50)
       .idleMode(IdleMode.kBrake);
+      intakePivotConfig.closedLoop
+        .p(0.001)
+        .i(0)
+        .d(0)
+        .feedbackSensor(FeedbackSensor.kAbsoluteEncoder);
 
     SparkMaxConfig intakeMotionConfig = new SparkMaxConfig();
       intakeMotionConfig
-      .smartCurrentLimit(50)
-      .idleMode(IdleMode.kBrake);
+      .smartCurrentLimit(20)
+      .idleMode(IdleMode.kBrake)
+      .advanceCommutation(60)
+      .inverted(true);
 
+    intakeMotionMotor.configure(intakeMotionConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    intakePivotMotor.configure(intakePivotConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     SmartDashboard.putData("Subsystem/Intake",this);
   }
 
@@ -73,17 +88,18 @@ public class Intake extends SubsystemBase {
 
   public Command intakeResting()
   {
-    return new ParallelCommandGroup(
-      intakeStop(),
-      intakePivotTo(0) // Position may need adjustment 
+    return new SequentialCommandGroup(
+      intakeStop()//,
+      //intakePivotTo(.2) // Position may need adjustment 
     );
   }
 
   public Command intakeReady() // TODO automatically turn this on
   {
-    return new ParallelCommandGroup(
-      intake(),
-      intakePivotTo(0) // Change position to intaking ready position - need robot ):
+    return new SequentialCommandGroup(
+      
+      //intakePivotTo(.5), // Change position to intaking ready position - need robot ):
+      intake().repeatedly()
     );
   }
 

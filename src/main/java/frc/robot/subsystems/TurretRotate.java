@@ -6,6 +6,8 @@ package frc.robot.subsystems;
 
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.AbsoluteEncoder;
+import com.revrobotics.PersistMode;
+import com.revrobotics.ResetMode;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
@@ -26,12 +28,12 @@ import frc.robot.Constants;
 public class TurretRotate extends SubsystemBase {
 
   public SparkMax rotateMotor;
-  public AbsoluteEncoder encoder;
+  
   
   public TurretRotate() 
   {
     rotateMotor = new SparkMax(CanIDs.ROTATE_MOTOR_ID, MotorType.kBrushless);
-    encoder = rotateMotor.getAbsoluteEncoder();
+    
     
     SparkMaxConfig rotateMotorConfig = new SparkMaxConfig();
       rotateMotorConfig
@@ -47,11 +49,14 @@ public class TurretRotate extends SubsystemBase {
         .forwardSoftLimit(90)
         .reverseSoftLimit(-90);
       rotateMotorConfig.signals
-        .absoluteEncoderPositionAlwaysOn(true)
+        .primaryEncoderPositionAlwaysOn(true)
+        .primaryEncoderVelocityAlwaysOn(true)
         .isAtSetpointAlwaysOn(true)
         .maxMotionSetpointPositionAlwaysOn(true)
         .maxMotionSetpointVelocityAlwaysOn(true)
         .setSetpointAlwaysOn(true);
+    
+    rotateMotor.configure(rotateMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
     SmartDashboard.putData("Subsystem/TurretRotate",this);
     SmartDashboard.putData(new SparkSysIDTest(rotateMotor, this, 0));

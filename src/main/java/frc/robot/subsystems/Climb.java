@@ -4,6 +4,8 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.PersistMode;
+import com.revrobotics.ResetMode;
 import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
@@ -47,7 +49,11 @@ public class Climb extends SubsystemBase {
         .apply(climbElevator1Config)
         .follow(climbElevatorMotor1,true)
         ;
+        
 
+      climbPivotMotor.configure(climbPivot1Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+      climbElevatorMotor1.configure(climbElevator1Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+      climbElevatorMotor2.configure(climbElevator2Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     SmartDashboard.putData("Subsystem/Climb",this);
   }
 

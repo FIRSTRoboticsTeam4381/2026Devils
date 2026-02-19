@@ -6,6 +6,8 @@ package frc.robot.subsystems;
 
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
+import com.revrobotics.PersistMode;
+import com.revrobotics.ResetMode;
 import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.config.SparkFlexConfig;
@@ -33,16 +35,27 @@ public class TurretShoot extends SubsystemBase {
 
     SparkFlexConfig shootMotor1Config = new SparkFlexConfig();
       shootMotor1Config
-        .advanceCommutation(60)
-        .smartCurrentLimit(20)
+        .smartCurrentLimit(40)
         .idleMode(IdleMode.kCoast)
+        .inverted(true)
         ;
+
+        shootMotor1Config.signals
+        .primaryEncoderPositionAlwaysOn(true)
+        .primaryEncoderVelocityAlwaysOn(true)
+        .isAtSetpointAlwaysOn(true)
+        .maxMotionSetpointPositionAlwaysOn(true)
+        .maxMotionSetpointVelocityAlwaysOn(true)
+        .setSetpointAlwaysOn(true);
     
     SparkFlexConfig shootMotor2Config = new SparkFlexConfig();
       shootMotor2Config
         .apply(shootMotor1Config)
         .follow(shootMotor1,true)
         ;
+
+    shootMotor1.configure(shootMotor1Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    shootMotor2.configure(shootMotor2Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     setDefaultCommand(shootOff()); 
 
     SmartDashboard.putData("Subsystem/TurretShoot",this);
@@ -56,12 +69,12 @@ public class TurretShoot extends SubsystemBase {
 
   public Command shootOn()
   {
-    return new InstantCommand(() -> shootMotor1.set(.5)).withName("ShooterOn");
+    return new InstantCommand(() -> shootMotor1.set(.65),this).repeatedly().withName("ShooterOn");
   }
 
   public Command shootOff()
   {
-    return new InstantCommand(() -> shootMotor1.set(0)).withName("ShooterOff");
+    return new InstantCommand(() -> shootMotor1.set(0),this).repeatedly().withName("ShooterOff");
   }
 
   /*

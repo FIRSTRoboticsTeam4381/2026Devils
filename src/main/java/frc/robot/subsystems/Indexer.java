@@ -4,10 +4,14 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.PersistMode;
+import com.revrobotics.ResetMode;
 import com.revrobotics.spark.SparkFlex;
+import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.config.SparkFlexConfig;
+import com.revrobotics.spark.config.SparkMaxConfig;
 
 import edu.wpi.first.epilogue.Logged;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
@@ -21,25 +25,43 @@ import frc.robot.Constants;
 @Logged
 public class Indexer extends SubsystemBase {
 
-  public SparkFlex indexerMotor;
+  public SparkMax indexerMotor;
   public SparkFlex pushMotor;
   
   public Indexer() 
   {
-    indexerMotor = new SparkFlex(CanIDs.INDEX_MOTOR_ID, MotorType.kBrushless);
+    indexerMotor = new SparkMax(CanIDs.INDEX_MOTOR_ID, MotorType.kBrushless);
     pushMotor = new SparkFlex(CanIDs.PUSH_MOTOR_ID, MotorType.kBrushless);
 
-    SparkFlexConfig indexerMotorConfig = new SparkFlexConfig();
+    SparkMaxConfig indexerMotorConfig = new SparkMaxConfig();
       indexerMotorConfig
-      .smartCurrentLimit(50)
-      .idleMode(IdleMode.kBrake);
+      .smartCurrentLimit(15)
+      .idleMode(IdleMode.kBrake)
+      .advanceCommutation(60);
 
     SparkFlexConfig pushMotorConfig = new SparkFlexConfig();
       pushMotorConfig
-      .smartCurrentLimit(50)
+      .smartCurrentLimit(80)
       .idleMode(IdleMode.kBrake)
-      .follow(indexerMotor);
+      .follow(indexerMotor,true);
+    
+    indexerMotorConfig.signals
+        .primaryEncoderPositionAlwaysOn(true)
+        .primaryEncoderVelocityAlwaysOn(true)
+        .isAtSetpointAlwaysOn(true)
+        .maxMotionSetpointPositionAlwaysOn(true)
+        .maxMotionSetpointVelocityAlwaysOn(true)
+        .setSetpointAlwaysOn(true);
+    pushMotorConfig.signals
+        .primaryEncoderPositionAlwaysOn(true)
+        .primaryEncoderVelocityAlwaysOn(true)
+        .isAtSetpointAlwaysOn(true)
+        .maxMotionSetpointPositionAlwaysOn(true)
+        .maxMotionSetpointVelocityAlwaysOn(true)
+        .setSetpointAlwaysOn(true);
 
+    indexerMotor.configure(indexerMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    pushMotor.configure(pushMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     SmartDashboard.putData("Subsystem/Indexer",this);
   }
 
@@ -52,12 +74,12 @@ public class Indexer extends SubsystemBase {
   // TODO add commands
   public Command pushOn()
   {
-    return new InstantCommand(() -> indexerMotor.set(0.5));
+    return new InstantCommand(() -> indexerMotor.set(.5),this).repeatedly();
   }
 
   public Command pushOff()
   {
-    return new InstantCommand(() -> indexerMotor.set(0));
+    return new InstantCommand(() -> indexerMotor.set(0),this);
   }
 
 }

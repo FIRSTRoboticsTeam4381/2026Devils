@@ -57,7 +57,7 @@ public class RobotContainer {
   public final TurretShoot shoot = new TurretShoot();
   public final TurretHood hood = new TurretHood();
   public final TurretRotate rotate = new TurretRotate();
-  public final LockOn lockOn = new LockOn();
+  
 
   // TODO set camera names, coordinates, and angles relative to the robot's center
   //public final PhotonCam camA = new PhotonCam("Camera A", new Transform3d(new Translation3d(Units.inchesToMeters(-10.375), Units.inchesToMeters(-7.3125),  Units.inchesToMeters(8.5)), new Rotation3d(0,Math.PI/-6,Math.PI/-4-Math.PI)) );
@@ -134,7 +134,7 @@ public class RobotContainer {
     // TODO Your Controls Here!
     specialist.b().toggleOnTrue(intake.intakeReady()); // Toggle intake on, once toggles off it return to its default command in Intake subsystem
     specialist.x().toggleOnTrue(shoot.shootOn());
-    specialist.a().toggleOnTrue(lockOn);
+    specialist.a().toggleOnTrue(new LockOn(this));
     specialist.leftBumper().onTrue(indexer.pushOff());
     specialist.rightBumper().onTrue(indexer.pushOn());
     // Climb later

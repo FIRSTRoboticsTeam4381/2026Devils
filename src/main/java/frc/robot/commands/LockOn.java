@@ -12,6 +12,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.RobotContainer;
 import frc.robot.subsystems.Swerve;
 import frc.robot.subsystems.TurretHood;
 import frc.robot.subsystems.TurretRotate;
@@ -30,14 +31,13 @@ public class LockOn extends Command {
   public Optional<Alliance> allaince;
   public Translation2d vector;
 
-  public LockOn() {
+  public LockOn(RobotContainer robotContainer) {
     // Use addRequirements() here to declare subsystem dependencies.
+    swerve = robotContainer.swerve;
+    hood = robotContainer.hood;
+    rotate = robotContainer.rotate;
+    shoot = robotContainer.shoot;
     addRequirements(hood, rotate); // add shoot back later when ready
-
-    swerve = new Swerve();
-    hood = new TurretHood();
-    rotate = new TurretRotate();
-    shoot = new TurretShoot();
   }
 
   
