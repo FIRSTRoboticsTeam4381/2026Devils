@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.lib.commands.SparkSysIDTest;
 import frc.robot.CanIDs;
 import frc.robot.Constants;
 
@@ -39,8 +40,15 @@ public class TurretShoot extends SubsystemBase {
         .idleMode(IdleMode.kCoast)
         .inverted(true)
         ;
+        /* 
+      shootMotor1Config.closedLoop
+        .p(0)
+        .i(0)
+        .d(0)
+        .feedForward
+        .sva(0, 0, 0);*/
 
-        shootMotor1Config.signals
+      shootMotor1Config.signals
         .primaryEncoderPositionAlwaysOn(true)
         .primaryEncoderVelocityAlwaysOn(true)
         .isAtSetpointAlwaysOn(true)
@@ -57,6 +65,8 @@ public class TurretShoot extends SubsystemBase {
     shootMotor1.configure(shootMotor1Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     shootMotor2.configure(shootMotor2Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     setDefaultCommand(shootOff()); 
+
+    SmartDashboard.putData("SysID/Intake", new SparkSysIDTest(shootMotor1, this, 2));
 
     SmartDashboard.putData("Subsystem/TurretShoot",this);
   }

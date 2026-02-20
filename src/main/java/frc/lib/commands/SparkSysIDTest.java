@@ -7,6 +7,7 @@ package frc.lib.commands;
 import java.util.function.Supplier;
 
 import com.revrobotics.spark.SparkBase;
+import com.revrobotics.spark.config.SparkFlexConfig;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
@@ -14,6 +15,7 @@ import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
+import frc.robot.subsystems.TurretShoot;
 
 /**
  * Utility class that creates a Sequential Command containing the four SysID tests
@@ -177,4 +179,8 @@ public class SparkSysIDTest extends SequentialCommandGroup {
       new InstantCommand(() -> motor.set(0.0))
     );
   }
+
+    public SparkSysIDTest(SparkFlexConfig shootMotor1Config, TurretShoot s, int delayBetweenTests) {
+        //TODO Auto-generated constructor stub
+    }
 }

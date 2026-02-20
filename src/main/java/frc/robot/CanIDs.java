@@ -36,7 +36,7 @@ public final class CanIDs {
     public static final int INTAKE_MOTION_MOTOR_ID = 50;
     public static final int INTAKE_PIVOT_MOTOR_ID = 57;
     public static final int INDEX_MOTOR_ID = 51;
-    public static final int PUSH_MOTOR_ID = 52;
+    public static final int TURDEXER_MOTOR_ID = 52;
     public static final int CLIMB_PIVOT_MOTOR_ID = 58;
     public static final int CLIMB_ELEVATOR_MOTOR_1_ID = 59;
     public static final int CLIMB_ELEVATOR_MOTOR_2_ID = 60;
@@ -73,8 +73,18 @@ public final class CanIDs {
           Map.entry(SwerveModules.MOD2.driveMotorID, "Swerve/BR/Drive"),
           Map.entry(SwerveModules.MOD2.angleMotorID, "Swerve/BR/Angle"),
           Map.entry(SwerveModules.MOD3.driveMotorID, "Swerve/BL/Drive"),
-          Map.entry(SwerveModules.MOD3.angleMotorID, "Swerve/BL/Angle")//,
-          //Map.entry(EXAMPLE_MOTOR_ID, "Example/motor1")
+          Map.entry(SwerveModules.MOD3.angleMotorID, "Swerve/BL/Angle"),
+          Map.entry(INTAKE_MOTION_MOTOR_ID, "Intake/Motion"),
+          Map.entry(INDEX_MOTOR_ID, "Index/Index"),
+          Map.entry(TURDEXER_MOTOR_ID, "Index/Push"),
+          Map.entry(ROTATE_MOTOR_ID, "Turret/Rotate"),
+          Map.entry(HOOD_MOTOR_ID, "Turret/Hood"),
+          Map.entry(SHOOT_MOTOR_1_ID, "Turret/Shoot1"),
+          Map.entry(SHOOT_MOTOR_2_ID, "Turret/Shoot2"),
+          Map.entry(INTAKE_PIVOT_MOTOR_ID, "Intake/Pivot"),
+          Map.entry(CLIMB_PIVOT_MOTOR_ID, "Climb/Pivot"),
+          Map.entry(CLIMB_ELEVATOR_MOTOR_1_ID, "Climb/Motor1"),
+          Map.entry(CLIMB_ELEVATOR_MOTOR_2_ID, "Climb/Motor2")
       );
 
 }

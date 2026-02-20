@@ -26,6 +26,7 @@ import frc.lib.commands.TeleopSwerve;
 import frc.lib.subsystems.PhotonCam;
 import frc.robot.commands.Autos;
 import frc.robot.subsystems.Swerve;
+import frc.robot.subsystems.Turdexer;
 import frc.robot.subsystems.Climb;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Intake;
@@ -57,6 +58,7 @@ public class RobotContainer {
   public final TurretShoot shoot = new TurretShoot();
   public final TurretHood hood = new TurretHood();
   public final TurretRotate rotate = new TurretRotate();
+  public final Turdexer turdexer = new Turdexer();
   
 
   // TODO set camera names, coordinates, and angles relative to the robot's center
@@ -135,8 +137,9 @@ public class RobotContainer {
     specialist.b().toggleOnTrue(intake.intakeReady()); // Toggle intake on, once toggles off it return to its default command in Intake subsystem
     specialist.x().toggleOnTrue(shoot.shootOn());
     specialist.a().toggleOnTrue(new LockOn(this));
-    specialist.leftBumper().onTrue(indexer.pushOff());
-    specialist.rightBumper().onTrue(indexer.pushOn());
+    specialist.leftBumper().onTrue(turdexer.turdexerOn());
+    specialist.rightBumper().toggleOnTrue(indexer.indexerOn());
+    
     // Climb later
 
     // Temp Manual

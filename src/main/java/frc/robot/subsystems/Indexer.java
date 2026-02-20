@@ -26,12 +26,14 @@ import frc.robot.Constants;
 public class Indexer extends SubsystemBase {
 
   public SparkMax indexerMotor;
-  public SparkFlex pushMotor;
+  
   
   public Indexer() 
   {
     indexerMotor = new SparkMax(CanIDs.INDEX_MOTOR_ID, MotorType.kBrushless);
-    pushMotor = new SparkFlex(CanIDs.PUSH_MOTOR_ID, MotorType.kBrushless);
+    
+
+    this.setDefaultCommand(indexerOff());
 
     SparkMaxConfig indexerMotorConfig = new SparkMaxConfig();
       indexerMotorConfig
@@ -39,11 +41,6 @@ public class Indexer extends SubsystemBase {
       .idleMode(IdleMode.kBrake)
       .advanceCommutation(60);
 
-    SparkFlexConfig pushMotorConfig = new SparkFlexConfig();
-      pushMotorConfig
-      .smartCurrentLimit(80)
-      .idleMode(IdleMode.kBrake)
-      .follow(indexerMotor,true);
     
     indexerMotorConfig.signals
         .primaryEncoderPositionAlwaysOn(true)
@@ -52,16 +49,10 @@ public class Indexer extends SubsystemBase {
         .maxMotionSetpointPositionAlwaysOn(true)
         .maxMotionSetpointVelocityAlwaysOn(true)
         .setSetpointAlwaysOn(true);
-    pushMotorConfig.signals
-        .primaryEncoderPositionAlwaysOn(true)
-        .primaryEncoderVelocityAlwaysOn(true)
-        .isAtSetpointAlwaysOn(true)
-        .maxMotionSetpointPositionAlwaysOn(true)
-        .maxMotionSetpointVelocityAlwaysOn(true)
-        .setSetpointAlwaysOn(true);
+    
 
     indexerMotor.configure(indexerMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-    pushMotor.configure(pushMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    
     SmartDashboard.putData("Subsystem/Indexer",this);
   }
 
@@ -72,12 +63,12 @@ public class Indexer extends SubsystemBase {
   }
 
   // TODO add commands
-  public Command pushOn()
+  public Command indexerOn()
   {
     return new InstantCommand(() -> indexerMotor.set(.5),this).repeatedly();
   }
 
-  public Command pushOff()
+  public Command indexerOff()
   {
     return new InstantCommand(() -> indexerMotor.set(0),this);
   }

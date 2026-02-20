@@ -24,6 +24,8 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.lib.commands.SparkPosition;
+import frc.lib.commands.SparkPositionProfiled;
+import frc.lib.commands.SparkSysIDTest;
 import frc.robot.CanIDs;
 import frc.robot.Constants;
 
@@ -48,10 +50,20 @@ public class Intake extends SubsystemBase {
       .smartCurrentLimit(50)
       .idleMode(IdleMode.kBrake);
       intakePivotConfig.closedLoop
-        .p(0.001)
+        .p(4.1815)
         .i(0)
-        .d(0)
-        .feedbackSensor(FeedbackSensor.kAbsoluteEncoder);
+        .d(0.0031332)
+        .feedbackSensor(FeedbackSensor.kAbsoluteEncoder)
+        .feedForward
+        .sva(0.72818, 0.09364, 0);
+        
+      intakePivotConfig.softLimit
+      .reverseSoftLimit(.2)
+      .forwardSoftLimit(.5)
+      .reverseSoftLimitEnabled(true)
+      .forwardSoftLimitEnabled(true);
+      
+      
 
     SparkMaxConfig intakeMotionConfig = new SparkMaxConfig();
       intakeMotionConfig
@@ -62,7 +74,11 @@ public class Intake extends SubsystemBase {
 
     intakeMotionMotor.configure(intakeMotionConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     intakePivotMotor.configure(intakePivotConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+
+    SmartDashboard.putData("SysID/Intake", new SparkSysIDTest(intakePivotMotor, this, 2,.220,.5,encoder::getPosition));
     SmartDashboard.putData("Subsystem/Intake",this);
+
+    
   }
 
   @Override
@@ -81,16 +97,22 @@ public class Intake extends SubsystemBase {
     return new InstantCommand(() -> intakeMotionMotor.set(0), this);
   }
 
+  public Command intakePivotStop()
+  {
+    return new InstantCommand(() -> intakePivotMotor.set(0), this);
+  }
+
   public Command intakePivotTo(double position)
   {
-    return new SparkPosition(intakePivotMotor, position, 1, this);
+    return new SparkPosition(intakePivotMotor, position, .015, this);
   }
 
   public Command intakeResting()
   {
     return new SequentialCommandGroup(
-      intakeStop()//,
-      //intakePivotTo(.2) // Position may need adjustment 
+      intakeStop(),
+      intakePivotTo(.2),
+      intakePivotStop()  
     );
   }
 
@@ -98,7 +120,8 @@ public class Intake extends SubsystemBase {
   {
     return new SequentialCommandGroup(
       
-      //intakePivotTo(.5), // Change position to intaking ready position - need robot ):
+      intakePivotTo(.5),
+      intakePivotStop(), 
       intake().repeatedly()
     );
   }

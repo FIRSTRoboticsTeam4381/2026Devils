@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.lib.commands.SparkPosition;
+import frc.lib.commands.SparkSysIDTest;
 import frc.robot.CanIDs;
 import frc.robot.Constants;
 
@@ -57,7 +58,10 @@ public class TurretHood extends SubsystemBase {
         .setSetpointAlwaysOn(true);
 
     hoodMotor.configure(hoodMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+
+    SmartDashboard.putData("SysID/Intake", new SparkSysIDTest(hoodMotor, this, 2,0,0,encoder::getPosition));
     SmartDashboard.putData("Subsystem/TurretHood",this);
+
     //SmartDashboard.putData("Subsystem/TurretHood/HoodPos", goTo);
     //SmartDashboard.putData("Subsystem/TurretHood/HoodPosSet", new InstantCommand(()->hoodTo(goTo)));
   }
