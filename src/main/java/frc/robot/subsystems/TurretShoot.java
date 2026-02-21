@@ -40,13 +40,13 @@ public class TurretShoot extends SubsystemBase {
         .idleMode(IdleMode.kCoast)
         .inverted(true)
         ;
-        /* 
+        
       shootMotor1Config.closedLoop
-        .p(0)
+        .p(2.2307E-06)
         .i(0)
         .d(0)
         .feedForward
-        .sva(0, 0, 0);*/
+        .sva(0.038845, 0.0018515, 0.0005394);
 
       shootMotor1Config.signals
         .primaryEncoderPositionAlwaysOn(true)
@@ -66,7 +66,7 @@ public class TurretShoot extends SubsystemBase {
     shootMotor2.configure(shootMotor2Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     setDefaultCommand(shootOff()); 
 
-    SmartDashboard.putData("SysID/Intake", new SparkSysIDTest(shootMotor1, this, 2));
+    SmartDashboard.putData("SysID/Shooter", new SparkSysIDTest(shootMotor1, this, 10));
 
     SmartDashboard.putData("Subsystem/TurretShoot",this);
   }

@@ -46,8 +46,10 @@ public class TurretRotate extends SubsystemBase {
         .d(0.0);
       rotateMotorConfig.closedLoop.feedForward.kV(0.0);    
       rotateMotorConfig.softLimit
-        .forwardSoftLimit(90)
-        .reverseSoftLimit(-90);
+        .forwardSoftLimit(105)
+        .forwardSoftLimitEnabled(true)
+        .reverseSoftLimit(-105)
+        .reverseSoftLimitEnabled(true);
       rotateMotorConfig.signals
         .primaryEncoderPositionAlwaysOn(true)
         .primaryEncoderVelocityAlwaysOn(true)
@@ -55,6 +57,8 @@ public class TurretRotate extends SubsystemBase {
         .maxMotionSetpointPositionAlwaysOn(true)
         .maxMotionSetpointVelocityAlwaysOn(true)
         .setSetpointAlwaysOn(true);
+      rotateMotorConfig.encoder
+        .positionConversionFactor(360.0/35.0);
     
     rotateMotor.configure(rotateMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
@@ -70,8 +74,10 @@ public class TurretRotate extends SubsystemBase {
 
   public void point(double pos) 
   {
-    rotateMotor.getClosedLoopController().setSetpoint(pos, ControlType.kPosition);
+    rotateMotor.getClosedLoopController().setSetpoint(pos, ControlType.kPosition); // Gears   12 50    10 84       IN THEORY: 35 1
   } 
+
+  
 
   
 

@@ -43,7 +43,9 @@ public class TurretHood extends SubsystemBase {
       hoodMotorConfig
         .advanceCommutation(60)
         .smartCurrentLimit(20)
-        .idleMode(IdleMode.kBrake);
+        .idleMode(IdleMode.kBrake)
+        .inverted(true)
+        .absoluteEncoder.inverted(true);
       hoodMotorConfig.closedLoop
         .p(0.001)
         .i(0.0)
@@ -56,10 +58,13 @@ public class TurretHood extends SubsystemBase {
         .maxMotionSetpointPositionAlwaysOn(true)
         .maxMotionSetpointVelocityAlwaysOn(true)
         .setSetpointAlwaysOn(true);
+      hoodMotorConfig.softLimit
+      .forwardSoftLimit(.95).reverseSoftLimit(.05)
+      .forwardSoftLimitEnabled(true).reverseSoftLimitEnabled(true);
 
     hoodMotor.configure(hoodMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
-    SmartDashboard.putData("SysID/Intake", new SparkSysIDTest(hoodMotor, this, 2,0,0,encoder::getPosition));
+    SmartDashboard.putData("SysID/Hood", new SparkSysIDTest(hoodMotor, this, 2,0.1,0.9, encoder::getPosition));
     SmartDashboard.putData("Subsystem/TurretHood",this);
 
     //SmartDashboard.putData("Subsystem/TurretHood/HoodPos", goTo);

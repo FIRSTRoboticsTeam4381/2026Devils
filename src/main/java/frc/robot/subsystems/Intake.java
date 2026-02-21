@@ -111,7 +111,7 @@ public class Intake extends SubsystemBase {
   {
     return new SequentialCommandGroup(
       intakeStop(),
-      intakePivotTo(.2),
+      intakePivotTo(.35),
       intakePivotStop()  
     );
   }

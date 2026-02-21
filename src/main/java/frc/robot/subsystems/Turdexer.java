@@ -28,7 +28,8 @@ public class Turdexer extends SubsystemBase
     SparkFlexConfig turdexerMotorConfig = new SparkFlexConfig();
       turdexerMotorConfig
       .smartCurrentLimit(80)
-      .idleMode(IdleMode.kBrake);
+      .idleMode(IdleMode.kBrake)
+      .inverted(true);
 
       turdexerMotorConfig.signals
         .primaryEncoderPositionAlwaysOn(true)
@@ -48,7 +49,7 @@ public class Turdexer extends SubsystemBase
 
   public Command turdexerOn()
   {
-    return new InstantCommand(() -> turdexerMotor.set(.5),this).repeatedly();
+    return new InstantCommand(() -> turdexerMotor.set(.75),this).repeatedly();
   }
 
   public Command turdexerOff()
