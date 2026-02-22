@@ -38,8 +38,7 @@ public class TurretShoot extends SubsystemBase {
       shootMotor1Config
         .smartCurrentLimit(40)
         .idleMode(IdleMode.kCoast)
-        .inverted(true)
-        ;
+        .inverted(true);
         
       shootMotor1Config.closedLoop
         .p(2.2307E-06)

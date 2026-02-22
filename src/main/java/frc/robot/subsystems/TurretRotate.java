@@ -39,7 +39,8 @@ public class TurretRotate extends SubsystemBase {
       rotateMotorConfig
         .advanceCommutation(60)
         .smartCurrentLimit(20)
-        .idleMode(IdleMode.kBrake);
+        .idleMode(IdleMode.kBrake)
+        .inverted(true);
       rotateMotorConfig.closedLoop
         .p( 0.001)
         .i(0.0)
@@ -62,8 +63,9 @@ public class TurretRotate extends SubsystemBase {
     
     rotateMotor.configure(rotateMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
+    
     SmartDashboard.putData("Subsystem/TurretRotate",this);
-    SmartDashboard.putData(new SparkSysIDTest(rotateMotor, this, 0));
+    SmartDashboard.putData("SysID/Rotate",new SparkSysIDTest(rotateMotor, this, 2, -75, 75, rotateMotor.getEncoder()::getPosition));
   }
 
   @Override

@@ -37,7 +37,7 @@ public class LockOn extends Command {
     hood = robotContainer.hood;
     rotate = robotContainer.rotate;
     shoot = robotContainer.shoot;
-    addRequirements(hood, rotate); // add shoot back later when ready
+    addRequirements(hood); // add shoot back later when ready
   }
 
   
@@ -57,20 +57,23 @@ public class LockOn extends Command {
   {
     current = swerve.getPose();
     vector = hub.minus(current).getTranslation();
-    rotate.point
+    /*rotate.point
     (
       current.getRotation().getDegrees()-vector.getAngle().getDegrees()
-    );
+    );*/
     hood.angleFromDist(vector.getNorm());
   }
 
   
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) 
+  {
+    //rotate.point(0);
+  }
 
   @Override
   public boolean isFinished() {
-    rotate.point(0);
+    
     return false;
   }
 }
