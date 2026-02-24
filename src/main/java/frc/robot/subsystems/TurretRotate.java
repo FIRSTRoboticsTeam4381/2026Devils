@@ -37,15 +37,15 @@ public class TurretRotate extends SubsystemBase {
     
     SparkMaxConfig rotateMotorConfig = new SparkMaxConfig();
       rotateMotorConfig
-        .advanceCommutation(60)
         .smartCurrentLimit(20)
         .idleMode(IdleMode.kBrake)
         .inverted(true);
       rotateMotorConfig.closedLoop
-        .p( 0.001)
+        .p(0.12025)
         .i(0.0)
         .d(0.0);
-      rotateMotorConfig.closedLoop.feedForward.kV(0.0);    
+        
+      rotateMotorConfig.closedLoop.feedForward.sva(0.20505, 0.0011331, 0.00010849);    
       rotateMotorConfig.softLimit
         .forwardSoftLimit(105)
         .forwardSoftLimitEnabled(true)
@@ -59,13 +59,13 @@ public class TurretRotate extends SubsystemBase {
         .maxMotionSetpointVelocityAlwaysOn(true)
         .setSetpointAlwaysOn(true);
       rotateMotorConfig.encoder
-        .positionConversionFactor(360.0/35.0);
+        .positionConversionFactor(360.0/99.5);
     
     rotateMotor.configure(rotateMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
     
     SmartDashboard.putData("Subsystem/TurretRotate",this);
-    SmartDashboard.putData("SysID/Rotate",new SparkSysIDTest(rotateMotor, this, 2, -75, 75, rotateMotor.getEncoder()::getPosition));
+    SmartDashboard.putData("SysID/Rotate",new SparkSysIDTest(rotateMotor, this, 2, -90, 90, rotateMotor.getEncoder()::getPosition));
   }
 
   @Override
@@ -76,7 +76,7 @@ public class TurretRotate extends SubsystemBase {
 
   public void point(double pos) 
   {
-    rotateMotor.getClosedLoopController().setSetpoint(pos, ControlType.kPosition); // Gears   12 50    10 84       IN THEORY: 35 1
+    rotateMotor.getClosedLoopController().setSetpoint(pos, ControlType.kPosition); // Gears   99.5:1
   } 
 
   

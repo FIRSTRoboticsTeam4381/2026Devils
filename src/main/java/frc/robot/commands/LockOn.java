@@ -56,11 +56,11 @@ public class LockOn extends Command {
   public void execute() 
   {
     current = swerve.getPose();
-    vector = hub.minus(current).getTranslation();
-    /*rotate.point
+    vector = current.minus(hub).getTranslation();
+    rotate.point
     (
-      current.getRotation().getDegrees()-vector.getAngle().getDegrees()
-    );*/
+      current.getRotation().minus(vector.getAngle()).getDegrees()
+    );
     hood.angleFromDist(vector.getNorm());
   }
 
@@ -68,7 +68,7 @@ public class LockOn extends Command {
   @Override
   public void end(boolean interrupted) 
   {
-    //rotate.point(0);
+    rotate.point(0);
   }
 
   @Override

@@ -8,12 +8,14 @@ import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.PersistMode;
 import com.revrobotics.ResetMode;
+import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.config.SparkFlexConfig;
 import com.revrobotics.spark.config.SparkMaxConfig;
 
 import edu.wpi.first.epilogue.Logged;
+import edu.wpi.first.math.interpolation.InterpolatingDoubleTreeMap;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -27,10 +29,12 @@ public class TurretShoot extends SubsystemBase {
 
   public SparkFlex shootMotor1;
   public SparkFlex shootMotor2;
-  
+  public InterpolatingDoubleTreeMap map;
 
   public TurretShoot() 
   {
+    map = new InterpolatingDoubleTreeMap();
+
     shootMotor1 = new SparkFlex(CanIDs.SHOOT_MOTOR_1_ID, MotorType.kBrushless);
     shootMotor2 = new SparkFlex(CanIDs.SHOOT_MOTOR_2_ID, MotorType.kBrushless);
 
@@ -70,15 +74,21 @@ public class TurretShoot extends SubsystemBase {
     SmartDashboard.putData("Subsystem/TurretShoot",this);
   }
 
+  public void setUpMap()
+  {
+     map.put(1.0,0.10);
+     map.put(5.0,0.90);
+  }
+
   @Override
   public void periodic() 
   {
 
   }
 
-  public Command shootOn()
+  public void shootOn(double speed)
   {
-    return new InstantCommand(() -> shootMotor1.set(.65),this).repeatedly().withName("ShooterOn");
+    shootMotor1.getClosedLoopController().setSetpoint(map.get(speed), ControlType.kPosition);
   }
 
   public Command shootOff()
