@@ -64,8 +64,8 @@ public class RobotContainer {
   // TODO set camera names, coordinates, and angles relative to the robot's center
   public final PhotonCam camA = new PhotonCam("Camera A", new Transform3d(new Translation3d(Units.inchesToMeters(-12.33496), Units.inchesToMeters(-3.11445),  Units.inchesToMeters(6.15733)), new Rotation3d(0,Math.toRadians(-30),Math.toRadians(-45)-Math.PI)) );
   public final PhotonCam camB = new PhotonCam("Camera B", new Transform3d(new Translation3d(Units.inchesToMeters(-12.33496), Units.inchesToMeters(3.11445),  Units.inchesToMeters(6.15733)), new Rotation3d(0,Math.toRadians(-30),Math.toRadians(45)-Math.PI)) );
-  //public final PhotonCam camC = new PhotonCam("Camera C", new Transform3d(new Translation3d(Units.inchesToMeters(-10.375), Units.inchesToMeters(7.3125),  Units.inchesToMeters(8.5)), new Rotation3d(0,Math.PI/-6,Math.PI/4-Math.PI)) );
-  //public final PhotonCam camD = new PhotonCam("Camera D", new Transform3d(new Translation3d(Units.inchesToMeters(-10.375), Units.inchesToMeters(7.3125),  Units.inchesToMeters(8.5)), new Rotation3d(0,Math.PI/-6,Math.PI/4-Math.PI)) );
+  public final PhotonCam camC = new PhotonCam("Camera C", new Transform3d(new Translation3d(Units.inchesToMeters(-9.27168), Units.inchesToMeters(-12.28787),  Units.inchesToMeters(12.40401)), new Rotation3d(0,Math.PI/-6,Math.PI/4-Math.PI)) );
+  public final PhotonCam camD = new PhotonCam("Camera D", new Transform3d(new Translation3d(Units.inchesToMeters(-9.27168), Units.inchesToMeters(12.28787),  Units.inchesToMeters(12.40401)), new Rotation3d(0,Math.PI/-6,Math.PI/4-Math.PI)) );
 
 
   // Constructor: set up the robot! 
@@ -134,11 +134,11 @@ public class RobotContainer {
     specialist.back().onTrue(new InstantCommand(() -> CommandScheduler.getInstance().cancelAll()));
             
     // TODO Your Controls Here!
-    specialist.b().toggleOnTrue(intake.intakeReady()); // Toggle intake on, once toggles off it return to its default command in Intake subsystem
-    //specialist.x().toggleOnTrue(shoot.shootOn());
-    specialist.a().toggleOnTrue(new LockOn(this));
-    specialist.leftBumper().toggleOnTrue(turdexer.turdexerOn());
-    specialist.rightBumper().toggleOnTrue(indexer.indexerOn());
+    specialist.a().toggleOnTrue(intake.intakeOut());
+    specialist.b().toggleOnTrue(intake.intakeOut());
+    specialist.y().toggleOnTrue(new LockOn(this));
+    specialist.povRight().toggleOnTrue(turdexer.turdexerOn());
+    specialist.povLeft().toggleOnTrue(indexer.indexerOn());
     
     // Climb later
 

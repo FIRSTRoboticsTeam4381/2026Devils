@@ -72,12 +72,13 @@ public class TurretShoot extends SubsystemBase {
     SmartDashboard.putData("SysID/Shooter", new SparkSysIDTest(shootMotor1, this, 10));
 
     SmartDashboard.putData("Subsystem/TurretShoot",this);
+
   }
 
   public void setUpMap()
   {
-     map.put(1.0,0.10);
-     map.put(5.0,0.90);
+    map.put(1.0,3500.0);
+    map.put(5.0,4000.0);
   }
 
   @Override
@@ -86,9 +87,14 @@ public class TurretShoot extends SubsystemBase {
 
   }
 
-  public void shootOn(double speed)
+  public void speedFromDist(double dist)
   {
-    shootMotor1.getClosedLoopController().setSetpoint(map.get(speed), ControlType.kPosition);
+    shootOn(map.get(dist));
+  }
+
+  public void shootOn(double vel)
+  {
+    shootMotor1.getClosedLoopController().setSetpoint(vel, ControlType.kVelocity);
   }
 
   public Command shootOff()

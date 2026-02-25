@@ -37,7 +37,7 @@ public class LockOn extends Command {
     hood = robotContainer.hood;
     rotate = robotContainer.rotate;
     shoot = robotContainer.shoot;
-    addRequirements(hood); // add shoot back later when ready
+    addRequirements(hood,rotate,shoot); // add shoot back later when ready
   }
 
   
@@ -61,6 +61,7 @@ public class LockOn extends Command {
     (
       current.getRotation().minus(vector.getAngle()).getDegrees()
     );
+    shoot.speedFromDist(vector.getNorm());
     hood.angleFromDist(vector.getNorm());
   }
 

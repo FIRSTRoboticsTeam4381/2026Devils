@@ -79,7 +79,7 @@ public class TurretHood extends SubsystemBase {
   public void setUpMap()
   {
      map.put(1.0,0.10);
-     map.put(5.0,0.90);
+     map.put(7.0,0.90);
   }
 
   @Override

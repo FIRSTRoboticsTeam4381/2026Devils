@@ -43,7 +43,7 @@ public class Intake extends SubsystemBase {
     intakePivotMotor = new SparkFlex(CanIDs.INTAKE_PIVOT_MOTOR_ID, MotorType.kBrushless);
     intakeMotionMotor = new SparkMax(CanIDs.INTAKE_MOTION_MOTOR_ID, MotorType.kBrushless);
     encoder = intakePivotMotor.getAbsoluteEncoder();
-    this.setDefaultCommand(intakeResting());
+    this.setDefaultCommand(intakeStop());
 
     SparkFlexConfig intakePivotConfig = new SparkFlexConfig();
       intakePivotConfig
@@ -116,14 +116,16 @@ public class Intake extends SubsystemBase {
     );
   }
 
-  public Command intakeReady() // TODO automatically turn this on
+  public Command intakeOut() // TODO automatically turn this on
   {
     return new SequentialCommandGroup(
-      
       intakePivotTo(.5),
-      intakePivotStop(), 
-      intake().repeatedly()
+      intakePivotStop()
     );
   }
+
+  
+
+  
 
 }
