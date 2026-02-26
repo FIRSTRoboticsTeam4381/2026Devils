@@ -71,7 +71,14 @@ public class TurretRotate extends SubsystemBase {
   @Override
   public void periodic() 
   {
-    
+    if(rotateMotor.getReverseLimitSwitch().isPressed())
+    {
+      rotateMotor.getEncoder().setPosition(-102);
+    }
+    if(rotateMotor.getForwardLimitSwitch().isPressed())
+    {
+      rotateMotor.getEncoder().setPosition(108);
+    }
   }
 
   public void point(double pos) 

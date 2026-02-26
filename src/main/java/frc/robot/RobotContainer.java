@@ -9,6 +9,8 @@ import java.util.concurrent.locks.Lock;
 
 import edu.wpi.first.epilogue.Logged;
 import edu.wpi.first.math.geometry.Transform3d;
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.math.util.Units;
@@ -64,8 +66,8 @@ public class RobotContainer {
   // TODO set camera names, coordinates, and angles relative to the robot's center
   public final PhotonCam camA = new PhotonCam("Camera A", new Transform3d(new Translation3d(Units.inchesToMeters(-12.33496), Units.inchesToMeters(-3.11445),  Units.inchesToMeters(6.15733)), new Rotation3d(0,Math.toRadians(-30),Math.toRadians(-45)-Math.PI)) );
   public final PhotonCam camB = new PhotonCam("Camera B", new Transform3d(new Translation3d(Units.inchesToMeters(-12.33496), Units.inchesToMeters(3.11445),  Units.inchesToMeters(6.15733)), new Rotation3d(0,Math.toRadians(-30),Math.toRadians(45)-Math.PI)) );
-  public final PhotonCam camC = new PhotonCam("Camera C", new Transform3d(new Translation3d(Units.inchesToMeters(-9.27168), Units.inchesToMeters(-12.28787),  Units.inchesToMeters(12.40401)), new Rotation3d(0,Math.PI/-6,Math.PI/4-Math.PI)) );
-  public final PhotonCam camD = new PhotonCam("Camera D", new Transform3d(new Translation3d(Units.inchesToMeters(-9.27168), Units.inchesToMeters(12.28787),  Units.inchesToMeters(12.40401)), new Rotation3d(0,Math.PI/-6,Math.PI/4-Math.PI)) );
+  public final PhotonCam camC = new PhotonCam("Camera C", new Transform3d(new Translation3d(Units.inchesToMeters(-9.27168), Units.inchesToMeters(-12.28787),  Units.inchesToMeters(12.40401)), new Rotation3d(0,Math.toRadians(-30),Math.toRadians(-60))) );
+  public final PhotonCam camD = new PhotonCam("Camera D", new Transform3d(new Translation3d(Units.inchesToMeters(-9.27168), Units.inchesToMeters(12.28787),  Units.inchesToMeters(12.40401)), new Rotation3d(0,Math.toRadians(-30),Math.toRadians(60))) );
 
 
   // Constructor: set up the robot! 
@@ -74,7 +76,7 @@ public class RobotContainer {
 
     // Set default commands here
 
-
+    
 
 
     // Set up autonomous picker
@@ -91,8 +93,6 @@ public class RobotContainer {
         listener.showPreview();
       });
     SmartDashboard.putNumber("Start Delay",0);
-
-    
     // Configure button bindings
     configureBindings();
   }
@@ -135,7 +135,8 @@ public class RobotContainer {
             
     // TODO Your Controls Here!
     specialist.a().toggleOnTrue(intake.intakeOut());
-    specialist.b().toggleOnTrue(intake.intakeOut());
+    specialist.b().toggleOnTrue(intake.intakeResting());
+    specialist.leftBumper().toggleOnTrue(intake.intake());
     specialist.y().toggleOnTrue(new LockOn(this));
     specialist.povRight().toggleOnTrue(turdexer.turdexerOn());
     specialist.povLeft().toggleOnTrue(indexer.indexerOn());

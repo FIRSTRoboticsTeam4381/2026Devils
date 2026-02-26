@@ -31,13 +31,17 @@ public class TurretShoot extends SubsystemBase {
   public SparkFlex shootMotor2;
   public InterpolatingDoubleTreeMap map;
 
+  public Double goTo;
+
   public TurretShoot() 
   {
+    this.goTo = 0.0;
     map = new InterpolatingDoubleTreeMap();
 
     shootMotor1 = new SparkFlex(CanIDs.SHOOT_MOTOR_1_ID, MotorType.kBrushless);
     shootMotor2 = new SparkFlex(CanIDs.SHOOT_MOTOR_2_ID, MotorType.kBrushless);
 
+    setUpMap();
     SparkFlexConfig shootMotor1Config = new SparkFlexConfig();
       shootMotor1Config
         .smartCurrentLimit(40)
@@ -73,18 +77,23 @@ public class TurretShoot extends SubsystemBase {
 
     SmartDashboard.putData("Subsystem/TurretShoot",this);
 
+    SmartDashboard.putNumber("Subsystem/TurretShoot/ShootSpeed", 0.0);
+    SmartDashboard.putData("Subsystem/TurretShoot/ShootSpeedSet", new InstantCommand(()->shootOn(SmartDashboard.getNumber("Subsystem/TurretShoot/ShootSpeed", 0.0)),this).repeatedly());
   }
 
   public void setUpMap()
   {
-    map.put(1.0,3500.0);
-    map.put(5.0,4000.0);
+    map.put(2.1,3100.0);
+    map.put(3.16,3623.0);
+    map.put(3.4,3600.0);
+    map.put(4.8,4507.0);
   }
 
   @Override
   public void periodic() 
   {
-
+    
+    
   }
 
   public void speedFromDist(double dist)

@@ -49,7 +49,7 @@ public class Turdexer extends SubsystemBase
 
   public Command turdexerOn()
   {
-    return new InstantCommand(() -> turdexerMotor.set(.75),this).repeatedly();
+    return new InstantCommand(() -> turdexerMotor.set(.5),this).repeatedly();
   }
 
   public Command turdexerOff()

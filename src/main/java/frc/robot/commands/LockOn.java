@@ -11,6 +11,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.Swerve;
@@ -28,6 +29,8 @@ public class LockOn extends Command {
 
   public Pose2d current;
   public Pose2d hub;
+  public Pose2d left;
+  public Pose2d right;
   public Optional<Alliance> allaince;
   public Translation2d vector;
 
@@ -47,8 +50,18 @@ public class LockOn extends Command {
     allaince = DriverStation.getAlliance();
     current = swerve.getPose();
     
-    if(allaince.get() == Alliance.Blue) {hub = new Pose2d(4.621,4.041,new Rotation2d());}
-    if(allaince.get() == Alliance.Red) {hub = new Pose2d(11.919,4.041,new Rotation2d());}
+    if(allaince.get() == Alliance.Blue) 
+    {
+      hub = new Pose2d(4.621,4.041,new Rotation2d());
+      right = new Pose2d(4.621,6.0,new Rotation2d());
+      left = new Pose2d(4.621,2.0,new Rotation2d());
+    }
+    if(allaince.get() == Alliance.Red) 
+    {
+      hub = new Pose2d(11.919,4.041,new Rotation2d());
+      left = new Pose2d(11.919,6.0,new Rotation2d());
+      right = new Pose2d(11.919,2.0,new Rotation2d());
+    }
   }
 
   
@@ -56,13 +69,56 @@ public class LockOn extends Command {
   public void execute() 
   {
     current = swerve.getPose();
-    vector = current.minus(hub).getTranslation();
-    rotate.point
-    (
-      current.getRotation().minus(vector.getAngle()).getDegrees()
-    );
-    shoot.speedFromDist(vector.getNorm());
-    hood.angleFromDist(vector.getNorm());
+    
+
+    
+
+    if(allaince.get() == Alliance.Red)
+    {
+      // If in the red zone shoot at hub otherwise shoot left or right of it from the neutral zone
+      if(current.getX()>12.5)
+      {
+        vector = current.minus(hub).getTranslation();
+        rotate.point(current.getRotation().minus(vector.getAngle()).getDegrees());
+      }
+      else if(current.getX()>12.5 && current.getY()<4)
+      {
+        vector = current.minus(right).getTranslation();
+        rotate.point(current.getRotation().minus(vector.getAngle()).getDegrees());
+      }
+      else
+      {
+        vector = current.minus(left).getTranslation();
+        rotate.point(current.getRotation().minus(vector.getAngle()).getDegrees());
+      }
+      shoot.speedFromDist(vector.getNorm());
+      hood.angleFromDist(vector.getNorm());
+    }
+
+    if(allaince.get() == Alliance.Blue)
+    {
+      // If in the blue zone shoot at hub otherwise shoot left or right of it from the neutral zone
+      if(current.getX()<4)
+      {
+        vector = current.minus(hub).getTranslation();
+        rotate.point(current.getRotation().minus(vector.getAngle()).getDegrees());
+      }
+      else if(current.getX()>4 && current.getY()>4)
+      {
+        vector = current.minus(right).getTranslation();
+        rotate.point(current.getRotation().minus(vector.getAngle()).getDegrees());
+      }
+      else
+      {
+        vector = current.minus(left).getTranslation();
+        rotate.point(current.getRotation().minus(vector.getAngle()).getDegrees());
+      }
+      shoot.speedFromDist(vector.getNorm());
+      hood.angleFromDist(vector.getNorm());
+    }
+
+    SmartDashboard.putNumber("Commands/LockOn/DistFromPoint", vector.getNorm());
+
   }
 
   
@@ -70,6 +126,8 @@ public class LockOn extends Command {
   public void end(boolean interrupted) 
   {
     rotate.point(0);
+    shoot.shootOn(0);
+    hood.angleFromDist(0);
   }
 
   @Override
