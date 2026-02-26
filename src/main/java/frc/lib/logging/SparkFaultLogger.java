@@ -8,6 +8,7 @@ import edu.wpi.first.epilogue.logging.ClassSpecificLogger;
 import edu.wpi.first.epilogue.logging.EpilogueBackend;
 import edu.wpi.first.wpilibj.Alert;
 import edu.wpi.first.wpilibj.Alert.AlertType;
+import frc.robot.CanIDs;
 
 /**
  * Custom logging class for Spark Max/Flex devices to log faults
@@ -63,7 +64,7 @@ public class SparkFaultLogger extends ClassSpecificLogger<SparkBase> {
 
     if(s.length() > 0)
     {
-        motorFaults[id].setText("Spark "+id+" faults: "+s);
+        motorFaults[id].setText(getMotorName(id)+" faults: "+s);
         motorFaults[id].set(true);
     }
     else
@@ -93,10 +94,15 @@ public class SparkFaultLogger extends ClassSpecificLogger<SparkBase> {
 
     if(s.length() > 0)
     {
-        motorWarnings[id].setText("Spark "+motor.getDeviceId()+" warnings: "+s);
+        motorWarnings[id].setText(getMotorName(id)+" warnings: "+s);
         motorWarnings[id].set(true);
     }
     else
         motorWarnings[id].set(false);
+  }
+
+  public static String getMotorName(int id)
+  {
+    return CanIDs.URCL_IDS.get(id) + " (id "+id+")";
   }
 }
