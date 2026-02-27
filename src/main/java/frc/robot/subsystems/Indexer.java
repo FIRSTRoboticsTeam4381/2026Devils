@@ -37,9 +37,9 @@ public class Indexer extends SubsystemBase {
 
     SparkMaxConfig indexerMotorConfig = new SparkMaxConfig();
       indexerMotorConfig
-      .smartCurrentLimit(15)
+      .smartCurrentLimit(80)
       .idleMode(IdleMode.kBrake)
-      .advanceCommutation(60);
+      .inverted(true);
 
     
     indexerMotorConfig.signals
@@ -65,7 +65,7 @@ public class Indexer extends SubsystemBase {
   // TODO add commands
   public Command indexerOn()
   {
-    return new InstantCommand(() -> indexerMotor.set(1),this).repeatedly();
+    return new InstantCommand(() -> indexerMotor.set(.8),this).repeatedly();
   }
 
   public Command indexerOff()

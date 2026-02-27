@@ -53,14 +53,14 @@ public class LockOn extends Command {
     if(allaince.get() == Alliance.Blue) 
     {
       hub = new Pose2d(4.621,4.041,new Rotation2d());
-      right = new Pose2d(4.621,6.0,new Rotation2d());
-      left = new Pose2d(4.621,2.0,new Rotation2d());
+      right = new Pose2d(3.5,6.0,new Rotation2d());
+      left = new Pose2d(3.5,2.0,new Rotation2d());
     }
     if(allaince.get() == Alliance.Red) 
     {
       hub = new Pose2d(11.919,4.041,new Rotation2d());
-      left = new Pose2d(11.919,6.0,new Rotation2d());
-      right = new Pose2d(11.919,2.0,new Rotation2d());
+      left = new Pose2d(12.5,6.0,new Rotation2d());
+      right = new Pose2d(12.5,2.0,new Rotation2d());
     }
   }
 
@@ -81,7 +81,7 @@ public class LockOn extends Command {
         vector = current.minus(hub).getTranslation();
         rotate.point(current.getRotation().minus(vector.getAngle()).getDegrees());
       }
-      else if(current.getX()>12.5 && current.getY()<4)
+      else if(current.getX()<12.5 && current.getY()<4)
       {
         vector = current.minus(right).getTranslation();
         rotate.point(current.getRotation().minus(vector.getAngle()).getDegrees());

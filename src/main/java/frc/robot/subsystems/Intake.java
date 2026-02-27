@@ -67,10 +67,8 @@ public class Intake extends SubsystemBase {
 
     SparkMaxConfig intakeMotionConfig = new SparkMaxConfig();
       intakeMotionConfig
-      .smartCurrentLimit(20)
-      .idleMode(IdleMode.kBrake)
-      .advanceCommutation(60)
-      .inverted(true);
+      .smartCurrentLimit(50)
+      .idleMode(IdleMode.kBrake);
 
     intakeMotionMotor.configure(intakeMotionConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     intakePivotMotor.configure(intakePivotConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
@@ -89,7 +87,7 @@ public class Intake extends SubsystemBase {
 
   public Command intake()
   {
-    return new InstantCommand(() -> intakeMotionMotor.set(0.5), this).repeatedly();
+    return new InstantCommand(() -> intakeMotionMotor.set(0.75), this).repeatedly();
   }
 
   public Command intakeStop()
@@ -111,7 +109,7 @@ public class Intake extends SubsystemBase {
   {
     return new SequentialCommandGroup(
       intakeStop(),
-      intakePivotTo(.35),
+      intakePivotTo(.3),
       intakePivotStop()  
     );
   }
