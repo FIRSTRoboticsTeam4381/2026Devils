@@ -7,13 +7,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "LeftOut"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "LeftBack"
+            "pathName": "Middle"
           }
         }
       ]
