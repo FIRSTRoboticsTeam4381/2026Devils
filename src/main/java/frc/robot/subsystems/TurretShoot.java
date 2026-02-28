@@ -106,6 +106,10 @@ public class TurretShoot extends SubsystemBase {
     shootMotor1.getClosedLoopController().setSetpoint(vel, ControlType.kVelocity);
   }
 
+  public Command shootOnOverride() {
+    return new InstantCommand(() -> shootMotor1.set(0.5),this).repeatedly().withName("shooterOn OVERRIDE");
+  }
+
   public Command shootOff()
   {
     return new InstantCommand(() -> shootMotor1.set(0),this).repeatedly().withName("ShooterOff");

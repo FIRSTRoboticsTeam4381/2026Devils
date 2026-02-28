@@ -44,10 +44,10 @@ public class RobotContainer {
   public final CommandXboxController driver = new CommandXboxController(0);
   public final CommandXboxController specialist = new CommandXboxController(1);
   
+  public CommandGenericHID buttonBoard1 = new CommandGenericHID(2);
+  public CommandGenericHID buttonBoard2 = new CommandGenericHID(3);
   // If you are using a button board, uncomment these and comment out specialist above
   // You may also want to adjust the un-zero'd joystick check in lib/controls/JoystickUtils.java
-  //public CommandGenericHID buttonBoard1 = new CommandGenericHID(1);
-  //public CommandGenericHID buttonBoard2 = new CommandGenericHID(2);
 
   //Auto Chooser
   SendableChooser<Autos.PreviewAuto> autoChooser = new SendableChooser<>();
@@ -142,7 +142,17 @@ public class RobotContainer {
     specialist.rightBumper().whileTrue(turdexer.turdexerThrough()).whileTrue(indexer.indexerThrough());
     specialist.rightTrigger().whileTrue(turdexer.turdexerBack()).whileTrue(indexer.indexerBack());
     
+    // Button board controls
+    // Board 1:  Turret:axis0 Hood:axis1 Override:button1 Fire:button2 ---- Board 2:  Shooter:axis0
+    buttonBoard1.button(1).whileTrue(new InstantCommand(
+      buttonBoard1.button(2).toggleOnTrue(shoot.shootOnOverride()); // Shoot speed going to need adjustment inside TurretShoot
+      shoot.shootOn(((buttonBoard2.getRawAxis(0) + 1) / 2 * 6000)); // (0 to 7000) Figure out velocity (7000 #) later
+      hood.angle((buttonBoard1.getRawAxis(1) + 1) / 2 * 0.5); // (0 to 0.5) Figure out 0.5 # later
+      rotate.point(buttonBoard1.getRawAxis(0) * 105); // (-1 to 1 * 105 in degrees) Should be right range
+    )); // Figure out how to do override switch
     
+
+
     // Climb later
 
     // Temp Manual
