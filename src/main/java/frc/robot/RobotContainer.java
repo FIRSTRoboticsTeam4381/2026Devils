@@ -7,6 +7,8 @@ package frc.robot;
 import java.time.Instant;
 import java.util.concurrent.locks.Lock;
 
+import com.pathplanner.lib.auto.NamedCommands;
+
 import edu.wpi.first.epilogue.Logged;
 import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.math.geometry.Pose2d;
@@ -93,6 +95,14 @@ public class RobotContainer {
         listener.showPreview();
       });
     SmartDashboard.putNumber("Start Delay",0);
+
+    NamedCommands.registerCommand("IntakeDeploy", intake.intakeDeploy());
+    NamedCommands.registerCommand("IntakeUndeploy", intake.intakeUndeploy());
+    NamedCommands.registerCommand("IntakeIn", intake.intakeIn());
+    NamedCommands.registerCommand("LockOn", new LockOn(this));
+    NamedCommands.registerCommand("DexerThrough", indexer.indexerThrough().alongWith(turdexer.turdexerThrough()));
+    NamedCommands.registerCommand("DexerOff", indexer.indexerOff().alongWith(turdexer.turdexerOff()));
+
     // Configure button bindings
     configureBindings();
   }
