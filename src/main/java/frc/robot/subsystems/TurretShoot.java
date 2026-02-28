@@ -44,7 +44,7 @@ public class TurretShoot extends SubsystemBase {
     setUpMap();
     SparkFlexConfig shootMotor1Config = new SparkFlexConfig();
       shootMotor1Config
-        .smartCurrentLimit(40)
+        .smartCurrentLimit(60)
         .idleMode(IdleMode.kCoast)
         .inverted(true);
         
@@ -87,12 +87,13 @@ public class TurretShoot extends SubsystemBase {
     map.put(3.16,3623.0);
     map.put(3.4,3600.0);
     map.put(4.8,4507.0);
+    map.put(8.0,6000.0);
   }
 
   @Override
   public void periodic() 
   {
-    
+    SmartDashboard.putNumber("Subsystem/TurretShoot/Velocity", shootMotor1.getEncoder().getVelocity());
     
   }
 

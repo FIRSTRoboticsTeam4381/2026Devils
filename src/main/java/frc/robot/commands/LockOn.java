@@ -53,14 +53,14 @@ public class LockOn extends Command {
     if(allaince.get() == Alliance.Blue) 
     {
       hub = new Pose2d(4.621,4.041,new Rotation2d());
-      right = new Pose2d(3.5,6.0,new Rotation2d());
-      left = new Pose2d(3.5,2.0,new Rotation2d());
+      right = new Pose2d(2,6.0,new Rotation2d());
+      left = new Pose2d(2,2.0,new Rotation2d());
     }
     if(allaince.get() == Alliance.Red) 
     {
       hub = new Pose2d(11.919,4.041,new Rotation2d());
-      left = new Pose2d(12.5,6.0,new Rotation2d());
-      right = new Pose2d(12.5,2.0,new Rotation2d());
+      left = new Pose2d(14,6.0,new Rotation2d());
+      right = new Pose2d(14,2.0,new Rotation2d());
     }
   }
 
