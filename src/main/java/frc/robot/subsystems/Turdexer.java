@@ -47,9 +47,13 @@ public class Turdexer extends SubsystemBase
     // This method will be called once per scheduler run
   }
 
-  public Command turdexerOn()
+  public Command turdexerThrough()
   {
     return new InstantCommand(() -> turdexerMotor.set(.5),this).repeatedly();
+  }
+  public Command turdexerBack()
+  {
+    return new InstantCommand(() -> turdexerMotor.set(-.5),this).repeatedly();
   }
 
   public Command turdexerOff()

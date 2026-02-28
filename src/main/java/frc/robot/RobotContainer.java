@@ -134,11 +134,13 @@ public class RobotContainer {
     specialist.back().onTrue(new InstantCommand(() -> CommandScheduler.getInstance().cancelAll()));
             
     // TODO Your Controls Here!
-    specialist.x().toggleOnTrue(intake.intakeOut());
-    specialist.b().toggleOnTrue(intake.intakeResting());
-    specialist.a().whileTrue(intake.intake());
+    specialist.x().toggleOnTrue(intake.intakeDeploy());
+    specialist.b().toggleOnTrue(intake.intakeUndeploy());
+    specialist.a().whileTrue(intake.intakeIn());
+    specialist.y().whileTrue(intake.intakeOut());
     specialist.leftBumper().toggleOnTrue(new LockOn(this));
-    specialist.rightBumper().whileTrue(turdexer.turdexerOn()).whileTrue(indexer.indexerOn());
+    specialist.rightBumper().whileTrue(turdexer.turdexerThrough()).whileTrue(indexer.indexerThrough());
+    specialist.rightTrigger().whileTrue(turdexer.turdexerBack()).whileTrue(indexer.indexerBack());
     
     
     // Climb later

@@ -85,9 +85,14 @@ public class Intake extends SubsystemBase {
     
   }
 
-  public Command intake()
+  public Command intakeIn()
   {
     return new InstantCommand(() -> intakeMotionMotor.set(0.75), this).repeatedly();
+  }
+  
+  public Command intakeOut()
+  {
+    return new InstantCommand(() -> intakeMotionMotor.set(-0.75), this).repeatedly();
   }
 
   public Command intakeStop()
@@ -105,7 +110,7 @@ public class Intake extends SubsystemBase {
     return new SparkPosition(intakePivotMotor, position, .015, this);
   }
 
-  public Command intakeResting()
+  public Command intakeUndeploy()
   {
     return new SequentialCommandGroup(
       intakeStop(),
@@ -114,7 +119,7 @@ public class Intake extends SubsystemBase {
     );
   }
 
-  public Command intakeOut() // TODO automatically turn this on
+  public Command intakeDeploy() // TODO automatically turn this on
   {
     return new SequentialCommandGroup(
       intakePivotTo(.5),

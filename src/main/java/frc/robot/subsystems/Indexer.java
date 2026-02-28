@@ -63,9 +63,13 @@ public class Indexer extends SubsystemBase {
   }
 
   // TODO add commands
-  public Command indexerOn()
+  public Command indexerThrough()
   {
     return new InstantCommand(() -> indexerMotor.set(.8),this).repeatedly();
+  }
+  public Command indexerBack()
+  {
+    return new InstantCommand(() -> indexerMotor.set(-.8),this).repeatedly();
   }
 
   public Command indexerOff()
