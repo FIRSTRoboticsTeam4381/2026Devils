@@ -155,11 +155,12 @@ public class RobotContainer {
     
     // Button board controls
     // Board 1:  Turret:axis0 Hood:axis1 Override:button1 Fire:button2 ---- Board 2:  Shooter:axis0
-    buttonBoard1.button(1)
-    .whileTrue(new InstantCommand( () -> buttonBoard1.button(2).toggleOnTrue(shoot.shootOnOverride()))) // Shoot speed going to need adjustment inside TurretShoot
-    .whileTrue(new InstantCommand( () -> shoot.shootOn(((buttonBoard2.getRawAxis(0) + 1) / 2 * 6000)))) // (0 to 7000) Figure out velocity (7000 #) later
-    .whileTrue(new InstantCommand( () -> hood.angle((buttonBoard1.getRawAxis(1) + 1) / 2 * 0.5))) // (0 to 0.5) Figure out 0.5 # later
-    .whileTrue(new InstantCommand( () -> rotate.point(buttonBoard1.getRawAxis(0) * 105))); // (-1 to 1 * 105 in degrees) Should be right range    
+
+    buttonBoard1.button(2).and(buttonBoard1.button(1)).whileTrue(shoot.shootOnOverride()); // Shoot speed going to need adjustment inside TurretShoot
+    buttonBoard1.button(1) 
+    .whileTrue(new InstantCommand( () -> shoot.shootOn(((buttonBoard2.getRawAxis(0) + 1) / 2 * 6000)), shoot)) // (0 to 7000) Figure out velocity (7000 #) later
+    .whileTrue(new InstantCommand( () -> hood.angle((buttonBoard1.getRawAxis(1) + 1) / 2 * 0.5), hood)) // (0 to 0.5) Figure out 0.5 # later
+    .whileTrue(new InstantCommand( () -> rotate.point(buttonBoard1.getRawAxis(0) * 105), rotate)); // (-1 to 1 * 105 in degrees) Should be right range    
 
     // Climb later
 
