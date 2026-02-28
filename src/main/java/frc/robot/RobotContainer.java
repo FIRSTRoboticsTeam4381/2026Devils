@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.ScheduleCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
@@ -144,14 +145,11 @@ public class RobotContainer {
     
     // Button board controls
     // Board 1:  Turret:axis0 Hood:axis1 Override:button1 Fire:button2 ---- Board 2:  Shooter:axis0
-    buttonBoard1.button(1).whileTrue(new InstantCommand(
-      buttonBoard1.button(2).toggleOnTrue(shoot.shootOnOverride()); // Shoot speed going to need adjustment inside TurretShoot
-      shoot.shootOn(((buttonBoard2.getRawAxis(0) + 1) / 2 * 6000)); // (0 to 7000) Figure out velocity (7000 #) later
-      hood.angle((buttonBoard1.getRawAxis(1) + 1) / 2 * 0.5); // (0 to 0.5) Figure out 0.5 # later
-      rotate.point(buttonBoard1.getRawAxis(0) * 105); // (-1 to 1 * 105 in degrees) Should be right range
-    )); // Figure out how to do override switch
-    
-
+    buttonBoard1.button(1)
+    .whileTrue(new InstantCommand( () -> buttonBoard1.button(2).toggleOnTrue(shoot.shootOnOverride()))) // Shoot speed going to need adjustment inside TurretShoot
+    .whileTrue(new InstantCommand( () -> shoot.shootOn(((buttonBoard2.getRawAxis(0) + 1) / 2 * 6000)))) // (0 to 7000) Figure out velocity (7000 #) later
+    .whileTrue(new InstantCommand( () -> hood.angle((buttonBoard1.getRawAxis(1) + 1) / 2 * 0.5))) // (0 to 0.5) Figure out 0.5 # later
+    .whileTrue(new InstantCommand( () -> rotate.point(buttonBoard1.getRawAxis(0) * 105))); // (-1 to 1 * 105 in degrees) Should be right range    
 
     // Climb later
 
