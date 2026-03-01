@@ -16,20 +16,39 @@
     },
     {
       "anchor": {
-        "x": 7.812689075625764,
-        "y": 4.903890756297919
+        "x": 7.812689075628251,
+        "y": 5.856621848741943
       },
       "prevControl": {
-        "x": 7.853962310740069,
-        "y": 8.969271796588501
+        "x": 7.812689075630253,
+        "y": 8.608109243697479
       },
       "nextControl": null,
       "isLocked": false,
       "linkedName": "LeftBallsZero"
     }
   ],
-  "rotationTargets": [],
-  "constraintZones": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.27735099337748403,
+      "rotationDegrees": 178.99953877340994
+    }
+  ],
+  "constraintZones": [
+    {
+      "name": "Constraints Zone",
+      "minWaypointRelativePos": 0.8139053254437885,
+      "maxWaypointRelativePos": 1.0,
+      "constraints": {
+        "maxVelocity": 1.0,
+        "maxAcceleration": 3.0,
+        "maxAngularVelocity": 540.0,
+        "maxAngularAcceleration": 720.0,
+        "nominalVoltage": 12.0,
+        "unlimited": false
+      }
+    }
+  ],
   "pointTowardsZones": [],
   "eventMarkers": [
     {
@@ -71,7 +90,7 @@
   "folder": null,
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -89.26521528437266
+    "rotation": 179.6081444032092
   },
   "useDefaultConstraints": true
 }
