@@ -16,12 +16,12 @@
     },
     {
       "anchor": {
-        "x": 3.4682352941176475,
-        "y": 7.441966386554622
+        "x": 3.53683193276862,
+        "y": 7.464831932768507
       },
       "prevControl": {
-        "x": 5.831008403361345,
-        "y": 7.4724537815126055
+        "x": 5.899605042012319,
+        "y": 7.495319327726491
       },
       "nextControl": null,
       "isLocked": false,
@@ -37,11 +37,11 @@
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.9772189349112398,
+      "minWaypointRelativePos": 0.9594674556213016,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
         "maxVelocity": 0.1,
-        "maxAcceleration": 3.0,
+        "maxAcceleration": 0.5,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
         "nominalVoltage": 12.0,
@@ -64,9 +64,14 @@
     },
     {
       "name": "DexerThrough",
-      "waypointRelativePos": 0.9843195266272159,
+      "waypointRelativePos": 0.9227810650887573,
       "endWaypointRelativePos": 1.0,
-      "command": null
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "DexerThrough"
+        }
+      }
     }
   ],
   "globalConstraints": {
