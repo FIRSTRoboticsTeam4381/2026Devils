@@ -155,7 +155,7 @@ public class RobotContainer {
     specialist.a().whileTrue(intake.intakeIn());
     specialist.y().whileTrue(intake.intakeOut());
     specialist.leftBumper().toggleOnTrue(new LockOn(this));
-    specialist.rightBumper().whileTrue(turdexer.turdexerThrough()).whileTrue(indexer.indexerThrough());
+    specialist.rightBumper().whileTrue(turdexer.turdexerThrough()).whileTrue(indexer.indexerThrough()).whileTrue(intake.intakeIn());
     specialist.rightTrigger().whileTrue(turdexer.turdexerBack()).whileTrue(indexer.indexerBack());
     
     // Button board controls

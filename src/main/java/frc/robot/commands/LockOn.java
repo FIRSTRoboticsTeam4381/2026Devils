@@ -48,7 +48,7 @@ public class LockOn extends Command {
   public void initialize() 
   {
     allaince = DriverStation.getAlliance();
-    current = swerve.getPose();
+    current = swerve.getPose(); // Make it factor in turret offset
     
     if(allaince.get() == Alliance.Blue) 
     {
