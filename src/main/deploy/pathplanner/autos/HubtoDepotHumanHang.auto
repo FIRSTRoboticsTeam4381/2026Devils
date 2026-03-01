@@ -1,0 +1,55 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Middle"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "LockOn"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 6.0
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "LockOn"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "DepottoHuman"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "LockOn"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "HumantoHang"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": null,
+  "choreoAuto": false
+}
