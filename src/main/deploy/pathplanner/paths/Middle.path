@@ -16,12 +16,12 @@
     },
     {
       "anchor": {
-        "x": 0.8234537815126057,
-        "y": 5.94046218487395
+        "x": 0.9,
+        "y": 5.94
       },
       "prevControl": {
-        "x": 2.4850168067226894,
-        "y": 6.077655462184874
+        "x": 2.5615630252100834,
+        "y": 6.077193277310925
       },
       "nextControl": null,
       "isLocked": false,
@@ -35,7 +35,7 @@
       "minWaypointRelativePos": 0.8837278106508873,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
-        "maxVelocity": 0.5,
+        "maxVelocity": 0.25,
         "maxAcceleration": 3.0,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
@@ -50,13 +50,45 @@
       "name": "LockOn",
       "waypointRelativePos": 0,
       "endWaypointRelativePos": null,
-      "command": null
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "LockOn"
+        }
+      }
+    },
+    {
+      "name": "IntakeDeploy",
+      "waypointRelativePos": 0.1,
+      "endWaypointRelativePos": 1.0,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "IntakeDeploy"
+        }
+      }
+    },
+    {
+      "name": "IntakeIn",
+      "waypointRelativePos": 0.5,
+      "endWaypointRelativePos": 1.0,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "IntakeIn"
+        }
+      }
     },
     {
       "name": "DexerThrough",
       "waypointRelativePos": 0.5973372781065076,
       "endWaypointRelativePos": 1.0,
-      "command": null
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "DexerThrough"
+        }
+      }
     }
   ],
   "globalConstraints": {
@@ -75,7 +107,7 @@
   "folder": null,
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -179.4093427853534
+    "rotation": 180.0
   },
   "useDefaultConstraints": true
 }
