@@ -8,24 +8,24 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.183152639087017,
-        "y": 7.224379457917262
+        "x": 7.7288487394958,
+        "y": 7.304773109243697
       },
       "isLocked": false,
       "linkedName": "LeftStart"
     },
     {
       "anchor": {
-        "x": 7.812689075630255,
-        "y": 4.9343781512605025
+        "x": 7.817146932952923,
+        "y": 4.222610556348074
       },
       "prevControl": {
-        "x": 7.747995780337815,
-        "y": 8.298429506467349
+        "x": 7.858420168067228,
+        "y": 8.287991596638655
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "LeftBalls"
+      "linkedName": "LeftBallsOne"
     }
   ],
   "rotationTargets": [],
@@ -65,7 +65,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -91.05118074954376
+    "rotation": -90.0
   },
   "reversed": false,
   "folder": null,

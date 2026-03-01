@@ -81,6 +81,14 @@ public class RobotContainer {
 
     
 
+    // Named Commands
+    NamedCommands.registerCommand("IntakeDeploy", intake.intakeDeploy());
+    NamedCommands.registerCommand("IntakeUndeploy", intake.intakeUndeploy());
+    NamedCommands.registerCommand("IntakeIn", intake.intakeIn());
+    NamedCommands.registerCommand("LockOn", new LockOn(this));
+    NamedCommands.registerCommand("DexerThrough", indexer.indexerThrough().alongWith(turdexer.turdexerThrough()));
+    NamedCommands.registerCommand("DexerOff", indexer.indexerOff().alongWith(turdexer.turdexerOff()));
+
 
     // Set up autonomous picker
     // Add any autos you want to be able to select below
@@ -100,12 +108,6 @@ public class RobotContainer {
       });
     SmartDashboard.putNumber("Start Delay",0);
 
-    NamedCommands.registerCommand("IntakeDeploy", intake.intakeDeploy());
-    NamedCommands.registerCommand("IntakeUndeploy", intake.intakeUndeploy());
-    NamedCommands.registerCommand("IntakeIn", intake.intakeIn());
-    NamedCommands.registerCommand("LockOn", new LockOn(this));
-    NamedCommands.registerCommand("DexerThrough", indexer.indexerThrough().alongWith(turdexer.turdexerThrough()));
-    NamedCommands.registerCommand("DexerOff", indexer.indexerOff().alongWith(turdexer.turdexerOff()));
 
     // Configure button bindings
     configureBindings();

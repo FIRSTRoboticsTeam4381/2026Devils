@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 9.40707980196358,
-        "y": 7.429027727496133
+        "x": 8.605361344537817,
+        "y": 7.426722689075629
       },
       "isLocked": false,
       "linkedName": "LeftIn"
@@ -25,7 +25,7 @@
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "LeftBallsOne"
     }
   ],
   "rotationTargets": [],
