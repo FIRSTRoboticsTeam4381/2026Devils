@@ -14,10 +14,12 @@ import edu.wpi.first.net.PortForwarder;
 import edu.wpi.first.wpilibj.DataLogManager;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.lib.logging.RIOAlerts;
 import frc.lib.logging.RadioLogger;
+import frc.lib.util.DashboardShiftDisplay;
 
 @Logged
 public class Robot extends TimedRobot {
@@ -66,6 +68,10 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().run();
 
     RIOAlerts.logRioData();
+
+    SmartDashboard.putNumber("MatchTimer", DriverStation.getMatchTime());
+
+    DashboardShiftDisplay.updateHubStatus();
   }
 
   @Override
