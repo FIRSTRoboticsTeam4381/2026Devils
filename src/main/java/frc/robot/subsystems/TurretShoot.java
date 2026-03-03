@@ -86,7 +86,7 @@ public class TurretShoot extends SubsystemBase {
     map.put(2.1,3200.0);
     map.put(3.16,3723.0);
     map.put(3.4,3700.0);
-    map.put(4.8,4607.0);
+    map.put(4.8,4757.0);
     map.put(8.0,6000.0);
   }
 

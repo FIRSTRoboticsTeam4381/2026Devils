@@ -74,7 +74,7 @@ public class Indexer extends SubsystemBase {
 
   public Command indexerIdle()
   {
-    return new InstantCommand(() -> indexerMotor.set(-.1),this).repeatedly();
+    return new InstantCommand(() -> indexerMotor.set(-.05),this).repeatedly();
   }
 
   public Command indexerOff()
