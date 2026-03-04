@@ -3,16 +3,32 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.5596974789915974,
-        "y": 4.111218487394957
+        "x": 0.85,
+        "y": 5.94
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.530747899159665,
-        "y": 5.635588235294117
+        "x": 1.85,
+        "y": 5.94
       },
       "isLocked": false,
-      "linkedName": "HubStart"
+      "linkedName": "Depot"
+    },
+    {
+      "anchor": {
+        "x": 2.0,
+        "y": 5.94
+      },
+      "prevControl": {
+        "x": 1.0,
+        "y": 5.94
+      },
+      "nextControl": {
+        "x": 3.0,
+        "y": 5.94
+      },
+      "isLocked": false,
+      "linkedName": null
     },
     {
       "anchor": {
@@ -20,8 +36,8 @@
         "y": 5.94
       },
       "prevControl": {
-        "x": 2.5115630252100836,
-        "y": 6.077193277310925
+        "x": 0.5999999999999996,
+        "y": 5.94
       },
       "nextControl": null,
       "isLocked": false,
@@ -32,10 +48,23 @@
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.8837278106508873,
-      "maxWaypointRelativePos": 1.0,
+      "minWaypointRelativePos": 0,
+      "maxWaypointRelativePos": 0.7355029585798835,
       "constraints": {
-        "maxVelocity": 0.2,
+        "maxVelocity": 0.8,
+        "maxAcceleration": 3.0,
+        "maxAngularVelocity": 540.0,
+        "maxAngularAcceleration": 720.0,
+        "nominalVoltage": 12.0,
+        "unlimited": false
+      }
+    },
+    {
+      "name": "Constraints Zone",
+      "minWaypointRelativePos": 1.6,
+      "maxWaypointRelativePos": 2.0,
+      "constraints": {
+        "maxVelocity": 0.35,
         "maxAcceleration": 3.0,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
@@ -47,41 +76,30 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "IntakeDeploy",
-      "waypointRelativePos": 0.1,
-      "endWaypointRelativePos": 1.0,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "IntakeDeploy"
-        }
-      }
-    },
-    {
-      "name": "IntakeIn",
-      "waypointRelativePos": 0.5,
-      "endWaypointRelativePos": 1.0,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "IntakeIn"
-        }
-      }
-    },
-    {
       "name": "DexerThrough",
-      "waypointRelativePos": 0.5973372781065076,
-      "endWaypointRelativePos": 1.0,
+      "waypointRelativePos": 0,
+      "endWaypointRelativePos": 2.0,
       "command": {
         "type": "named",
         "data": {
           "name": "DexerThrough"
         }
       }
+    },
+    {
+      "name": "IntakeIn",
+      "waypointRelativePos": 0,
+      "endWaypointRelativePos": 2.0,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "IntakeIn"
+        }
+      }
     }
   ],
   "globalConstraints": {
-    "maxVelocity": 3.0,
+    "maxVelocity": 1.0,
     "maxAcceleration": 3.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
@@ -98,5 +116,5 @@
     "velocity": 0,
     "rotation": 180.0
   },
-  "useDefaultConstraints": true
+  "useDefaultConstraints": false
 }

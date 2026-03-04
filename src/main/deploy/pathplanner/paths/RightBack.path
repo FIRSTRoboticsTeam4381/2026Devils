@@ -9,19 +9,19 @@
       "prevControl": null,
       "nextControl": {
         "x": 7.805067226890758,
-        "y": 0.25456302521008434
+        "y": 0.2545630252100848
       },
       "isLocked": false,
       "linkedName": "RightBalls"
     },
     {
       "anchor": {
-        "x": 3.5368319327731106,
-        "y": 0.567058823529411
+        "x": 2.888974789915967,
+        "y": 0.5594369747899157
       },
       "prevControl": {
-        "x": 6.021554621848739,
-        "y": 0.8643109243697473
+        "x": 6.052042016806722,
+        "y": 0.5213277310924378
       },
       "nextControl": null,
       "isLocked": false,
@@ -37,7 +37,7 @@
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.9772189349112398,
+      "minWaypointRelativePos": 0.9192307692307694,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
         "maxVelocity": 0.1,
@@ -64,9 +64,14 @@
     },
     {
       "name": "DexerThrough",
-      "waypointRelativePos": 0.9843195266272159,
+      "waypointRelativePos": 0.886094674556213,
       "endWaypointRelativePos": 1.0,
-      "command": null
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "DexerThrough"
+        }
+      }
     }
   ],
   "globalConstraints": {

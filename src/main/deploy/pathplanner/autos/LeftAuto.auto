@@ -5,30 +5,6 @@
     "data": {
       "commands": [
         {
-          "type": "named",
-          "data": {
-            "name": "LockOn"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 1.5
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "DexerThrough"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 3.0
-          }
-        },
-        {
           "type": "path",
           "data": {
             "pathName": "LeftOutZero"
@@ -38,6 +14,12 @@
           "type": "path",
           "data": {
             "pathName": "LeftBackZero"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "DexerOff"
           }
         },
         {

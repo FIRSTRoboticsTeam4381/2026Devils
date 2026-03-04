@@ -95,8 +95,8 @@ public class RobotContainer {
     autoChooser.setDefaultOption("None", Autos.none());
     autoChooser.addOption("Test", Autos.testAuto());
     autoChooser.addOption("RightAuto", Autos.RightAuto());
-    autoChooser.addOption("LeftAuto", Autos.LeftAuto());
-    autoChooser.addOption("MiddleAuto", Autos.MiddleAuto());
+    autoChooser.addOption("LeftAuto - NK", Autos.LeftAuto());
+    autoChooser.addOption("MiddleAuto - JL", Autos.MiddleAuto());
     
 
     // Add auto controls to the dashboard

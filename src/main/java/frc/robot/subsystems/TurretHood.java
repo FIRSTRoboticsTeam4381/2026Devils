@@ -87,14 +87,15 @@ public class TurretHood extends SubsystemBase {
      map.put(2.1,0.05);
      map.put(3.15,0.10);
      map.put(3.4,0.15);
-     map.put(4.8,0.44);
+     map.put(4.8,0.37);
+     map.put(5.5, 0.34);
      map.put(8.0, 0.45);
   }
 
   @Override
   public void periodic() 
   {
-
+    SmartDashboard.putNumber("Subsystem/TurretHood/CurHoodPos", encoder.getPosition());
   }
   
   public void joystickCont(double speed)

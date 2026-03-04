@@ -3,12 +3,12 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 0.9,
+        "x": 0.85,
         "y": 5.94
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.4933542542016793,
+        "x": 2.4433542542016795,
         "y": 5.8490327380952385
       },
       "isLocked": false,
@@ -16,16 +16,16 @@
     },
     {
       "anchor": {
-        "x": 2.0318154761904763,
-        "y": 3.7805133928571433
+        "x": 1.1435714285714291,
+        "y": 7.259042016806722
       },
       "prevControl": {
-        "x": 2.9453571428571426,
-        "y": 4.491770833333334
+        "x": 2.3173361344537806,
+        "y": 7.220932773109244
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Hang"
+      "linkedName": "outofway"
     }
   ],
   "rotationTargets": [],
@@ -45,9 +45,22 @@
     }
   ],
   "pointTowardsZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "DexerThrough",
+      "waypointRelativePos": 0,
+      "endWaypointRelativePos": 0.79,
+      "command": null
+    },
+    {
+      "name": "DexerOff",
+      "waypointRelativePos": 0.8,
+      "endWaypointRelativePos": null,
+      "command": null
+    }
+  ],
   "globalConstraints": {
-    "maxVelocity": 2.0,
+    "maxVelocity": 1.5,
     "maxAcceleration": 3.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
