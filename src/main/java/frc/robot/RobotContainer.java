@@ -88,6 +88,7 @@ public class RobotContainer {
     NamedCommands.registerCommand("LockOn", new LockOn(this));
     NamedCommands.registerCommand("DexerThrough", indexer.indexerThrough().alongWith(turdexer.turdexerThrough()));
     NamedCommands.registerCommand("DexerOff", indexer.indexerOff().alongWith(turdexer.turdexerOff()));
+    NamedCommands.registerCommand("Rev", shoot.rev());
 
 
     // Set up autonomous picker

@@ -87,12 +87,12 @@ public class Intake extends SubsystemBase {
 
   public Command intakeIn()
   {
-    return new InstantCommand(() -> intakeMotionMotor.set(0.75), this).repeatedly();
+    return new InstantCommand(() -> intakeMotionMotor.set(0.80), this).repeatedly();
   }
   
   public Command intakeOut()
   {
-    return new InstantCommand(() -> intakeMotionMotor.set(-0.75), this).repeatedly();
+    return new InstantCommand(() -> intakeMotionMotor.set(-0.80), this).repeatedly();
   }
 
   public Command intakeStop()

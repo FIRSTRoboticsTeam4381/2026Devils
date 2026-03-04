@@ -86,7 +86,7 @@ public class TurretShoot extends SubsystemBase {
     map.put(2.1,3200.0);
     map.put(3.16,3723.0);
     map.put(3.4,3700.0);
-    map.put(4.8,5000.0);
+    map.put(4.8,5200.0);
     map.put(5.5,5800.0);
     map.put(8.0,6000.0);
   }
@@ -106,6 +106,11 @@ public class TurretShoot extends SubsystemBase {
   public void shootOn(double vel)
   {
     shootMotor1.getClosedLoopController().setSetpoint(vel, ControlType.kVelocity);
+  }
+
+  public Command rev()
+  {
+    return new InstantCommand(() -> shootMotor1.getClosedLoopController().setSetpoint(5000, ControlType.kVelocity));
   }
 
   public Command shootOnOverride() {

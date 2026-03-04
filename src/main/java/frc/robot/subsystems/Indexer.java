@@ -33,7 +33,7 @@ public class Indexer extends SubsystemBase {
     indexerMotor = new SparkMax(CanIDs.INDEX_MOTOR_ID, MotorType.kBrushless);
     
 
-    this.setDefaultCommand(indexerIdle());
+    this.setDefaultCommand(indexerOff());
 
     SparkMaxConfig indexerMotorConfig = new SparkMaxConfig();
       indexerMotorConfig
