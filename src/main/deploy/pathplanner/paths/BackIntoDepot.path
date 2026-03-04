@@ -33,15 +33,15 @@
     {
       "anchor": {
         "x": 0.85,
-        "y": 5.94
+        "y": 6.125
       },
       "prevControl": {
         "x": 0.5999999999999996,
-        "y": 5.94
+        "y": 6.125
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Depot"
+      "linkedName": "DepotAngle1"
     }
   ],
   "rotationTargets": [],
@@ -76,17 +76,6 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "DexerThrough",
-      "waypointRelativePos": 0,
-      "endWaypointRelativePos": 2.0,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "DexerThrough"
-        }
-      }
-    },
-    {
       "name": "IntakeIn",
       "waypointRelativePos": 0,
       "endWaypointRelativePos": 2.0,
@@ -96,6 +85,18 @@
           "name": "IntakeIn"
         }
       }
+    },
+    {
+      "name": "DexerOff",
+      "waypointRelativePos": 0.25,
+      "endWaypointRelativePos": null,
+      "command": null
+    },
+    {
+      "name": "DexerThrough",
+      "waypointRelativePos": 1.65,
+      "endWaypointRelativePos": 2.0,
+      "command": null
     }
   ],
   "globalConstraints": {
@@ -108,7 +109,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": -160.0
   },
   "reversed": false,
   "folder": null,
