@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.534450784593438,
-        "y": 0.7032952924393738
+        "x": 3.5444537815126056,
+        "y": 7.449588235294118
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.545924369747899,
-        "y": 0.544193277310925
+        "x": 7.515436974789916,
+        "y": 7.457210084033614
       },
       "isLocked": false,
-      "linkedName": "RightStart"
+      "linkedName": "RightBegin"
     },
     {
       "anchor": {
-        "x": 7.141966386554623,
-        "y": 2.2819747899159664
+        "x": 7.805067226890758,
+        "y": 6.3215546218487395
       },
       "prevControl": {
-        "x": 7.141966386554623,
-        "y": 0.017709454680589154
+        "x": 7.82031092436975,
+        "y": 7.579159663865545
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "RightBalls"
+      "linkedName": "LeftBalls"
     }
   ],
   "rotationTargets": [
@@ -35,7 +35,7 @@
     },
     {
       "waypointRelativePos": 0.5963479096588136,
-      "rotationDegrees": 90.0
+      "rotationDegrees": -90.78783658146611
     }
   ],
   "constraintZones": [
@@ -88,10 +88,10 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 89.27477570094082
+    "rotation": -90.0
   },
   "reversed": false,
-  "folder": null,
+  "folder": "Simple Paths",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 180.0

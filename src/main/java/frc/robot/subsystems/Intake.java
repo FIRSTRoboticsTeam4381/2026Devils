@@ -122,7 +122,7 @@ public class Intake extends SubsystemBase {
   public Command intakeDeploy() // TODO automatically turn this on
   {
     return new SequentialCommandGroup(
-      intakePivotTo(.37),
+      intakePivotTo(.373),
       intakePivotStop()
     );
   }

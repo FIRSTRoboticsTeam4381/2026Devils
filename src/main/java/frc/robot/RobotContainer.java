@@ -95,7 +95,8 @@ public class RobotContainer {
     // Add any autos you want to be able to select below
     autoChooser.setDefaultOption("None", Autos.none());
     autoChooser.addOption("Test", Autos.testAuto());
-    autoChooser.addOption("RightAuto", Autos.RightAuto());
+    autoChooser.addOption("SimpleRightAuto -NK", Autos.SimpleRightAuto());
+    autoChooser.addOption("SimpleLeftAuto - NK", Autos.SimpleLeftAuto());
     autoChooser.addOption("LeftAuto - NK", Autos.LeftAuto());
     autoChooser.addOption("MiddleAuto - JL", Autos.MiddleAuto());
     

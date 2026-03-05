@@ -38,12 +38,16 @@ public final class Autos {
     public static PreviewAuto LeftAuto(){
         return new PreviewAuto("LeftAuto");
     }
-    public static PreviewAuto RightAuto(){
-        return new PreviewAuto("RightAuto");
+    public static PreviewAuto SimpleLeftAuto(){
+        return new PreviewAuto("SimpleLeftAuto");
+    }
+    public static PreviewAuto SimpleRightAuto(){
+        return new PreviewAuto("SimpleRightAuto");
     }
     public static PreviewAuto MiddleAuto(){
         return new PreviewAuto("MiddleAuto");
     }
+
 
     // TODO add pathplanner autos here. Example:
     //public static PreviewAuto Front3Note(){
