@@ -24,7 +24,7 @@
         "y": 4.6599915966386565
       },
       "nextControl": {
-        "x": -0.40366386554621925,
+        "x": -0.40366386554621947,
         "y": 6.275823529411763
       },
       "isLocked": false,
@@ -61,7 +61,7 @@
     "rotation": 153.43494882292183
   },
   "reversed": false,
-  "folder": null,
+  "folder": "Depot Paths",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 180.0

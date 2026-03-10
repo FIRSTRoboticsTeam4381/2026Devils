@@ -3,6 +3,9 @@
   "robotLength": 0.94,
   "holonomicMode": true,
   "pathFolders": [
+    "Middle Paths",
+    "Depot Paths",
+    "Scatter Paths",
     "Simple Paths"
   ],
   "autoFolders": [],

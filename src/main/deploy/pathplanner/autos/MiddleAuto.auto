@@ -19,6 +19,12 @@
                 "data": {
                   "commands": [
                     {
+                      "type": "named",
+                      "data": {
+                        "name": "DexerOff"
+                      }
+                    },
+                    {
                       "type": "path",
                       "data": {
                         "pathName": "Middle"

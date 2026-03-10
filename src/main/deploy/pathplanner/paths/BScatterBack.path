@@ -3,39 +3,57 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.5596974789915974,
-        "y": 4.111218487394957
+        "x": 7.591369047619047,
+        "y": 2.853921130952382
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.530747899159665,
-        "y": 5.635588235294117
+        "x": 5.568526785714285,
+        "y": 7.369427083333334
       },
       "isLocked": false,
-      "linkedName": "HubStart"
+      "linkedName": "ScatterOut"
     },
     {
       "anchor": {
-        "x": 0.85,
-        "y": 5.94
+        "x": 2.7975126050420176,
+        "y": 7.3962352941176475
       },
       "prevControl": {
-        "x": 2.5115630252100836,
-        "y": 6.077193277310925
+        "x": 9.124813988095237,
+        "y": 7.773995535714285
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Depot"
+      "linkedName": "LeftIn"
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.5,
+      "rotationDegrees": 180.0
+    }
+  ],
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.8837278106508873,
+      "minWaypointRelativePos": 0.93,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
-        "maxVelocity": 0.2,
+        "maxVelocity": 0.12,
+        "maxAcceleration": 3.0,
+        "maxAngularVelocity": 540.0,
+        "maxAngularAcceleration": 720.0,
+        "nominalVoltage": 12.0,
+        "unlimited": false
+      }
+    },
+    {
+      "name": "Constraints Zone",
+      "minWaypointRelativePos": 0.92,
+      "maxWaypointRelativePos": 1.0,
+      "constraints": {
+        "maxVelocity": 0.6,
         "maxAcceleration": 3.0,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
@@ -47,30 +65,19 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "IntakeDeploy",
-      "waypointRelativePos": 0.1,
-      "endWaypointRelativePos": 1.0,
+      "name": "LockOn",
+      "waypointRelativePos": 0.6683431952662698,
+      "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "IntakeDeploy"
-        }
-      }
-    },
-    {
-      "name": "IntakeIn",
-      "waypointRelativePos": 0.5,
-      "endWaypointRelativePos": 1.0,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "IntakeIn"
+          "name": "LockOn"
         }
       }
     },
     {
       "name": "DexerThrough",
-      "waypointRelativePos": 0.5973372781065076,
+      "waypointRelativePos": 0.9227810650887573,
       "endWaypointRelativePos": 1.0,
       "command": {
         "type": "named",
@@ -90,13 +97,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": -179.6048629574925
   },
   "reversed": false,
-  "folder": "Middle Paths",
+  "folder": "Scatter Paths",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": -179.6048629574925
   },
   "useDefaultConstraints": true
 }

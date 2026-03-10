@@ -71,6 +71,19 @@
         "nominalVoltage": 12.0,
         "unlimited": false
       }
+    },
+    {
+      "name": "Shooting",
+      "minWaypointRelativePos": 0.9,
+      "maxWaypointRelativePos": 1.5,
+      "constraints": {
+        "maxVelocity": 0.2,
+        "maxAcceleration": 3.0,
+        "maxAngularVelocity": 540.0,
+        "maxAngularAcceleration": 720.0,
+        "nominalVoltage": 12.0,
+        "unlimited": false
+      }
     }
   ],
   "pointTowardsZones": [],
@@ -94,6 +107,28 @@
     },
     {
       "name": "DexerThrough",
+      "waypointRelativePos": 0.9,
+      "endWaypointRelativePos": 1.5,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "DexerThrough"
+        }
+      }
+    },
+    {
+      "name": "DexerOff",
+      "waypointRelativePos": 1.5,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "DexerOff"
+        }
+      }
+    },
+    {
+      "name": "DexerThrough",
       "waypointRelativePos": 1.65,
       "endWaypointRelativePos": 2.0,
       "command": null
@@ -112,7 +147,7 @@
     "rotation": -160.0
   },
   "reversed": false,
-  "folder": null,
+  "folder": "Depot Paths",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 180.0
