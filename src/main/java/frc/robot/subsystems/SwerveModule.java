@@ -40,8 +40,8 @@ public class SwerveModule {
     private static final SparkFlexConfig DRIVE_CONFIG = new SparkFlexConfig(){{
         
             closedLoopRampRate(0.0);
-            openLoopRampRate(0.025);
-            smartCurrentLimit(80);
+            openLoopRampRate(0.04);
+            smartCurrentLimit(70);
             idleMode(IdleMode.kBrake);
             inverted(true);    
             
@@ -114,6 +114,11 @@ public class SwerveModule {
         // Slow down drive wheel if it is off-target
         // This should save on energy, tread wear, and odometry accuracy
         desiredState.speedMetersPerSecond *= desiredState.angle.minus(getAngle()).getCos();
+
+        // Force brake if wheel is commanded in reverse
+        double currentSpeed = getState().speedMetersPerSecond;
+        if(Math.signum(desiredState.speedMetersPerSecond) != Math.signum(currentSpeed) && Math.abs(currentSpeed) > 0.2)
+            desiredState.speedMetersPerSecond = 0;
 
          if(isOpenLoop){ // TELEOP 
             double percentOutput = desiredState.speedMetersPerSecond / Constants.Swerve.MAX_SPEED; 
