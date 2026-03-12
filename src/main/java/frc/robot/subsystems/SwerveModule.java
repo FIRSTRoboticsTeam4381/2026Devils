@@ -26,6 +26,15 @@ import edu.wpi.first.wpilibj.sysid.SysIdRoutineLog;
 
 @Logged
 public class SwerveModule {
+    
+    // If a drive motor is running above this speed in meters per second and it is commanded in reverse,
+    // it will switch to brake mode instead of reverse power. Applying reverse power means the motor is backdriven
+    // by the robot's momentun while it slows to a stop. Backdriving the drive motors this much seems to pop
+    // the main breaker, possibly by reverse power flow as indicated by spikes in voltage.
+    // The robot seems to take about the same amount of time to slow down in brake mode as when backdriven anyway.
+    private static final double MAX_BACKFEED_SPEED = 0.2;
+
+
     public int moduleNumber;
     private SparkMax mAngleMotor;
     private SparkFlex mDriveMotor;
@@ -117,7 +126,7 @@ public class SwerveModule {
 
         // Force brake if wheel is commanded in reverse
         double currentSpeed = getState().speedMetersPerSecond;
-        if(Math.signum(desiredState.speedMetersPerSecond) != Math.signum(currentSpeed) && Math.abs(currentSpeed) > 0.2)
+        if(Math.signum(desiredState.speedMetersPerSecond) != Math.signum(currentSpeed) && Math.abs(currentSpeed) > MAX_BACKFEED_SPEED)
             desiredState.speedMetersPerSecond = 0;
 
          if(isOpenLoop){ // TELEOP 
