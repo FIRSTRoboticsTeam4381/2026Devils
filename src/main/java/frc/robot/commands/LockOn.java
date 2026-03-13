@@ -9,6 +9,8 @@ import java.util.Optional;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.interpolation.InterpolatingDoubleTreeMap;
+import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -31,8 +33,24 @@ public class LockOn extends Command {
   public Pose2d hub;
   public Pose2d left;
   public Pose2d right;
+  public Pose2d target;
+  public Pose2d theoTarget;
+
+  public double velX;
+  public double velY;
+
+  public double ballVel;
+
+  public double timeOfFlight;
+
+  public double dist;
+
+  public InterpolatingDoubleTreeMap hoodMap;
+  public InterpolatingDoubleTreeMap shootMap;
+
   public Optional<Alliance> allaince;
   public Translation2d vector;
+  public Translation2d theoVector;
 
   public LockOn(RobotContainer robotContainer) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -62,6 +80,22 @@ public class LockOn extends Command {
       left = new Pose2d(14,6.0,new Rotation2d());
       right = new Pose2d(14,2.0,new Rotation2d());
     }
+
+
+    // Maps
+    hoodMap.put(2.1,0.05);
+    hoodMap.put(3.15,0.10);
+    hoodMap.put(3.4,0.15);
+    hoodMap.put(4.8,0.37);
+    hoodMap.put(5.5, 0.34);
+    hoodMap.put(8.0, 0.45);
+
+    shootMap.put(2.1,3200.0);
+    shootMap.put(3.16,3723.0);
+    shootMap.put(3.4,3700.0);
+    shootMap.put(4.8,5100.0);
+    shootMap.put(5.5,5800.0);
+    shootMap.put(8.0,6000.0);
   }
 
   
@@ -69,53 +103,50 @@ public class LockOn extends Command {
   public void execute() 
   {
     current = swerve.getPose();
-    
-
-    
+    velX = swerve.gyro.getVelocityX();
+    velY = swerve.gyro.getVelocityY();
 
     if(allaince.get() == Alliance.Red)
     {
       // If in the red zone shoot at hub otherwise shoot left or right of it from the neutral zone
       if(current.getX()>12.5)
-      {
-        vector = current.minus(hub).getTranslation();
-        rotate.point(current.getRotation().minus(vector.getAngle()).getDegrees());
-      }
+      {target = hub;}
       else if(current.getX()<12.5 && current.getY()<4)
-      {
-        vector = current.minus(right).getTranslation();
-        rotate.point(current.getRotation().minus(vector.getAngle()).getDegrees());
-      }
+      {target = right;}
       else
-      {
-        vector = current.minus(left).getTranslation();
-        rotate.point(current.getRotation().minus(vector.getAngle()).getDegrees());
-      }
-      shoot.speedFromDist(vector.getNorm());
-      hood.angleFromDist(vector.getNorm());
+      {target = left;}
     }
 
     if(allaince.get() == Alliance.Blue)
     {
       // If in the blue zone shoot at hub otherwise shoot left or right of it from the neutral zone
       if(current.getX()<4)
-      {
-        vector = current.minus(hub).getTranslation();
-        rotate.point(current.getRotation().minus(vector.getAngle()).getDegrees());
-      }
+      {target = hub;}
       else if(current.getX()>4 && current.getY()>4)
-      {
-        vector = current.minus(right).getTranslation();
-        rotate.point(current.getRotation().minus(vector.getAngle()).getDegrees());
-      }
+      {target = right;}
       else
-      {
-        vector = current.minus(left).getTranslation();
-        rotate.point(current.getRotation().minus(vector.getAngle()).getDegrees());
-      }
-      shoot.speedFromDist(vector.getNorm());
-      hood.angleFromDist(vector.getNorm());
+      {target = left;}
     }
+
+
+    // Adjust then give numbers
+
+    vector = current.minus(target).getTranslation();
+    
+    
+    dist = vector.getNorm();
+
+    ballVel = shootMap.get(dist)*0.85;
+
+    timeOfFlight = dist/ballVel;
+
+    theoTarget = new Pose2d(target.getX()-(velX*timeOfFlight), target.getY()-(velY*timeOfFlight), new Rotation2d());
+    theoVector = current.minus(theoTarget).getTranslation();
+
+    rotate.point(current.getRotation().minus(theoVector.getAngle()).getDegrees());
+
+    shoot.speedFromDist(theoVector.getNorm());
+    hood.angleFromDist(theoVector.getNorm());
 
     SmartDashboard.putNumber("Commands/LockOn/DistFromPoint", vector.getNorm());
 

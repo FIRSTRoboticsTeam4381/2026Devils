@@ -57,13 +57,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": null
+            "pathName": "SimpleRightOut"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": null
+            "pathName": "SimpleRightBack"
           }
         },
         {
