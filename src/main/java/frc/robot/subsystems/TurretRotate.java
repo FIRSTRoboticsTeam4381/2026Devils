@@ -47,9 +47,9 @@ public class TurretRotate extends SubsystemBase {
         
       rotateMotorConfig.closedLoop.feedForward.sva(0.20505, 0.0011331, 0.00010849);    
       rotateMotorConfig.softLimit
-        .forwardSoftLimit(105)
+        .forwardSoftLimit(115)
         .forwardSoftLimitEnabled(true)
-        .reverseSoftLimit(-105)
+        .reverseSoftLimit(-115)
         .reverseSoftLimitEnabled(true);
       rotateMotorConfig.signals
         .primaryEncoderPositionAlwaysOn(true)

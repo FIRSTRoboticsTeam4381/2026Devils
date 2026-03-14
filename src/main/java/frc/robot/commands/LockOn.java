@@ -11,8 +11,10 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.interpolation.InterpolatingDoubleTreeMap;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
+import edu.wpi.first.math.kinematics.Odometry;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
+import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
@@ -45,12 +47,15 @@ public class LockOn extends Command {
 
   public double dist;
 
-  public InterpolatingDoubleTreeMap hoodMap;
   public InterpolatingDoubleTreeMap shootMap;
 
   public Optional<Alliance> allaince;
   public Translation2d vector;
   public Translation2d theoVector;
+
+  public ChassisSpeeds chassisSpeeds;
+
+  public Field2d field;
 
   public LockOn(RobotContainer robotContainer) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -65,6 +70,9 @@ public class LockOn extends Command {
   @Override
   public void initialize() 
   {
+    field = new Field2d();
+    shootMap = new InterpolatingDoubleTreeMap();
+
     allaince = DriverStation.getAlliance();
     current = swerve.getPose(); // Make it factor in turret offset
     
@@ -83,12 +91,6 @@ public class LockOn extends Command {
 
 
     // Maps
-    hoodMap.put(2.1,0.05);
-    hoodMap.put(3.15,0.10);
-    hoodMap.put(3.4,0.15);
-    hoodMap.put(4.8,0.37);
-    hoodMap.put(5.5, 0.34);
-    hoodMap.put(8.0, 0.45);
 
     shootMap.put(2.1,3200.0);
     shootMap.put(3.16,3723.0);
@@ -101,10 +103,11 @@ public class LockOn extends Command {
   
   @Override
   public void execute() 
-  {
+  { 
+    chassisSpeeds = ChassisSpeeds.fromRobotRelativeSpeeds(swerve.getRobotRelativeSpeeds(),swerve.swerveOdometry.getEstimatedPosition().getRotation());
     current = swerve.getPose();
-    velX = swerve.gyro.getVelocityX();
-    velY = swerve.gyro.getVelocityY();
+    velX = chassisSpeeds.vxMetersPerSecond;
+    velY = chassisSpeeds.vyMetersPerSecond;
 
     if(allaince.get() == Alliance.Red)
     {
@@ -136,10 +139,10 @@ public class LockOn extends Command {
     
     dist = vector.getNorm();
 
-    ballVel = shootMap.get(dist)*0.85;
+    ballVel = (2*Math.PI*(0.0381)*shootMap.get(dist))/60;
 
-    timeOfFlight = dist/ballVel;
-
+    timeOfFlight = 3*dist/ballVel;
+    
     theoTarget = new Pose2d(target.getX()-(velX*timeOfFlight), target.getY()-(velY*timeOfFlight), new Rotation2d());
     theoVector = current.minus(theoTarget).getTranslation();
 
@@ -148,8 +151,13 @@ public class LockOn extends Command {
     shoot.speedFromDist(theoVector.getNorm());
     hood.angleFromDist(theoVector.getNorm());
 
-    SmartDashboard.putNumber("Commands/LockOn/DistFromPoint", vector.getNorm());
+    field.setRobotPose(theoTarget);
 
+    SmartDashboard.putNumber("Commands/LockOn/DistFromPoint", vector.getNorm());
+    SmartDashboard.putData("Commands/LockOn/TheoTargetField",field);
+    SmartDashboard.putNumber("Commands/LockOn/BallVel", ballVel);
+    SmartDashboard.putNumber("Commands/LockOn/TimeOfFlight", timeOfFlight);
+    
   }
 
   

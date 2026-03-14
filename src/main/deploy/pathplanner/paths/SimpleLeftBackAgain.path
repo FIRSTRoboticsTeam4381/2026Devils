@@ -3,63 +3,48 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.5444537815126056,
-        "y": 7.449588235294118
+        "x": 7.827932773109245,
+        "y": 4.942
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.515436974789916,
-        "y": 7.457210084033614
+        "x": 7.683117647058824,
+        "y": 7.129470588235295
       },
       "isLocked": false,
-      "linkedName": "RightBegin"
+      "linkedName": "LeftBallsTwo"
     },
     {
       "anchor": {
-        "x": 7.782201680672269,
-        "y": 5.559369747899159
+        "x": 3.5596974789915974,
+        "y": 7.434344537815126
       },
       "prevControl": {
-        "x": 7.858420168067228,
-        "y": 7.541050420168068
+        "x": 5.9453361344537825,
+        "y": 7.579159663865546
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "LeftBalls"
+      "linkedName": "LeftBack"
     }
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 0.3330129745314771,
+      "waypointRelativePos": 0.5,
       "rotationDegrees": 180.0
-    },
-    {
-      "waypointRelativePos": 0.5963479096588136,
-      "rotationDegrees": -90.78783658146611
     }
   ],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "IntakeDeploy",
-      "waypointRelativePos": 0.2568208778173236,
+      "name": "Rev",
+      "waypointRelativePos": 0.755041518386711,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "IntakeDeploy"
-        }
-      }
-    },
-    {
-      "name": "IntakeIn",
-      "waypointRelativePos": 0.5452662721893485,
-      "endWaypointRelativePos": 1.0,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "IntakeIn"
+          "name": "Rev"
         }
       }
     }
@@ -74,13 +59,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -90.0
+    "rotation": -179.6048629574925
   },
   "reversed": false,
   "folder": "Simple Paths",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": -90.0
   },
   "useDefaultConstraints": true
 }

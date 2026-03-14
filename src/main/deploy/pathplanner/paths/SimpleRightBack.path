@@ -16,16 +16,16 @@
     },
     {
       "anchor": {
-        "x": 3.042781740370898,
-        "y": 0.9491298145506415
+        "x": 3.534450784593438,
+        "y": 0.7032952924393738
       },
       "prevControl": {
-        "x": 5.061212553495006,
-        "y": 0.17281027104136903
+        "x": 5.670949579831934,
+        "y": 0.05639495798319327
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "RightIn"
+      "linkedName": "RightStart"
     }
   ],
   "rotationTargets": [
@@ -59,7 +59,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -179.6048629574925
+    "rotation": 180.0
   },
   "reversed": false,
   "folder": "Simple Paths",
