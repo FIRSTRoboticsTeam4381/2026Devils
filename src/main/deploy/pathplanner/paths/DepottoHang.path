@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 0.85,
+        "x": 0.79,
         "y": 6.125
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.4433542542016795,
-        "y": 6.034032738095238
+        "x": 1.3637932564330075,
+        "y": 6.091242236024844
       },
       "isLocked": false,
       "linkedName": "DepotAngle1"
     },
     {
       "anchor": {
-        "x": 1.1435714285714291,
-        "y": 7.259042016806722
+        "x": 1.5338952972493338,
+        "y": 6.517781721384206
       },
       "prevControl": {
-        "x": 2.3173361344537806,
-        "y": 7.220932773109244
+        "x": 1.525847382431233,
+        "y": 6.228056787932564
       },
       "nextControl": null,
       "isLocked": false,
@@ -45,10 +45,10 @@
     },
     {
       "name": "Shooting Zone",
-      "minWaypointRelativePos": 0.8,
+      "minWaypointRelativePos": 0.6,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
-        "maxVelocity": 0.125,
+        "maxVelocity": 0.2,
         "maxAcceleration": 3.0,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
@@ -61,15 +61,25 @@
   "eventMarkers": [
     {
       "name": "DexerOff",
-      "waypointRelativePos": 0.0,
-      "endWaypointRelativePos": null,
-      "command": null
+      "waypointRelativePos": 0,
+      "endWaypointRelativePos": 0.5,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "DexerOff"
+        }
+      }
     },
     {
       "name": "DexerThrough",
-      "waypointRelativePos": 0.8,
+      "waypointRelativePos": 0.6,
       "endWaypointRelativePos": 1.0,
-      "command": null
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "DexerThrough"
+        }
+      }
     }
   ],
   "globalConstraints": {
