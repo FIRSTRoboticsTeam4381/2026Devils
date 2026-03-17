@@ -90,14 +90,7 @@ public class LockOn extends Command {
     }
 
 
-    // Maps
-
-    shootMap.put(2.1,3200.0);
-    shootMap.put(3.16,3723.0);
-    shootMap.put(3.4,3700.0);
-    shootMap.put(4.8,5100.0);
-    shootMap.put(5.5,5800.0);
-    shootMap.put(8.0,6000.0);
+    
   }
 
   
@@ -139,7 +132,7 @@ public class LockOn extends Command {
     
     dist = vector.getNorm();
 
-    ballVel = (2*Math.PI*(0.0381)*shootMap.get(dist))/60;
+    ballVel = (2*Math.PI*(0.0381)*shoot.map.get(dist))/60;
 
     timeOfFlight = 3*dist/ballVel;
     
