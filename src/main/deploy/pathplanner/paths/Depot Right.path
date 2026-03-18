@@ -3,16 +3,16 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 0.8,
-        "y": 5.94
+        "x": 0.805,
+        "y": 5.57
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.8000000000000003,
-        "y": 5.94
+        "x": 1.805000000000001,
+        "y": 5.57
       },
       "isLocked": false,
-      "linkedName": "Depot"
+      "linkedName": "DepotLeft"
     },
     {
       "anchor": {
@@ -20,12 +20,12 @@
         "y": 5.94
       },
       "prevControl": {
-        "x": 1.0001618985556866,
-        "y": 5.957993634991891
+        "x": 1.809920579478746,
+        "y": 5.777612149794684
       },
       "nextControl": {
-        "x": 2.5398846495119782,
-        "y": 5.9302839396628215
+        "x": 2.4344855744643974,
+        "y": 6.3111878865634825
       },
       "isLocked": false,
       "linkedName": null
@@ -44,7 +44,16 @@
       "linkedName": "DepotAngle1"
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.5,
+      "rotationDegrees": 180.0
+    },
+    {
+      "waypointRelativePos": 1.4,
+      "rotationDegrees": 180.0
+    }
+  ],
   "constraintZones": [
     {
       "name": "Out of depot",
@@ -64,7 +73,7 @@
       "minWaypointRelativePos": 1.65,
       "maxWaypointRelativePos": 2.0,
       "constraints": {
-        "maxVelocity": 0.5,
+        "maxVelocity": 0.45,
         "maxAcceleration": 3.0,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
@@ -74,10 +83,10 @@
     },
     {
       "name": "Shooting",
-      "minWaypointRelativePos": 0.9,
-      "maxWaypointRelativePos": 1.5,
+      "minWaypointRelativePos": 0.1,
+      "maxWaypointRelativePos": 1.55,
       "constraints": {
-        "maxVelocity": 0.75,
+        "maxVelocity": 0.25,
         "maxAcceleration": 3.0,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
@@ -101,7 +110,7 @@
     },
     {
       "name": "DexerOff",
-      "waypointRelativePos": 0.25,
+      "waypointRelativePos": 0.0,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
@@ -112,8 +121,8 @@
     },
     {
       "name": "DexerThrough",
-      "waypointRelativePos": 0.5,
-      "endWaypointRelativePos": 1.7,
+      "waypointRelativePos": 0.45,
+      "endWaypointRelativePos": 1.5,
       "command": {
         "type": "named",
         "data": {
@@ -123,7 +132,7 @@
     },
     {
       "name": "DexerOff",
-      "waypointRelativePos": 1.7,
+      "waypointRelativePos": 1.75,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
@@ -149,7 +158,7 @@
   "folder": "Depot Paths",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": 157.0
   },
   "useDefaultConstraints": false
 }

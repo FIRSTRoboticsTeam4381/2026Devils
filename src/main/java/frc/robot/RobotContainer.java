@@ -99,6 +99,7 @@ public class RobotContainer {
     autoChooser.addOption("SimpleLeftAuto - NK", Autos.SimpleLeftAuto());
     autoChooser.addOption("LeftAuto - NK", Autos.LeftAuto());
     autoChooser.addOption("MiddleAuto - JL", Autos.MiddleAuto());
+    autoChooser.addOption("MoreMiddleAuto - JL", Autos.MoreMiddleAuto());
     
 
     // Add auto controls to the dashboard

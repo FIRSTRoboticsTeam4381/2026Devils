@@ -1,0 +1,104 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 0.785,
+        "y": 6.25
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 1.2311224489795913,
+        "y": 6.151858917480036
+      },
+      "isLocked": false,
+      "linkedName": "DepotAngle1"
+    },
+    {
+      "anchor": {
+        "x": 1.7189973380656607,
+        "y": 5.857852706299911
+      },
+      "prevControl": {
+        "x": 1.4051286601597155,
+        "y": 5.970523513753327
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "outofway"
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [
+    {
+      "name": "Constraints Zone",
+      "minWaypointRelativePos": 0,
+      "maxWaypointRelativePos": 0.15,
+      "constraints": {
+        "maxVelocity": 1.0,
+        "maxAcceleration": 2.0,
+        "maxAngularVelocity": 540.0,
+        "maxAngularAcceleration": 720.0,
+        "nominalVoltage": 12.0,
+        "unlimited": false
+      }
+    },
+    {
+      "name": "Shooting Zone",
+      "minWaypointRelativePos": 0.6,
+      "maxWaypointRelativePos": 1.0,
+      "constraints": {
+        "maxVelocity": 0.2,
+        "maxAcceleration": 3.0,
+        "maxAngularVelocity": 540.0,
+        "maxAngularAcceleration": 720.0,
+        "nominalVoltage": 12.0,
+        "unlimited": false
+      }
+    }
+  ],
+  "pointTowardsZones": [],
+  "eventMarkers": [
+    {
+      "name": "DexerOff",
+      "waypointRelativePos": 0,
+      "endWaypointRelativePos": 0.5,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "DexerOff"
+        }
+      }
+    },
+    {
+      "name": "DexerThrough",
+      "waypointRelativePos": 0.6,
+      "endWaypointRelativePos": 1.0,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "DexerThrough"
+        }
+      }
+    }
+  ],
+  "globalConstraints": {
+    "maxVelocity": 1.5,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 180.0
+  },
+  "reversed": false,
+  "folder": "Depot Paths",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": -160.0
+  },
+  "useDefaultConstraints": false
+}

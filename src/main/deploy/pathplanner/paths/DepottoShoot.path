@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 0.79,
-        "y": 6.125
+        "x": 0.8,
+        "y": 5.94
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.3637932564330075,
-        "y": 6.091242236024844
+        "x": 1.0791220238095238,
+        "y": 5.946912202380952
       },
       "isLocked": false,
-      "linkedName": "DepotAngle1"
+      "linkedName": "Depot"
     },
     {
       "anchor": {
-        "x": 1.5338952972493338,
-        "y": 6.517781721384206
+        "x": 1.7189973380656607,
+        "y": 5.857852706299911
       },
       "prevControl": {
-        "x": 1.525847382431233,
-        "y": 6.228056787932564
+        "x": 1.471165966356036,
+        "y": 5.890710143761251
       },
       "nextControl": null,
       "isLocked": false,
@@ -33,9 +33,9 @@
     {
       "name": "Constraints Zone",
       "minWaypointRelativePos": 0,
-      "maxWaypointRelativePos": 0.15,
+      "maxWaypointRelativePos": 0.5,
       "constraints": {
-        "maxVelocity": 1.0,
+        "maxVelocity": 1.5,
         "maxAcceleration": 2.0,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
@@ -98,7 +98,7 @@
   "folder": "Depot Paths",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -160.0
+    "rotation": 180.0
   },
   "useDefaultConstraints": false
 }
