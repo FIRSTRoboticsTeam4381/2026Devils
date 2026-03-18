@@ -99,6 +99,7 @@ public class RobotContainer {
     autoChooser.addOption("SimpleLeftAuto - NK", Autos.SimpleLeftAuto());
     autoChooser.addOption("LeftAuto - NK", Autos.LeftAuto());
     autoChooser.addOption("MiddleAuto - JL", Autos.MiddleAuto());
+    autoChooser.addOption("MoreMiddleAuto - JL", Autos.MoreMiddleAuto());
     
 
     // Add auto controls to the dashboard
@@ -157,7 +158,7 @@ public class RobotContainer {
     specialist.a().whileTrue(intake.intakeIn());
     specialist.y().whileTrue(intake.intakeOut());
     specialist.leftBumper().toggleOnTrue(new LockOn(this));
-    specialist.rightBumper().whileTrue(indexer.indexerThrough()).and(()->shoot.shootMotor1.getEncoder().getVelocity()>1000).whileTrue(turdexer.turdexerThrough()).whileTrue(intake.intakeIn());
+    specialist.rightBumper().whileTrue(indexer.indexerThrough()).and(()->shoot.shootMotor1.getEncoder().getVelocity()+shoot.shootMotor2.getEncoder().getVelocity()>1000).whileTrue(turdexer.turdexerThrough()).whileTrue(intake.intakeIn());
     specialist.rightTrigger().whileTrue(turdexer.turdexerBack()).whileTrue(indexer.indexerBack());
     
     // Button board controls

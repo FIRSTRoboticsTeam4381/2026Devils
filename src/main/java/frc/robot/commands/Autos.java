@@ -48,6 +48,10 @@ public final class Autos {
         return new PreviewAuto("MiddleAuto");
     }
 
+        public static PreviewAuto MoreMiddleAuto(){
+        return new PreviewAuto("MoreMiddleAuto");
+    }
+
 
     // TODO add pathplanner autos here. Example:
     //public static PreviewAuto Front3Note(){

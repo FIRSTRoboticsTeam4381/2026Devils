@@ -21,31 +21,25 @@
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "Middle"
-                      }
-                    },
-                    {
-                      "type": "wait",
-                      "data": {
-                        "waitTime": 0.5
+                        "pathName": "DepotLeft"
                       }
                     },
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "BackIntoDepot"
-                      }
-                    },
-                    {
-                      "type": "wait",
-                      "data": {
-                        "waitTime": 0.5
+                        "pathName": "Depot Right"
                       }
                     },
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "DepotRighttoShoot"
+                        "pathName": "DepotMiddle"
+                      }
+                    },
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "DepottoShoot"
                       }
                     }
                   ]
