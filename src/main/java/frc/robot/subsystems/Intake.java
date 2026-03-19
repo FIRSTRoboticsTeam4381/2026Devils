@@ -23,6 +23,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.lib.commands.SparkPosition;
 import frc.lib.commands.SparkPositionProfiled;
 import frc.lib.commands.SparkSysIDTest;
@@ -87,7 +88,14 @@ public class Intake extends SubsystemBase {
 
   public Command intakeIn()
   {
-    return new InstantCommand(() -> intakeMotionMotor.set(0.80), this).repeatedly();
+    return new ParallelCommandGroup(
+      new InstantCommand(() -> intakeMotionMotor.set(0.80)),
+        new SequentialCommandGroup(
+          intakePivotTo(.35),
+          new WaitCommand(.1),
+          intakePivotTo(.37)
+        )
+      ).repeatedly();
   }
   
   public Command intakeOut()
@@ -122,7 +130,7 @@ public class Intake extends SubsystemBase {
   public Command intakeDeploy() // TODO automatically turn this on
   {
     return new SequentialCommandGroup(
-      intakePivotTo(.373),
+      intakePivotTo(.37),
       intakePivotStop()
     );
   }
