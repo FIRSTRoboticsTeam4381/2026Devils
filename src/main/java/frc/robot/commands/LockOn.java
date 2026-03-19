@@ -8,10 +8,12 @@ import java.util.Optional;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Transform2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.interpolation.InterpolatingDoubleTreeMap;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.Odometry;
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
@@ -74,7 +76,7 @@ public class LockOn extends Command {
     shootMap = new InterpolatingDoubleTreeMap();
 
     allaince = DriverStation.getAlliance();
-    current = swerve.getPose(); // Make it factor in turret offset
+    current = swerve.getPose().plus(new Transform2d(Units.inchesToMeters(-9),0,new Rotation2d())); // Make it factor in turret offset
     
     if(allaince.get() == Alliance.Blue) 
     {
@@ -98,7 +100,7 @@ public class LockOn extends Command {
   public void execute() 
   { 
     chassisSpeeds = ChassisSpeeds.fromRobotRelativeSpeeds(swerve.getRobotRelativeSpeeds(),swerve.swerveOdometry.getEstimatedPosition().getRotation());
-    current = swerve.getPose();
+    current = swerve.getPose().plus(new Transform2d(Units.inchesToMeters(-9),0,new Rotation2d()));
     velX = chassisSpeeds.vxMetersPerSecond;
     velY = chassisSpeeds.vyMetersPerSecond;
 
