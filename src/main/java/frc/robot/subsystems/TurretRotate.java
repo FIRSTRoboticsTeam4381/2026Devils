@@ -66,6 +66,7 @@ public class TurretRotate extends SubsystemBase {
     
     SmartDashboard.putData("Subsystem/TurretRotate",this);
     SmartDashboard.putData("SysID/Rotate",new SparkSysIDTest(rotateMotor, this, 2, -90, 90, rotateMotor.getEncoder()::getPosition));
+    SmartDashboard.putNumber("Subsystem/TurretRotate/TargetAngle", rotateMotor.getClosedLoopController().getSetpoint());
   }
 
   @Override
