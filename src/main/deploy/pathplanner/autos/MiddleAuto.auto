@@ -21,7 +21,7 @@
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "Middle"
+                        "pathName": "OGMiddle"
                       }
                     },
                     {
@@ -33,7 +33,7 @@
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "BackIntoDepot"
+                        "pathName": "OGBackIntoDepot"
                       }
                     },
                     {
@@ -46,6 +46,24 @@
                       "type": "path",
                       "data": {
                         "pathName": "DepotRighttoShoot"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "DexerThrough"
+                      }
+                    },
+                    {
+                      "type": "wait",
+                      "data": {
+                        "waitTime": 5.0
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "DexerOff"
                       }
                     }
                   ]

@@ -3,12 +3,12 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 0.8,
+        "x": 0.78,
         "y": 5.94
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.0791220238095238,
+        "x": 1.0591220238095238,
         "y": 5.946912202380952
       },
       "isLocked": false,
@@ -44,11 +44,11 @@
       }
     },
     {
-      "name": "Shooting Zone",
+      "name": "B4 Shooting Zone",
       "minWaypointRelativePos": 0.6,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
-        "maxVelocity": 0.2,
+        "maxVelocity": 0.75,
         "maxAcceleration": 3.0,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
@@ -62,22 +62,11 @@
     {
       "name": "DexerOff",
       "waypointRelativePos": 0,
-      "endWaypointRelativePos": 0.5,
+      "endWaypointRelativePos": 0.9,
       "command": {
         "type": "named",
         "data": {
           "name": "DexerOff"
-        }
-      }
-    },
-    {
-      "name": "DexerThrough",
-      "waypointRelativePos": 0.6,
-      "endWaypointRelativePos": 1.0,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "DexerThrough"
         }
       }
     }
