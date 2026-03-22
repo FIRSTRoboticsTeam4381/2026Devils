@@ -31,11 +31,14 @@ public class TurretShoot extends SubsystemBase {
   public SparkFlex shootMotor2;
   public InterpolatingDoubleTreeMap map;
 
+  public Double offset; 
+
   public Double goTo;
 
   public TurretShoot() 
   {
     this.goTo = 0.0;
+    this.offset = 150.0;
     map = new InterpolatingDoubleTreeMap();
 
     shootMotor1 = new SparkFlex(CanIDs.SHOOT_MOTOR_1_ID, MotorType.kBrushless);
@@ -73,12 +76,16 @@ public class TurretShoot extends SubsystemBase {
     shootMotor2.configure(shootMotor2Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     setDefaultCommand(shootOff()); 
 
+    
+
     SmartDashboard.putData("SysID/Shooter", new SparkSysIDTest(shootMotor1, this, 10));
 
     SmartDashboard.putData("Subsystem/TurretShoot",this);
 
     SmartDashboard.putNumber("Subsystem/TurretShoot/ShootSpeed", 0.0);
+    SmartDashboard.putNumber("Subsystem/TurretShoot/Offset", this.offset);
     SmartDashboard.putData("Subsystem/TurretShoot/ShootSpeedSet", new InstantCommand(()->shootOn(SmartDashboard.getNumber("Subsystem/TurretShoot/ShootSpeed", 0.0)),this).repeatedly());
+    SmartDashboard.putData("Subsystem/TurretShoot/OffsetSet", new InstantCommand(()-> offset = SmartDashboard.getNumber("Subsystem/TurretShoot/Offset", this.offset)));
   }
 
   public void setUpMap()
@@ -97,6 +104,7 @@ public class TurretShoot extends SubsystemBase {
   {
     SmartDashboard.putNumber("Subsystem/TurretShoot/Velocity", shootMotor1.getEncoder().getVelocity());
     
+    
   }
 
   public void speedFromDist(double dist)
@@ -106,7 +114,7 @@ public class TurretShoot extends SubsystemBase {
 
   public void shootOn(double vel)
   {
-    shootMotor1.getClosedLoopController().setSetpoint(vel, ControlType.kVelocity);
+    shootMotor1.getClosedLoopController().setSetpoint(vel+this.offset, ControlType.kVelocity);
   }
 
   public Command rev()

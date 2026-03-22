@@ -51,7 +51,7 @@ public class Turdexer extends SubsystemBase
 
   public Command turdexerThrough()
   {
-    return new SequentialCommandGroup(new InstantCommand(() -> turdexerMotor.set(-.5)), new WaitCommand(.35), new InstantCommand(() -> turdexerMotor.set(0.85),this).repeatedly());
+    return new SequentialCommandGroup(new InstantCommand(() -> turdexerMotor.set(-.75)), new WaitCommand(.45), new InstantCommand(() -> turdexerMotor.set(0.85),this).repeatedly());
   }
   public Command turdexerBack()
   {

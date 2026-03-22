@@ -87,6 +87,7 @@ public class RobotContainer {
     NamedCommands.registerCommand("IntakeIn", intake.intakeIn());
     NamedCommands.registerCommand("LockOn", new LockOn(this));
     NamedCommands.registerCommand("DexerThrough", indexer.indexerThrough().alongWith(turdexer.turdexerThrough()));
+    NamedCommands.registerCommand("DexerBack", indexer.indexerBack().alongWith(turdexer.turdexerBack()));
     NamedCommands.registerCommand("DexerOff", indexer.indexerOff().alongWith(turdexer.turdexerOff()));
     NamedCommands.registerCommand("Rev", shoot.rev());
 
@@ -150,7 +151,9 @@ public class RobotContainer {
             false));
 
     // Button to cancel running actions
-    specialist.back().onTrue(new InstantCommand(() -> CommandScheduler.getInstance().cancelAll()));
+    specialist.back().onTrue(new InstantCommand((
+
+    ) -> CommandScheduler.getInstance().cancelAll()));
             
     // TODO Your Controls Here!
     specialist.x().toggleOnTrue(intake.intakeDeploy());
@@ -158,7 +161,7 @@ public class RobotContainer {
     specialist.a().whileTrue(intake.intakeIn());
     specialist.y().whileTrue(intake.intakeOut());
     specialist.leftBumper().toggleOnTrue(new LockOn(this));
-    specialist.rightBumper().whileTrue(indexer.indexerThrough()).and(()->shoot.shootMotor1.getEncoder().getVelocity()+shoot.shootMotor2.getEncoder().getVelocity()>1000).whileTrue(turdexer.turdexerThrough()).whileTrue(intake.intakeIn());
+    specialist.rightBumper().whileTrue(indexer.indexerThrough()).and(()->shoot.shootMotor2.getEncoder().getVelocity()>2500).whileTrue(turdexer.turdexerThrough()).whileTrue(intake.intakeIn());
     specialist.rightTrigger().whileTrue(turdexer.turdexerBack()).whileTrue(indexer.indexerBack());
     
     // Button board controls

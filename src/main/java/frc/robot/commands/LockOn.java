@@ -76,16 +76,17 @@ public class LockOn extends Command {
     shootMap = new InterpolatingDoubleTreeMap();
 
     allaince = DriverStation.getAlliance();
-    current = swerve.getPose().plus(new Transform2d(Units.inchesToMeters(-9),0,new Rotation2d())); // Make it factor in turret offset
     
     if(allaince.get() == Alliance.Blue) 
     {
+      current = swerve.getPose().plus(new Transform2d(Units.inchesToMeters(-7),0,new Rotation2d()));
       hub = new Pose2d(4.621,4.041,new Rotation2d());
       right = new Pose2d(2,6.0,new Rotation2d());
       left = new Pose2d(2,2.0,new Rotation2d());
     }
     if(allaince.get() == Alliance.Red) 
     {
+      current = swerve.getPose().plus(new Transform2d(Units.inchesToMeters(7),0,new Rotation2d()));
       hub = new Pose2d(11.919,4.041,new Rotation2d());
       left = new Pose2d(14,6.0,new Rotation2d());
       right = new Pose2d(14,2.0,new Rotation2d());
@@ -100,12 +101,13 @@ public class LockOn extends Command {
   public void execute() 
   { 
     chassisSpeeds = ChassisSpeeds.fromRobotRelativeSpeeds(swerve.getRobotRelativeSpeeds(),swerve.swerveOdometry.getEstimatedPosition().getRotation());
-    current = swerve.getPose().plus(new Transform2d(Units.inchesToMeters(-9),0,new Rotation2d()));
+    
     velX = chassisSpeeds.vxMetersPerSecond;
     velY = chassisSpeeds.vyMetersPerSecond;
 
     if(allaince.get() == Alliance.Red)
     {
+      current = swerve.getPose().plus(new Transform2d(Units.inchesToMeters(-7),0,new Rotation2d()));
       // If in the red zone shoot at hub otherwise shoot left or right of it from the neutral zone
       if(current.getX()>12.5)
       {target = hub;}
@@ -117,6 +119,7 @@ public class LockOn extends Command {
 
     if(allaince.get() == Alliance.Blue)
     {
+      current = swerve.getPose().plus(new Transform2d(Units.inchesToMeters(7),0,new Rotation2d()));
       // If in the blue zone shoot at hub otherwise shoot left or right of it from the neutral zone
       if(current.getX()<4)
       {target = hub;}
