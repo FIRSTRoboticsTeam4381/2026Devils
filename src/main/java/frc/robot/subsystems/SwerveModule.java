@@ -50,7 +50,8 @@ public class SwerveModule {
         
             closedLoopRampRate(0.0);
             openLoopRampRate(0.04);
-            smartCurrentLimit(70);
+            voltageCompensation(11);
+            smartCurrentLimit(60);
             idleMode(IdleMode.kBrake);
             inverted(true);    
             
@@ -69,6 +70,7 @@ public class SwerveModule {
 
 
     private static final SparkMaxConfig ANGLE_CONFIG = new SparkMaxConfig(){{
+        voltageCompensation(11);
         smartCurrentLimit(30);
         idleMode(IdleMode.kBrake);
         inverted(true);    

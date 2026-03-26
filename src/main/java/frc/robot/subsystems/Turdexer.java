@@ -29,7 +29,8 @@ public class Turdexer extends SubsystemBase
 
     SparkFlexConfig turdexerMotorConfig = new SparkFlexConfig();
       turdexerMotorConfig
-      .smartCurrentLimit(80)
+      .smartCurrentLimit(60)
+      .voltageCompensation(9)
       .idleMode(IdleMode.kBrake)
       .inverted(true);
 

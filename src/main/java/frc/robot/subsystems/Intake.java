@@ -48,7 +48,8 @@ public class Intake extends SubsystemBase {
 
     SparkFlexConfig intakePivotConfig = new SparkFlexConfig();
       intakePivotConfig
-      .smartCurrentLimit(50)
+      .smartCurrentLimit(40)
+      .voltageCompensation(9)
       .idleMode(IdleMode.kBrake);
       intakePivotConfig.closedLoop
         .p(4.1815)
@@ -68,7 +69,8 @@ public class Intake extends SubsystemBase {
 
     SparkMaxConfig intakeMotionConfig = new SparkMaxConfig();
       intakeMotionConfig
-      .smartCurrentLimit(50)
+      .smartCurrentLimit(40)
+      .voltageCompensation(9)
       .idleMode(IdleMode.kBrake);
 
     intakeMotionMotor.configure(intakeMotionConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
