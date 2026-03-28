@@ -150,6 +150,7 @@ public class LockOn extends Command {
     hood.angleFromDist(theoVector.getNorm());
 
     field.setRobotPose(theoTarget);
+    field.getObject("turretPos").setPose(current);
 
     SmartDashboard.putNumber("Commands/LockOn/DistFromPoint", vector.getNorm());
     SmartDashboard.putData("Commands/LockOn/TheoTargetField",field);
