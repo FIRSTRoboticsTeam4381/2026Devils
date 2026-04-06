@@ -26,7 +26,8 @@ import frc.robot.subsystems.TurretRotate;
 import frc.robot.subsystems.TurretShoot;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-public class LockOn extends Command {
+public class LockOn extends Command 
+{
   
   public Swerve swerve;
   public TurretHood hood;
@@ -43,13 +44,11 @@ public class LockOn extends Command {
   public double velX;
   public double velY;
 
-  public double ballVel;
-
   public double timeOfFlight;
 
   public double dist;
 
-  public InterpolatingDoubleTreeMap shootMap;
+  public InterpolatingDoubleTreeMap timeOfFlightMap;
 
   public Optional<Alliance> allaince;
   public Translation2d vector;
@@ -59,13 +58,13 @@ public class LockOn extends Command {
 
   public Field2d field;
 
-  public LockOn(RobotContainer robotContainer) {
-    // Use addRequirements() here to declare subsystem dependencies.
+  public LockOn(RobotContainer robotContainer) 
+  {
     swerve = robotContainer.swerve;
     hood = robotContainer.hood;
     rotate = robotContainer.rotate;
     shoot = robotContainer.shoot;
-    addRequirements(hood,rotate,shoot); // add shoot back later when ready
+    addRequirements(hood,rotate,shoot); 
   }
 
   
@@ -73,29 +72,31 @@ public class LockOn extends Command {
   public void initialize() 
   {
     field = new Field2d();
-    shootMap = new InterpolatingDoubleTreeMap();
+    timeOfFlightMap = new InterpolatingDoubleTreeMap();
+
+    //////////////////////////////////////////////////////
+    timeOfFlightMap.put(0.0, 0.0);
+
+    //////////////////////////////////////////////////////
 
     allaince = DriverStation.getAlliance();
+
+    current = swerve.getPose().plus(new Transform2d(Units.inchesToMeters(-7),Units.inchesToMeters(6),new Rotation2d()));
+
     
     if(allaince.get() == Alliance.Blue) 
     {
-      current = swerve.getPose().plus(new Transform2d(Units.inchesToMeters(-7),0,new Rotation2d()));
       hub = new Pose2d(4.621,4.041,new Rotation2d());
       right = new Pose2d(2,6.0,new Rotation2d());
       left = new Pose2d(2,2.0,new Rotation2d());
     }
     if(allaince.get() == Alliance.Red) 
     {
-      current = swerve.getPose().plus(new Transform2d(Units.inchesToMeters(7),0,new Rotation2d()));
       hub = new Pose2d(11.919,4.041,new Rotation2d());
       left = new Pose2d(14,6.0,new Rotation2d());
       right = new Pose2d(14,2.0,new Rotation2d());
-    }
-
-
-    
+    } 
   }
-
   
   @Override
   public void execute() 
@@ -105,11 +106,12 @@ public class LockOn extends Command {
     velX = chassisSpeeds.vxMetersPerSecond;
     velY = chassisSpeeds.vyMetersPerSecond;
 
+    current = swerve.getPose().plus(new Transform2d(Units.inchesToMeters(-8),0,new Rotation2d()));
+
     if(allaince.get() == Alliance.Red)
     {
-      current = swerve.getPose().plus(new Transform2d(Units.inchesToMeters(-7),0,new Rotation2d()));
       // If in the red zone shoot at hub otherwise shoot left or right of it from the neutral zone
-      if(current.getX()>12.5)
+      if(current.getX()>12)
       {target = hub;}
       else if(current.getX()<12.5 && current.getY()<4)
       {target = right;}
@@ -118,10 +120,8 @@ public class LockOn extends Command {
     }
 
     if(allaince.get() == Alliance.Blue)
-    {
-      current = swerve.getPose().plus(new Transform2d(Units.inchesToMeters(7),0,new Rotation2d()));
-      // If in the blue zone shoot at hub otherwise shoot left or right of it from the neutral zone
-      if(current.getX()<4)
+    {      // If in the blue zone shoot at hub otherwise shoot left or right of it from the neutral zone
+      if(current.getX()<4.5)
       {target = hub;}
       else if(current.getX()>4 && current.getY()>4)
       {target = right;}
@@ -131,15 +131,11 @@ public class LockOn extends Command {
 
 
     // Adjust then give numbers
-
     vector = current.minus(target).getTranslation();
-    
     
     dist = vector.getNorm();
 
-    ballVel = (2*Math.PI*(0.0381)*shoot.map.get(dist))/60;
-
-    timeOfFlight = 3*dist/ballVel;
+    timeOfFlight = timeOfFlightMap.get(dist);
     
     theoTarget = new Pose2d(target.getX()-(velX*timeOfFlight), target.getY()-(velY*timeOfFlight), new Rotation2d());
     theoVector = current.minus(theoTarget).getTranslation();
@@ -154,9 +150,7 @@ public class LockOn extends Command {
 
     SmartDashboard.putNumber("Commands/LockOn/DistFromPoint", vector.getNorm());
     SmartDashboard.putData("Commands/LockOn/TheoTargetField",field);
-    SmartDashboard.putNumber("Commands/LockOn/BallVel", ballVel);
     SmartDashboard.putNumber("Commands/LockOn/TimeOfFlight", timeOfFlight);
-    
   }
 
   
@@ -169,8 +163,8 @@ public class LockOn extends Command {
   }
 
   @Override
-  public boolean isFinished() {
-    
+  public boolean isFinished() 
+  {  
     return false;
   }
 }
