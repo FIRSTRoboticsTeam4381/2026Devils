@@ -20,28 +20,38 @@ import frc.robot.CanIDs;
 
 public class Turdexer extends SubsystemBase 
 {
-  public SparkFlex turdexerMotor;
+  public SparkFlex lateralTurdexerMotor;
+  public SparkFlex medialTurdexerMotor;
 
   public Turdexer() 
   {
-    turdexerMotor = new SparkFlex(CanIDs.TURDEXER_MOTOR_ID, MotorType.kBrushless);
+    lateralTurdexerMotor = new SparkFlex(CanIDs.LATERAL_TURDEXER_MOTOR_ID, MotorType.kBrushless);
+    medialTurdexerMotor = new SparkFlex(CanIDs.MEDIAL_TURDEXER_MOTOR_ID, MotorType.kBrushless);
     this.setDefaultCommand(turdexerOff());
 
-    SparkFlexConfig turdexerMotorConfig = new SparkFlexConfig();
-      turdexerMotorConfig
-      .smartCurrentLimit(80)
+    SparkFlexConfig lateralTurdexerMotorConfig = new SparkFlexConfig();
+    SparkFlexConfig medialTurdexerMotorConfig = new SparkFlexConfig();
+      lateralTurdexerMotorConfig
+      .smartCurrentLimit(60)
       .idleMode(IdleMode.kBrake)
+      .inverted(true)
+      .absoluteEncoder
       .inverted(true);
+      
 
-      turdexerMotorConfig.signals
+      lateralTurdexerMotorConfig.signals
         .primaryEncoderPositionAlwaysOn(true)
         .primaryEncoderVelocityAlwaysOn(true)
         .isAtSetpointAlwaysOn(true)
         .maxMotionSetpointPositionAlwaysOn(true)
         .maxMotionSetpointVelocityAlwaysOn(true)
         .setSetpointAlwaysOn(true);
+      medialTurdexerMotorConfig
+      .apply(lateralTurdexerMotorConfig)
+      .follow(lateralTurdexerMotor);
 
-      turdexerMotor.configure(turdexerMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+      lateralTurdexerMotor.configure(lateralTurdexerMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+      medialTurdexerMotor.configure(medialTurdexerMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
   }
 
   @Override
@@ -51,15 +61,15 @@ public class Turdexer extends SubsystemBase
 
   public Command turdexerThrough()
   {
-    return new SequentialCommandGroup(new InstantCommand(() -> turdexerMotor.set(-.75)), new WaitCommand(.45), new InstantCommand(() -> turdexerMotor.set(0.85),this).repeatedly());
+    return new InstantCommand(() -> lateralTurdexerMotor.set(0.85),this).repeatedly();
   }
   public Command turdexerBack()
   {
-    return new InstantCommand(() -> turdexerMotor.set(-.5),this).repeatedly();
+    return new InstantCommand(() -> lateralTurdexerMotor.set(-.5),this).repeatedly();
   }
 
   public Command turdexerOff()
   {
-    return new InstantCommand(() -> turdexerMotor.set(0),this);
+    return new InstantCommand(() -> lateralTurdexerMotor.set(0),this);
   }
 }

@@ -30,9 +30,10 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.lib.commands.TeleopSwerve;
 import frc.lib.subsystems.PhotonCam;
 import frc.robot.commands.Autos;
+import frc.robot.commands.CRTCheck;
+import frc.robot.commands.CRTChecker;
 import frc.robot.subsystems.Swerve;
 import frc.robot.subsystems.Turdexer;
-import frc.robot.subsystems.Climb;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.TurretShoot;
@@ -67,10 +68,10 @@ public class RobotContainer {
   
 
   // TODO set camera names, coordinates, and angles relative to the robot's center
-  public final PhotonCam camA = new PhotonCam("Camera A", new Transform3d(new Translation3d(Units.inchesToMeters(-12.33496), Units.inchesToMeters(-3.11445),  Units.inchesToMeters(6.15733)), new Rotation3d(0,Math.toRadians(-30),Math.toRadians(-45)-Math.PI)) );
-  public final PhotonCam camB = new PhotonCam("Camera B", new Transform3d(new Translation3d(Units.inchesToMeters(-12.33496), Units.inchesToMeters(3.11445),  Units.inchesToMeters(6.15733)), new Rotation3d(0,Math.toRadians(-30),Math.toRadians(45)-Math.PI)) );
-  public final PhotonCam camC = new PhotonCam("Camera C", new Transform3d(new Translation3d(Units.inchesToMeters(-9.27168), Units.inchesToMeters(-12.28787),  Units.inchesToMeters(10.0481)), new Rotation3d(0,Math.toRadians(-30),Math.toRadians(-60))) );
-  public final PhotonCam camD = new PhotonCam("Camera D", new Transform3d(new Translation3d(Units.inchesToMeters(-9.27168), Units.inchesToMeters(12.28787),  Units.inchesToMeters(10.0481)), new Rotation3d(0,Math.toRadians(-30),Math.toRadians(60))) );
+  public final PhotonCam LL = new PhotonCam("LeftLeft", new Transform3d(new Translation3d(Units.inchesToMeters(-12.33496), Units.inchesToMeters(-3.11445),  Units.inchesToMeters(6.15733)), new Rotation3d(0,Math.toRadians(-30),Math.toRadians(-45)-Math.PI)) );
+  public final PhotonCam LB = new PhotonCam("LeftBack", new Transform3d(new Translation3d(Units.inchesToMeters(-12.33496), Units.inchesToMeters(3.11445),  Units.inchesToMeters(6.15733)), new Rotation3d(0,Math.toRadians(-30),Math.toRadians(45)-Math.PI)) );
+  public final PhotonCam RR = new PhotonCam("RightRight", new Transform3d(new Translation3d(Units.inchesToMeters(-9.27168), Units.inchesToMeters(-12.28787),  Units.inchesToMeters(10.0481)), new Rotation3d(0,Math.toRadians(-30),Math.toRadians(-60))) );
+  public final PhotonCam RB = new PhotonCam("RightBack", new Transform3d(new Translation3d(Units.inchesToMeters(-9.27168), Units.inchesToMeters(12.28787),  Units.inchesToMeters(10.0481)), new Rotation3d(0,Math.toRadians(-30),Math.toRadians(60))) );
 
 
   // Constructor: set up the robot! 
@@ -151,10 +152,8 @@ public class RobotContainer {
             false));
 
     // Button to cancel running actions
-    specialist.back().onTrue(new InstantCommand((
+    specialist.back().onTrue(new InstantCommand(() -> CommandScheduler.getInstance().cancelAll())); 
 
-    ) -> CommandScheduler.getInstance().cancelAll()));
-            
     // TODO Your Controls Here!
     specialist.x().toggleOnTrue(intake.intakeDeploy());
     specialist.b().toggleOnTrue(intake.intakeUndeploy());
@@ -162,6 +161,7 @@ public class RobotContainer {
     specialist.y().whileTrue(intake.intakeOut());
     specialist.leftBumper().toggleOnTrue(new LockOn(this));
     specialist.rightBumper().whileTrue(indexer.indexerThrough()).and(()->shoot.shootMotor2.getEncoder().getVelocity()>2500).whileTrue(turdexer.turdexerThrough()).whileTrue(intake.intakeIn());
+    specialist.leftTrigger().toggleOnTrue(new CRTChecker(this));     
     specialist.rightTrigger().whileTrue(turdexer.turdexerBack()).whileTrue(indexer.indexerBack());
     
     // Button board controls

@@ -21,6 +21,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.lib.commands.SparkPosition;
 import frc.lib.commands.SparkSysIDTest;
+import frc.lib.yams.units.EasyCRT;
+import frc.lib.yams.units.EasyCRTConfig;
 import frc.robot.CanIDs;
 import frc.robot.Constants;
 
@@ -29,17 +31,20 @@ public class TurretRotate extends SubsystemBase {
 
   public SparkMax rotateMotor;
   
+  public EasyCRT crt;
+  public EasyCRTConfig crtConfig;
   
   public TurretRotate() 
   {
     rotateMotor = new SparkMax(CanIDs.ROTATE_MOTOR_ID, MotorType.kBrushless);
     
     
+    
     SparkMaxConfig rotateMotorConfig = new SparkMaxConfig();
       rotateMotorConfig
         .smartCurrentLimit(20)
         .idleMode(IdleMode.kBrake)
-        .inverted(true);
+        .inverted(false);
       rotateMotorConfig.closedLoop
         .p(0.12025)
         .i(0.0)
@@ -47,9 +52,9 @@ public class TurretRotate extends SubsystemBase {
         
       rotateMotorConfig.closedLoop.feedForward.sva(0.20505, 0.0011331, 0.00010849);    
       rotateMotorConfig.softLimit
-        .forwardSoftLimit(115)
+        .forwardSoftLimit(260)
         .forwardSoftLimitEnabled(true)
-        .reverseSoftLimit(-115)
+        .reverseSoftLimit(10)
         .reverseSoftLimitEnabled(true);
       rotateMotorConfig.signals
         .primaryEncoderPositionAlwaysOn(true)
@@ -59,10 +64,11 @@ public class TurretRotate extends SubsystemBase {
         .maxMotionSetpointVelocityAlwaysOn(true)
         .setSetpointAlwaysOn(true);
       rotateMotorConfig.encoder
-        .positionConversionFactor(360.0/99.5);
+        .positionConversionFactor(360.0/33.16);
     
     rotateMotor.configure(rotateMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
+    
     
     SmartDashboard.putData("Subsystem/TurretRotate",this);
     SmartDashboard.putData("SysID/Rotate",new SparkSysIDTest(rotateMotor, this, 2, -90, 90, rotateMotor.getEncoder()::getPosition));
@@ -73,14 +79,6 @@ public class TurretRotate extends SubsystemBase {
   public void periodic() 
   {
     
-    if(rotateMotor.getReverseLimitSwitch().isPressed())
-    {
-      rotateMotor.getEncoder().setPosition(-102);
-    }
-    if(rotateMotor.getForwardLimitSwitch().isPressed())
-    {
-      rotateMotor.getEncoder().setPosition(108);
-    }
     SmartDashboard.putNumber("Subsystem/TurretRotate/TargetAngle", rotateMotor.getClosedLoopController().getSetpoint());
     SmartDashboard.putNumber("Subsystem/TurretRotate/Actual", rotateMotor.getEncoder().getPosition());
   }

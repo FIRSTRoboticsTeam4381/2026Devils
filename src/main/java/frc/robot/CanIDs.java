@@ -29,17 +29,15 @@ public final class CanIDs {
             new SwerveModuleCanIDs(30, 31);
     }
 
-    public static final int SHOOT_MOTOR_1_ID = 55;
-    public static final int SHOOT_MOTOR_2_ID = 56;
-    public static final int ROTATE_MOTOR_ID = 53;
-    public static final int HOOD_MOTOR_ID = 54;
+    public static final int SHOOT_MOTOR_1_ID = 57;
+    public static final int SHOOT_MOTOR_2_ID = 58;
+    public static final int ROTATE_MOTOR_ID = 55;
+    public static final int HOOD_MOTOR_ID = 56;
     public static final int INTAKE_MOTION_MOTOR_ID = 50;
-    public static final int INTAKE_PIVOT_MOTOR_ID = 57;
-    public static final int INDEX_MOTOR_ID = 51;
-    public static final int TURDEXER_MOTOR_ID = 52;
-    public static final int CLIMB_PIVOT_MOTOR_ID = 58;
-    public static final int CLIMB_ELEVATOR_MOTOR_1_ID = 59;
-    public static final int CLIMB_ELEVATOR_MOTOR_2_ID = 60;
+    public static final int INTAKE_PIVOT_MOTOR_ID = 51;
+    public static final int INDEX_MOTOR_ID = 52;
+    public static final int LATERAL_TURDEXER_MOTOR_ID = 53;
+    public static final int MEDIAL_TURDEXER_MOTOR_ID = 54;
 
 
     // TODO Put constants for your other CAN devices here
@@ -76,15 +74,13 @@ public final class CanIDs {
           Map.entry(SwerveModules.MOD3.angleMotorID, "Swerve/BL/Angle"),
           Map.entry(INTAKE_MOTION_MOTOR_ID, "Intake/Motion"),
           Map.entry(INDEX_MOTOR_ID, "Index/Index"),
-          Map.entry(TURDEXER_MOTOR_ID, "Index/Push"),
+          Map.entry(LATERAL_TURDEXER_MOTOR_ID, "Index/LateralTurdex"),
+          Map.entry(MEDIAL_TURDEXER_MOTOR_ID, "Index/MedialTurdex"),
           Map.entry(ROTATE_MOTOR_ID, "Turret/Rotate"),
           Map.entry(HOOD_MOTOR_ID, "Turret/Hood"),
           Map.entry(SHOOT_MOTOR_1_ID, "Turret/Shoot1"),
           Map.entry(SHOOT_MOTOR_2_ID, "Turret/Shoot2"),
-          Map.entry(INTAKE_PIVOT_MOTOR_ID, "Intake/Pivot"),
-          Map.entry(CLIMB_PIVOT_MOTOR_ID, "Climb/Pivot"),
-          Map.entry(CLIMB_ELEVATOR_MOTOR_1_ID, "Climb/Motor1"),
-          Map.entry(CLIMB_ELEVATOR_MOTOR_2_ID, "Climb/Motor2")
+          Map.entry(INTAKE_PIVOT_MOTOR_ID, "Intake/Pivot")
       );
 
 }

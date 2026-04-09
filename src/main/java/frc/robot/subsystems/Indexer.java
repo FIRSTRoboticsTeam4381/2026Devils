@@ -27,12 +27,12 @@ import frc.robot.Constants;
 @Logged
 public class Indexer extends SubsystemBase {
 
-  public SparkMax indexerMotor;
+  public SparkFlex indexerMotor;
   
   
   public Indexer() 
   {
-    indexerMotor = new SparkMax(CanIDs.INDEX_MOTOR_ID, MotorType.kBrushless);
+    indexerMotor = new SparkFlex(CanIDs.INDEX_MOTOR_ID, MotorType.kBrushless);
     
 
     this.setDefaultCommand(indexerOff());
