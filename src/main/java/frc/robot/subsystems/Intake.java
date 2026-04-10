@@ -51,7 +51,7 @@ public class Intake extends SubsystemBase {
       .smartCurrentLimit(50)
       .idleMode(IdleMode.kBrake);
       intakePivotConfig.closedLoop
-        .p(4.1815)
+        .p(4.0)
         .i(0)
         .d(0.0031332)
         .feedbackSensor(FeedbackSensor.kAbsoluteEncoder)
@@ -60,10 +60,12 @@ public class Intake extends SubsystemBase {
         
       intakePivotConfig.softLimit
       .reverseSoftLimit(.2)
-      .forwardSoftLimit(.5)
+      .forwardSoftLimit(.39)
       .reverseSoftLimitEnabled(true)
       .forwardSoftLimitEnabled(true);
       
+      intakePivotConfig
+      .absoluteEncoder.inverted(true);
       
 
     SparkMaxConfig intakeMotionConfig = new SparkMaxConfig();
@@ -93,7 +95,7 @@ public class Intake extends SubsystemBase {
         new SequentialCommandGroup(
           intakePivotTo(.35),
           new WaitCommand(.1),
-          intakePivotTo(.37)
+          intakePivotTo(.381)
         )
       ).repeatedly();
   }
@@ -115,14 +117,14 @@ public class Intake extends SubsystemBase {
 
   public Command intakePivotTo(double position)
   {
-    return new SparkPosition(intakePivotMotor, position, .015, this);
+    return new SparkPosition(intakePivotMotor, position, .04, this);
   }
 
   public Command intakeUndeploy()
   {
     return new SequentialCommandGroup(
       intakeStop(),
-      intakePivotTo(.256),
+      intakePivotTo(.236),
       intakePivotStop()  
     );
   }
@@ -130,7 +132,7 @@ public class Intake extends SubsystemBase {
   public Command intakeDeploy() // TODO automatically turn this on
   {
     return new SequentialCommandGroup(
-      intakePivotTo(.37),
+      intakePivotTo(.381),
       intakePivotStop()
     );
   }

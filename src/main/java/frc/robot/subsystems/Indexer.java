@@ -8,6 +8,7 @@ import com.revrobotics.PersistMode;
 import com.revrobotics.ResetMode;
 import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.config.SparkFlexConfig;
@@ -21,6 +22,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.lib.commands.SparkSysIDTest;
 import frc.robot.CanIDs;
 import frc.robot.Constants;
 
@@ -41,7 +43,13 @@ public class Indexer extends SubsystemBase {
       indexerMotorConfig
       .smartCurrentLimit(80)
       .idleMode(IdleMode.kBrake)
-      .inverted(true);
+      .inverted(true)
+      .closedLoop
+        .p(1.1865E-10)
+        .i(0)
+        .d(0)
+        .feedForward
+        .sva(0.038845, 0.0018515, 0.0005394);
 
     
     indexerMotorConfig.signals
@@ -55,6 +63,8 @@ public class Indexer extends SubsystemBase {
 
     indexerMotor.configure(indexerMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     
+    SmartDashboard.putData("SysID/Indexer", new SparkSysIDTest(indexerMotor, this, 2));
+
     SmartDashboard.putData("Subsystem/Indexer",this);
   }
 
@@ -65,13 +75,19 @@ public class Indexer extends SubsystemBase {
   }
 
   // TODO add commands
+
+  public void indexerSpeed(Double vel)
+  {
+    indexerMotor.getClosedLoopController().setSetpoint(vel, ControlType.kVelocity);
+  }
+
   public Command indexerThrough()
   {
-    return new SequentialCommandGroup(new InstantCommand(() -> indexerMotor.set(-.5)), new WaitCommand(.35), new InstantCommand(() -> indexerMotor.set(0.85),this).repeatedly());
+    return new InstantCommand(() -> indexerSpeed(1000.0),this).repeatedly();
   }
   public Command indexerBack()
   {
-    return new InstantCommand(() -> indexerMotor.set(-.8),this).repeatedly();
+    return new InstantCommand(() -> indexerSpeed(-1000.0),this).repeatedly();
   }
 
   public Command indexerIdle()
@@ -81,7 +97,7 @@ public class Indexer extends SubsystemBase {
 
   public Command indexerOff()
   {
-    return new InstantCommand(() -> indexerMotor.set(0),this);
+    return new InstantCommand(() -> indexerSpeed(0.0),this);
   }
 
 }

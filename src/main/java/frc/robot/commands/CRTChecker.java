@@ -54,7 +54,7 @@ public class CRTChecker extends Command {
             /* encoder2Pinion */ 11)
         .withAbsoluteEncoderOffsets(Rotations.of(0.450728), Rotations.of(0.0018493935)) // set after mechanical zero
         .withMechanismRange(Rotations.of(0.0), Rotations.of(0.75)) // 0 deg to +270 deg
-        .withMatchTolerance(Rotations.of(0.06)) // ~1.08 deg at encoder2 for the example ratio
+        .withMatchTolerance(Rotations.of(0.5)) // ~1.08 deg at encoder2 for the example ratio
         .withAbsoluteEncoderInversions(true, true);
 
     crt = new EasyCRT(crtConfig);
@@ -65,9 +65,10 @@ public class CRTChecker extends Command {
   @Override
   public void execute() 
   {
-    crt.getAngleOptional().ifPresentOrElse(angle -> {SmartDashboard.putNumber("Commands/CRT/Angle", angle.in(Degrees));}, () -> {SmartDashboard.putNumber("Commands/CRT/Angle", -1.0);});
+    crt.getAngleOptional().ifPresentOrElse(
+      angle -> {SmartDashboard.putNumber("Commands/CRT/Angle", angle.in(Degrees));}, 
+      () -> {SmartDashboard.putNumber("Commands/CRT/Angle", -1.0);});
 
-    
   }
 
   // Called once the command ends or is interrupted.

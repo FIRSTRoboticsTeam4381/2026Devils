@@ -140,7 +140,7 @@ public class LockOn extends Command
     theoTarget = new Pose2d(target.getX()-(velX*timeOfFlight), target.getY()-(velY*timeOfFlight), new Rotation2d());
     theoVector = current.minus(theoTarget).getTranslation();
 
-    rotate.point(current.getRotation().minus(theoVector.getAngle()).getDegrees());
+    rotate.point(-current.getRotation().minus(theoVector.getAngle()).getDegrees() + 143.0); // Straight is 143 deg
 
     shoot.speedFromDist(theoVector.getNorm());
     hood.angleFromDist(theoVector.getNorm());
@@ -157,7 +157,7 @@ public class LockOn extends Command
   @Override
   public void end(boolean interrupted) 
   {
-    rotate.point(0);
+    rotate.point(143);
     shoot.shootOn(0);
     hood.angleFromDist(0);
   }
