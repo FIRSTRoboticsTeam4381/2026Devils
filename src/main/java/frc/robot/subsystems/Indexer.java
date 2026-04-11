@@ -45,11 +45,11 @@ public class Indexer extends SubsystemBase {
       .idleMode(IdleMode.kBrake)
       .inverted(true)
       .closedLoop
-        .p(1.1865E-10)
+        .p(1.0783E-06)
         .i(0)
         .d(0)
         .feedForward
-        .sva(0.038845, 0.0018515, 0.0005394);
+        .sva(0.11833, 0.0023319, 0.00031664);
 
     
     indexerMotorConfig.signals

@@ -34,8 +34,6 @@ public class Turdexer extends SubsystemBase
       lateralTurdexerMotorConfig
       .smartCurrentLimit(60)
       .idleMode(IdleMode.kBrake)
-      .inverted(true)
-      .absoluteEncoder
       .inverted(true);
       
 
@@ -61,7 +59,7 @@ public class Turdexer extends SubsystemBase
 
   public Command turdexerThrough()
   {
-    return new InstantCommand(() -> lateralTurdexerMotor.set(0.85),this).repeatedly();
+    return new InstantCommand(() -> lateralTurdexerMotor.set( 1.0),this).repeatedly();
   }
   public Command turdexerBack()
   {

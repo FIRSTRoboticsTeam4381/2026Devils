@@ -87,6 +87,7 @@ public class TurretHood extends SubsystemBase {
     map.put(2.37, 0.050);
     map.put(2.84, 0.050);
     map.put(3.76, 0.196);
+    map.put(4.61, 0.285);
     map.put(4.94, 0.311);
     map.put(7.49, 0.546);
     map.put(7.79, 0.766);

@@ -158,10 +158,10 @@ public class RobotContainer {
     specialist.b().toggleOnTrue(intake.intakeUndeploy());
     specialist.a().whileTrue(intake.intakeIn());
     specialist.y().whileTrue(intake.intakeOut());
-    specialist.leftBumper().toggleOnTrue(new LockOn(this));
-    specialist.rightBumper().whileTrue(indexer.indexerThrough()).and(()->shoot.shootMotor1.getEncoder().getVelocity() + shoot.shootMotor2.getEncoder().getVelocity()>500).whileTrue(turdexer.turdexerThrough()).whileTrue(intake.intakeIn());
+    specialist.leftBumper().toggleOnTrue(new LockOn(this)).toggleOnTrue(turdexer.turdexerThrough());
+    specialist.rightBumper().whileTrue(indexer.indexerThrough()).and(()->shoot.shootMotor1.getEncoder().getVelocity() + shoot.shootMotor2.getEncoder().getVelocity()>500).whileTrue(intake.intakeIn());
     specialist.leftTrigger().toggleOnTrue(new CRTChecker(this));     
-    specialist.rightTrigger().whileTrue(turdexer.turdexerBack()).whileTrue(indexer.indexerBack());
+    specialist.rightTrigger().whileTrue(indexer.indexerBack());
     
     // Button board controls
     // Board 1:  Turret:axis0 Hood:axis1 Override:button1 Fire:button2 ---- Board 2:  Shooter:axis0

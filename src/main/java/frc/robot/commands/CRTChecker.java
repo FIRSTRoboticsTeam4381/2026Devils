@@ -50,11 +50,11 @@ public class CRTChecker extends Command {
         .withCommonDriveGear(
             /* commonRatio (mech:drive) */ 1.0,
             /* driveGearTeeth */ 84,
-            /* encoder1Pinion */ 10,
-            /* encoder2Pinion */ 11)
-        .withAbsoluteEncoderOffsets(Rotations.of(0.450728), Rotations.of(0.0018493935)) // set after mechanical zero
+            /* encoder1Pinion */ 11,
+            /* encoder2Pinion */ 10)
+        .withAbsoluteEncoderOffsets(Rotations.of(-0.450728), Rotations.of(-0.0018493935)) // set after mechanical zero
         .withMechanismRange(Rotations.of(0.0), Rotations.of(0.75)) // 0 deg to +270 deg
-        .withMatchTolerance(Rotations.of(0.5)) // ~1.08 deg at encoder2 for the example ratio
+        .withMatchTolerance(Rotations.of(0.3)) // ~1.08 deg at encoder2 for the example ratio
         .withAbsoluteEncoderInversions(true, true);
 
     crt = new EasyCRT(crtConfig);
@@ -66,7 +66,11 @@ public class CRTChecker extends Command {
   public void execute() 
   {
     crt.getAngleOptional().ifPresentOrElse(
-      angle -> {SmartDashboard.putNumber("Commands/CRT/Angle", angle.in(Degrees));}, 
+      angle -> 
+      {
+        SmartDashboard.putNumber("Commands/CRT/Angle", angle.in(Degrees));
+        SmartDashboard.putNumber("Commands/CRT/Error",crt.getLastErrorRotations());
+      }, 
       () -> {SmartDashboard.putNumber("Commands/CRT/Angle", -1.0);});
 
   }

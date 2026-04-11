@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.Swerve;
+import frc.robot.subsystems.Turdexer;
 import frc.robot.subsystems.TurretHood;
 import frc.robot.subsystems.TurretRotate;
 import frc.robot.subsystems.TurretShoot;
@@ -33,6 +34,7 @@ public class LockOn extends Command
   public TurretHood hood;
   public TurretRotate rotate;
   public TurretShoot shoot;
+  public Turdexer turdexer;
 
   public Pose2d current;
   public Pose2d hub;
@@ -64,6 +66,7 @@ public class LockOn extends Command
     hood = robotContainer.hood;
     rotate = robotContainer.rotate;
     shoot = robotContainer.shoot;
+    turdexer = robotContainer.turdexer;
     addRequirements(hood,rotate,shoot); 
   }
 
@@ -75,9 +78,23 @@ public class LockOn extends Command
     timeOfFlightMap = new InterpolatingDoubleTreeMap();
 
     //////////////////////////////////////////////////////
-    timeOfFlightMap.put(0.0, 0.0);
+    timeOfFlightMap.put(2.548, 0.95);
+    timeOfFlightMap.put(2.126, 0.84);
+    timeOfFlightMap.put(3.422, 1.05);
+    timeOfFlightMap.put(3.092, 1.06);
+    timeOfFlightMap.put(3.732, 1.00);
+    timeOfFlightMap.put(3.065, 1.15);
+    timeOfFlightMap.put(3.065, 1.15);
+
 
     //////////////////////////////////////////////////////
+
+    // VIDEO TIMES:
+    // 1.45 2.40
+    // 11.08 11.92
+    // 5.45 6.50
+    // 3.37 4.43
+    // 4.50 5.50
 
     allaince = DriverStation.getAlliance();
 
@@ -148,6 +165,7 @@ public class LockOn extends Command
     field.setRobotPose(theoTarget);
     field.getObject("turretPos").setPose(current);
 
+
     SmartDashboard.putNumber("Commands/LockOn/DistFromPoint", vector.getNorm());
     SmartDashboard.putData("Commands/LockOn/TheoTargetField",field);
     SmartDashboard.putNumber("Commands/LockOn/TimeOfFlight", timeOfFlight);
@@ -160,6 +178,7 @@ public class LockOn extends Command
     rotate.point(143);
     shoot.shootOn(0);
     hood.angleFromDist(0);
+    turdexer.turdexerOff();
   }
 
   @Override
