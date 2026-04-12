@@ -1,0 +1,25 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "RightOP"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "RightSP"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": "States Autos",
+  "choreoAuto": false
+}

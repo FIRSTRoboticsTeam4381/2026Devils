@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.Swerve;
 import frc.robot.subsystems.Turdexer;
@@ -104,14 +105,14 @@ public class LockOn extends Command
     if(allaince.get() == Alliance.Blue) 
     {
       hub = new Pose2d(4.621,4.041,new Rotation2d());
-      right = new Pose2d(2,6.0,new Rotation2d());
-      left = new Pose2d(2,2.0,new Rotation2d());
+      right = new Pose2d(0.6,7.4,new Rotation2d());
+      left = new Pose2d(0.6,0.6,new Rotation2d());
     }
     if(allaince.get() == Alliance.Red) 
     {
       hub = new Pose2d(11.919,4.041,new Rotation2d());
-      left = new Pose2d(14,6.0,new Rotation2d());
-      right = new Pose2d(14,2.0,new Rotation2d());
+      left = new Pose2d(15.8,7.4,new Rotation2d());
+      right = new Pose2d(15.8,0.6,new Rotation2d());
     } 
   }
   
@@ -128,7 +129,7 @@ public class LockOn extends Command
     if(allaince.get() == Alliance.Red)
     {
       // If in the red zone shoot at hub otherwise shoot left or right of it from the neutral zone
-      if(current.getX()>12)
+      if(current.getX()>11.25)
       {target = hub;}
       else if(current.getX()<12.5 && current.getY()<4)
       {target = right;}
@@ -138,7 +139,7 @@ public class LockOn extends Command
 
     if(allaince.get() == Alliance.Blue)
     {      // If in the blue zone shoot at hub otherwise shoot left or right of it from the neutral zone
-      if(current.getX()<4.5)
+      if(current.getX()<4.75)
       {target = hub;}
       else if(current.getX()>4 && current.getY()>4)
       {target = right;}
@@ -157,7 +158,7 @@ public class LockOn extends Command
     theoTarget = new Pose2d(target.getX()-(velX*timeOfFlight), target.getY()-(velY*timeOfFlight), new Rotation2d());
     theoVector = current.minus(theoTarget).getTranslation();
 
-    rotate.point(-current.getRotation().minus(theoVector.getAngle()).getDegrees() + 143.0); // Straight is 143 deg
+    rotate.point(-current.getRotation().minus(theoVector.getAngle()).getDegrees() + 143.5); // Straight is 143 deg
 
     shoot.speedFromDist(theoVector.getNorm());
     hood.angleFromDist(theoVector.getNorm());

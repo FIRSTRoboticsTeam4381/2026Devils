@@ -3,13 +3,15 @@
   "robotLength": 0.94,
   "holonomicMode": true,
   "pathFolders": [
+    "Advanced Paths",
     "Depot Paths",
     "Middle Paths",
-    "Advanced Paths",
+    "States",
     "Scatter Paths",
     "Simple Paths"
   ],
   "autoFolders": [
+    "States Autos",
     "Simple Autos"
   ],
   "defaultMaxVel": 3.0,
@@ -37,9 +39,9 @@
   "bumperOffsetX": 0.0,
   "bumperOffsetY": 0.0,
   "robotFeatures": [
-    "{\"name\":\"Turret\",\"type\":\"rounded_rect\",\"data\":{\"center\":{\"x\":-0.3,\"y\":0.0},\"size\":{\"width\":0.3,\"length\":0.3},\"borderRadius\":0.05,\"strokeWidth\":0.02,\"filled\":true}}",
+    "{\"name\":\"Turret\",\"type\":\"rounded_rect\",\"data\":{\"center\":{\"x\":-0.3,\"y\":0.3},\"size\":{\"width\":0.3,\"length\":0.3},\"borderRadius\":0.05,\"strokeWidth\":0.02,\"filled\":true}}",
     "{\"name\":\"Intake\",\"type\":\"rounded_rect\",\"data\":{\"center\":{\"x\":0.4,\"y\":0.0},\"size\":{\"width\":0.9,\"length\":0.1},\"borderRadius\":0.05,\"strokeWidth\":0.02,\"filled\":true}}",
     "{\"name\":\"Rectangle\",\"type\":\"rounded_rect\",\"data\":{\"center\":{\"x\":0.7747,\"y\":0.0},\"size\":{\"width\":0.9,\"length\":0.1},\"borderRadius\":0.05,\"strokeWidth\":0.02,\"filled\":true}}",
-    "{\"name\":\"Rectangle\",\"type\":\"rounded_rect\",\"data\":{\"center\":{\"x\":0.6,\"y\":0.0},\"size\":{\"width\":0.9,\"length\":0.4},\"borderRadius\":0.05,\"strokeWidth\":0.02,\"filled\":false}}"
+    "{\"name\":\"Rectangle\",\"type\":\"rounded_rect\",\"data\":{\"center\":{\"x\":0.6,\"y\":0.01},\"size\":{\"width\":0.9,\"length\":0.4},\"borderRadius\":0.05,\"strokeWidth\":0.02,\"filled\":false}}"
   ]
 }

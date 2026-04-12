@@ -48,8 +48,14 @@ public final class Autos {
         return new PreviewAuto("MiddleAuto");
     }
 
-        public static PreviewAuto MoreMiddleAuto(){
+    public static PreviewAuto MoreMiddleAuto(){
         return new PreviewAuto("MoreMiddleAuto");
+    }
+    public static PreviewAuto RightOPAuto(){
+        return new PreviewAuto("RightOP");
+    }
+    public static PreviewAuto LeftOSOSAuto(){
+        return new PreviewAuto("LeftOSOS");
     }
 
 

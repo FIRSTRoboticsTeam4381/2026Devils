@@ -83,7 +83,10 @@ public class Indexer extends SubsystemBase {
 
   public Command indexerThrough()
   {
-    return new InstantCommand(() -> indexerSpeed(1000.0),this).repeatedly();
+    return new SequentialCommandGroup(
+      new InstantCommand(() -> indexerSpeed(-1000.0),this),
+      new WaitCommand(.25),
+      new InstantCommand(() -> indexerSpeed(1000.0),this).repeatedly());
   }
   public Command indexerBack()
   {
