@@ -38,7 +38,7 @@ public class TurretShoot extends SubsystemBase {
   public TurretShoot() 
   {
     this.goTo = 0.0;
-    this.offset = 150.0;
+    this.offset = 250.0;
     map = new InterpolatingDoubleTreeMap();
 
     shootMotor1 = new SparkFlex(CanIDs.SHOOT_MOTOR_1_ID, MotorType.kBrushless);

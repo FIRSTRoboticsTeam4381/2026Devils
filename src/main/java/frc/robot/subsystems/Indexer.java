@@ -85,8 +85,9 @@ public class Indexer extends SubsystemBase {
   {
     return new SequentialCommandGroup(
       new InstantCommand(() -> indexerSpeed(-1000.0),this),
-      new WaitCommand(.25),
-      new InstantCommand(() -> indexerSpeed(1000.0),this).repeatedly());
+      new WaitCommand(.10),
+      new InstantCommand(() -> indexerSpeed(1000.0),this),
+      new WaitCommand(.25)).repeatedly();
   }
   public Command indexerBack()
   {
