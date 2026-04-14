@@ -30,6 +30,10 @@
   ],
   "rotationTargets": [
     {
+      "waypointRelativePos": 0.15,
+      "rotationDegrees": -145.0
+    },
+    {
       "waypointRelativePos": 0.5,
       "rotationDegrees": 180.0
     }
@@ -40,20 +44,7 @@
       "minWaypointRelativePos": 0.93,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
-        "maxVelocity": 0.12,
-        "maxAcceleration": 3.0,
-        "maxAngularVelocity": 540.0,
-        "maxAngularAcceleration": 720.0,
-        "nominalVoltage": 12.0,
-        "unlimited": false
-      }
-    },
-    {
-      "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.92,
-      "maxWaypointRelativePos": 1.0,
-      "constraints": {
-        "maxVelocity": 0.6,
+        "maxVelocity": 0.15,
         "maxAcceleration": 3.0,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
@@ -64,6 +55,17 @@
   ],
   "pointTowardsZones": [],
   "eventMarkers": [
+    {
+      "name": "IntakeIn",
+      "waypointRelativePos": 0.25,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "IntakeIn"
+        }
+      }
+    },
     {
       "name": "LockOn",
       "waypointRelativePos": 0.6683431952662698,
@@ -77,7 +79,7 @@
     },
     {
       "name": "DexerThrough",
-      "waypointRelativePos": 0.9227810650887573,
+      "waypointRelativePos": 0.94,
       "endWaypointRelativePos": 1.0,
       "command": {
         "type": "named",
@@ -88,7 +90,7 @@
     }
   ],
   "globalConstraints": {
-    "maxVelocity": 4.0,
+    "maxVelocity": 3.0,
     "maxAcceleration": 3.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
@@ -103,7 +105,7 @@
   "folder": "Scatter Paths",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -179.6048629574925
+    "rotation": 150.0
   },
   "useDefaultConstraints": true
 }

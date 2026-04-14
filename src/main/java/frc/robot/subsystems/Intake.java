@@ -103,7 +103,7 @@ public class Intake extends SubsystemBase {
   public Command intakeIn()
   {
     return new ParallelCommandGroup(
-      new InstantCommand(() -> intakeSpeed(1500.0)),
+      new InstantCommand(() -> intakeSpeed(4000.0)),
         new SequentialCommandGroup(
           intakePivotTo(.35),
           new WaitCommand(.1),

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.fasterxml.jackson.databind.deser.impl.PropertyValue;
 import com.pathplanner.lib.commands.PathPlannerAuto;
 import com.pathplanner.lib.path.PathPlannerPath;
 
@@ -56,6 +57,14 @@ public final class Autos {
     }
     public static PreviewAuto LeftOSOSAuto(){
         return new PreviewAuto("LeftOSOS");
+    }
+
+    public static PreviewAuto BallScatter() {
+        return new PreviewAuto("BallScatter");
+    }
+
+    public static PreviewAuto EvilBallScatter() {
+        return new PreviewAuto("EvilBallScatter");
     }
 
 

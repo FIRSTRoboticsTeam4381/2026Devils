@@ -16,16 +16,48 @@
     },
     {
       "anchor": {
-        "x": 7.813229166666666,
-        "y": 7.088839285714285
+        "x": 9.235749778172138,
+        "y": 7.266237799467612
       },
       "prevControl": {
-        "x": 7.606918455226901,
-        "y": 7.463255021290152
+        "x": 8.997419049620873,
+        "y": 7.621131750571093
       },
       "nextControl": {
-        "x": 7.989412202380953,
-        "y": 6.769099702380953
+        "x": 10.318943452380951,
+        "y": 5.653273809523809
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 8.465758928571427,
+        "y": 5.7315773809523805
+      },
+      "prevControl": {
+        "x": 8.473108691471898,
+        "y": 5.981469319568469
+      },
+      "nextControl": {
+        "x": 8.458409165670956,
+        "y": 5.481685442336293
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 9.235749778172138,
+        "y": 4.413467261904762
+      },
+      "prevControl": {
+        "x": 10.278588118331543,
+        "y": 4.767458258105662
+      },
+      "nextControl": {
+        "x": 8.524492337695948,
+        "y": 4.172031249999999
       },
       "isLocked": false,
       "linkedName": null
@@ -36,8 +68,8 @@
         "y": 2.853921130952382
       },
       "prevControl": {
-        "x": 7.506540178571427,
-        "y": 3.5390773809523814
+        "x": 8.309151785714285,
+        "y": 3.7348363095238097
       },
       "nextControl": null,
       "isLocked": false,
@@ -46,12 +78,8 @@
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 1.2170212765957433,
+      "waypointRelativePos": 3.4287234042553214,
       "rotationDegrees": -90.0
-    },
-    {
-      "waypointRelativePos": 1.5829787234042574,
-      "rotationDegrees": 150.0
     }
   ],
   "constraintZones": [],
@@ -59,7 +87,7 @@
   "eventMarkers": [
     {
       "name": "IntakeDeploy",
-      "waypointRelativePos": 0.43,
+      "waypointRelativePos": 0.45,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
@@ -70,7 +98,7 @@
     },
     {
       "name": "IntakeIn",
-      "waypointRelativePos": 0.7,
+      "waypointRelativePos": 1.15,
       "endWaypointRelativePos": 3.0,
       "command": {
         "type": "named",
