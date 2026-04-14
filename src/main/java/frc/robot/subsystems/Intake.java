@@ -8,6 +8,7 @@ import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.PersistMode;
 import com.revrobotics.ResetMode;
 import com.revrobotics.spark.FeedbackSensor;
+import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
@@ -71,7 +72,13 @@ public class Intake extends SubsystemBase {
     SparkMaxConfig intakeMotionConfig = new SparkMaxConfig();
       intakeMotionConfig
       .smartCurrentLimit(50)
-      .idleMode(IdleMode.kBrake);
+      .idleMode(IdleMode.kBrake)
+      .closedLoop
+        .p(1.0783E-06)
+        .i(0)
+        .d(0)
+        .feedForward
+        .sva(0.11833, 0.0023319, 0.00031664);;
 
     intakeMotionMotor.configure(intakeMotionConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     intakePivotMotor.configure(intakePivotConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
@@ -88,10 +95,15 @@ public class Intake extends SubsystemBase {
     
   }
 
+  public void intakeSpeed(Double vel)
+  {
+    intakeMotionMotor.getClosedLoopController().setSetpoint(vel, ControlType.kVelocity);
+  }
+
   public Command intakeIn()
   {
     return new ParallelCommandGroup(
-      new InstantCommand(() -> intakeMotionMotor.set(0.80)),
+      new InstantCommand(() -> intakeSpeed(1500.0)),
         new SequentialCommandGroup(
           intakePivotTo(.35),
           new WaitCommand(.1),
@@ -117,14 +129,14 @@ public class Intake extends SubsystemBase {
 
   public Command intakePivotTo(double position)
   {
-    return new SparkPosition(intakePivotMotor, position, .04, this);
+    return new SparkPosition(intakePivotMotor, position, .02, this);
   }
 
   public Command intakeUndeploy()
   {
     return new SequentialCommandGroup(
       intakeStop(),
-      intakePivotTo(.236),
+      intakePivotTo(.236), 
       intakePivotStop()  
     );
   }
