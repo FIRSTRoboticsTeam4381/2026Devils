@@ -19,8 +19,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import frc.robot.RobotContainer;
 
-public final class Autos {
-  
+public final class Autos {;
     // TODO register commands in subsystem constructors using NamedCommands.registerCommand()
 
     // Test autonomous mode
@@ -59,6 +58,10 @@ public final class Autos {
         return new PreviewAuto("LeftOSOS");
     }
 
+    public static PreviewAuto RightOSOSAuto(){
+        return new PreviewAuto("RightOSOS");
+    }
+
     public static PreviewAuto BallScatter() {
         return new PreviewAuto("BallScatter");
     }
@@ -88,6 +91,7 @@ public final class Autos {
             {
                 ArrayList <Pose2d> preview = new ArrayList<>();
                 Optional<Alliance> alliance = DriverStation.getAlliance();
+                                    
 
                 for(PathPlannerPath p : paths)
                 {
@@ -96,6 +100,7 @@ public final class Autos {
                     else
                         preview.addAll(p.getPathPoses());
                 }
+            
                 
                 RobotContainer.getRobot().swerve.field.getObject("path").setPoses(preview);
             }

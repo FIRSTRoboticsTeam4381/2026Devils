@@ -107,7 +107,7 @@ public class Intake extends SubsystemBase {
         new SequentialCommandGroup(
           intakePivotTo(.330),
           new WaitCommand(.1),
-          intakePivotTo(.381)
+          intakePivotTo(.380)
         )
       ).repeatedly();
   }
@@ -144,7 +144,7 @@ public class Intake extends SubsystemBase {
   public Command intakeDeploy() // TODO automatically turn this on
   {
     return new SequentialCommandGroup(
-      intakePivotTo(.381),
+      intakePivotTo(.380),
       intakePivotStop()
     );
   }

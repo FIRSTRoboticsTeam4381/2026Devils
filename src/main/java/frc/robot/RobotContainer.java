@@ -54,7 +54,7 @@ public class RobotContainer {
 
   //Auto Chooser
   SendableChooser<Autos.PreviewAuto> autoChooser = new SendableChooser<>();
-
+  
   // Subsystems
   public final Swerve swerve = new Swerve();
   //public final Climb climb = new Climb();
@@ -64,7 +64,6 @@ public class RobotContainer {
   public final TurretHood hood = new TurretHood();
   public final TurretRotate rotate = new TurretRotate();
   public final Turdexer turdexer = new Turdexer();
-  
 
   // TODO set camera names, coordinates, and angles relative to the robot's center
   public final PhotonCam LL = new PhotonCam("LeftLeft", new Transform3d(new Translation3d(Units.inchesToMeters(-10.3369), Units.inchesToMeters(12.63032),  Units.inchesToMeters(7.63495)), new Rotation3d(180-45,Math.toRadians(-30),Math.toRadians(-105)-Math.PI)) );
@@ -95,14 +94,15 @@ public class RobotContainer {
     // Set up autonomous picker
     // Add any autos you want to be able to select below
     autoChooser.setDefaultOption("None", Autos.none());
-    autoChooser.addOption("Test", Autos.testAuto());
+    //autoChooser.addOption("Test", Autos.testAuto());
     autoChooser.addOption("SimpleRightAuto - NK", Autos.SimpleRightAuto());
     autoChooser.addOption("SimpleLeftAuto - NK", Autos.SimpleLeftAuto());
-    autoChooser.addOption("LeftAuto - NK", Autos.LeftAuto());
+    //autoChooser.addOption("LeftAuto - NK", Autos.LeftAuto());
     autoChooser.addOption("MiddleAuto - JL", Autos.MiddleAuto());
-    autoChooser.addOption("MoreMiddleAuto - JL", Autos.MoreMiddleAuto());
+    //autoChooser.addOption("MoreMiddleAuto - JL", Autos.MoreMiddleAuto());
     autoChooser.addOption("RightOP - NK", Autos.RightOPAuto());
     autoChooser.addOption("LeftOSOS - NK", Autos.LeftOSOSAuto());
+    autoChooser.addOption("RightOSOS - NK", Autos.RightOSOSAuto());
     autoChooser.addOption("BallScatter -JL", Autos.BallScatter());
     autoChooser.addOption("EvilBallScatter - JL", Autos.EvilBallScatter());
     
