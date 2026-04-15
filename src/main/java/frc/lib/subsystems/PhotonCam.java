@@ -14,6 +14,7 @@ import edu.wpi.first.apriltag.AprilTagFields;
 import edu.wpi.first.epilogue.Logged;
 import edu.wpi.first.epilogue.NotLogged;
 import edu.wpi.first.math.Matrix;
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Pose3d;
 import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.math.numbers.N1;
@@ -79,6 +80,9 @@ public class PhotonCam extends SubsystemBase {
 
         // Display on map
         RobotContainer.getRobot().swerve.field.getObject(cam.getName()).setPose(e.estimatedPose.toPose2d());
+        RobotContainer.getRobot().swerve.field.getObject(cam.getName()+"_targets").setPoses(
+          e.targetsUsed.stream().<Pose2d>map((tt) -> e.estimatedPose.plus(offset.plus(tt.bestCameraToTarget)).toPose2d()).toList()
+        );
 
         // Calculate our current equation, just for dashbard display to compare
         double area = 0;
