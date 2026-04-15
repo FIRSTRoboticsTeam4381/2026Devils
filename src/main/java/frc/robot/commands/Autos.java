@@ -70,6 +70,9 @@ public final class Autos {;
         return new PreviewAuto("EvilBallScatter");
     }
 
+    public static PreviewAuto LeftDepotAuto() {
+        return new PreviewAuto("Left&DepotAuto");
+    }
 
     // TODO add pathplanner autos here. Example:
     //public static PreviewAuto Front3Note(){

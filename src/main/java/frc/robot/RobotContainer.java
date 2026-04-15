@@ -105,7 +105,7 @@ public class RobotContainer {
     autoChooser.addOption("RightOSOS - NK", Autos.RightOSOSAuto());
     autoChooser.addOption("BallScatter -JL", Autos.BallScatter());
     autoChooser.addOption("EvilBallScatter - JL", Autos.EvilBallScatter());
-    
+    autoChooser.addOption("Left&DepotAuto - JL", Autos.LeftDepotAuto());
 
     // Add auto controls to the dashboard
     SmartDashboard.putData("Choose Auto:", autoChooser);

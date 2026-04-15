@@ -3,8 +3,8 @@
   "robotLength": 0.94,
   "holonomicMode": true,
   "pathFolders": [
-    "Advanced Paths",
     "Depot Paths",
+    "Carters Orbit paths",
     "Scatter Paths",
     "Simple Paths"
   ],

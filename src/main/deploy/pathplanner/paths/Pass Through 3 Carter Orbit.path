@@ -1,0 +1,82 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 6.867061011904761,
+        "y": 4.948541666666667
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 6.867061011904761,
+        "y": 5.198541666666667
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 6.292834821428571,
+        "y": 7.46078125
+      },
+      "prevControl": {
+        "x": 6.792761786079072,
+        "y": 7.469327010079496
+      },
+      "nextControl": {
+        "x": 5.529375,
+        "y": 7.447730654761905
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 5.783861607142857,
+        "y": 4.948541666666667
+      },
+      "prevControl": {
+        "x": 5.783861607142857,
+        "y": 5.198541666666667
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": null
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [
+    {
+      "name": "IntakeIn",
+      "waypointRelativePos": 1.0630136986301348,
+      "endWaypointRelativePos": 2.0,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "IntakeIn"
+        }
+      }
+    }
+  ],
+  "globalConstraints": {
+    "maxVelocity": 2.0,
+    "maxAcceleration": 2.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": -90.0
+  },
+  "reversed": false,
+  "folder": "Carters Orbit paths",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": -90.0
+  },
+  "useDefaultConstraints": false
+}
