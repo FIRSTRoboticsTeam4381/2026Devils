@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 6.942205607476635,
-        "y": 4.723485981308412
+        "x": 7.014950071326675,
+        "y": 5.011868758915835
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.929266948418186,
-        "y": 7.699377564763434
+        "x": 6.406833095577745,
+        "y": 7.767803138373752
       },
       "isLocked": false,
       "linkedName": "LeftIntakeTwo"
@@ -66,7 +66,7 @@
     "rotation": 42.83892051177365
   },
   "reversed": false,
-  "folder": "States",
+  "folder": null,
   "idealStartingState": {
     "velocity": 0,
     "rotation": -89.19307054489774

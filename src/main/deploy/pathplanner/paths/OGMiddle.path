@@ -72,8 +72,8 @@
     },
     {
       "name": "DexerThrough",
-      "waypointRelativePos": 0.1,
-      "endWaypointRelativePos": 0.67,
+      "waypointRelativePos": 0.18365968939905297,
+      "endWaypointRelativePos": 0.7346387575962191,
       "command": {
         "type": "named",
         "data": {

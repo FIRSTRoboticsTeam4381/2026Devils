@@ -47,7 +47,7 @@ public class TurretShoot extends SubsystemBase {
     setUpMap();
     SparkFlexConfig shootMotor1Config = new SparkFlexConfig();
       shootMotor1Config
-        .smartCurrentLimit(80)
+        .smartCurrentLimit(60)
         .idleMode(IdleMode.kCoast)
         .inverted(true);
         

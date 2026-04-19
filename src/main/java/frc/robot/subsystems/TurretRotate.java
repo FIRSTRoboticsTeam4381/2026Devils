@@ -87,7 +87,6 @@ public class TurretRotate extends SubsystemBase {
   {
     rotateMotor.getClosedLoopController().setSetpoint(pos, ControlType.kPosition); // Gears   99.5:1
   } 
-
   
 
   

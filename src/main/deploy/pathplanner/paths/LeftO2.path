@@ -16,12 +16,28 @@
     },
     {
       "anchor": {
-        "x": 6.942205607476635,
-        "y": 4.723485981308412
+        "x": 7.260784593437946,
+        "y": 6.370427960057061
       },
       "prevControl": {
-        "x": 7.3513552068473595,
-        "y": 6.706833095577747
+        "x": 8.006950591183541,
+        "y": 6.5862610999008275
+      },
+      "nextControl": {
+        "x": 5.695206847360912,
+        "y": 5.917574893009986
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 7.014950071326675,
+        "y": 5.011868758915835
+      },
+      "prevControl": {
+        "x": 6.570148172837201,
+        "y": 4.937969082885598
       },
       "nextControl": null,
       "isLocked": false,
@@ -30,11 +46,11 @@
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 0.1518072289156615,
+      "waypointRelativePos": 0.3,
       "rotationDegrees": 0.16586522600903367
     },
     {
-      "waypointRelativePos": 0.6353944562899788,
+      "waypointRelativePos": 0.6993603411513856,
       "rotationDegrees": -90.0
     }
   ],
@@ -43,7 +59,7 @@
   "eventMarkers": [
     {
       "name": "IntakeIn",
-      "waypointRelativePos": 0.5,
+      "waypointRelativePos": 0.5833896016205347,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
@@ -66,7 +82,7 @@
     "rotation": -89.19307054489774
   },
   "reversed": false,
-  "folder": "States",
+  "folder": null,
   "idealStartingState": {
     "velocity": 0,
     "rotation": 42.83892051177365

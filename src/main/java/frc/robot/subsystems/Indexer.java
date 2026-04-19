@@ -30,18 +30,18 @@ import frc.robot.Constants;
 public class Indexer extends SubsystemBase {
 
   public SparkFlex indexerMotor;
-  
+  public static double agitateRatio;
   
   public Indexer() 
   {
     indexerMotor = new SparkFlex(CanIDs.INDEX_MOTOR_ID, MotorType.kBrushless);
-    
+    agitateRatio = 1;
 
     this.setDefaultCommand(indexerOff());
 
     SparkMaxConfig indexerMotorConfig = new SparkMaxConfig();
       indexerMotorConfig
-      .smartCurrentLimit(80)
+      .smartCurrentLimit(60)
       .idleMode(IdleMode.kBrake)
       .inverted(true)
       .closedLoop
@@ -71,7 +71,7 @@ public class Indexer extends SubsystemBase {
   @Override
   public void periodic() 
   {
-    
+    SmartDashboard.putNumber("Subsystem/Indexer/AgitateRatio", agitateRatio);
   }
 
   // TODO add commands
@@ -85,9 +85,22 @@ public class Indexer extends SubsystemBase {
   {
     return new SequentialCommandGroup(
       new InstantCommand(() -> indexerSpeed(-1000.0),this),
-      new WaitCommand(.10),
+      new WaitCommand(.05*agitateRatio),
       new InstantCommand(() -> indexerSpeed(1000.0),this),
-      new WaitCommand(.25)).repeatedly();
+      new WaitCommand(.25*1+1-agitateRatio)).repeatedly();
+  }
+  public Command agitateInc()
+  {
+    return new InstantCommand(()-> agitateRatio = agitateRatio +.1);
+  }
+  public Command agitateDec()
+  {
+    return new InstantCommand(()-> agitateRatio = agitateRatio -.1);
+  }
+
+  public Command indexerNoJitter()
+  {
+    return new InstantCommand(() -> indexerSpeed(1000.0),this);
   }
   public Command indexerBack()
   {

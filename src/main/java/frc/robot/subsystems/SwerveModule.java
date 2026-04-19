@@ -50,7 +50,7 @@ public class SwerveModule {
         
             closedLoopRampRate(0.0);
             openLoopRampRate(0.04);
-            smartCurrentLimit(70);
+            smartCurrentLimit(60);
             idleMode(IdleMode.kBrake);
             inverted(true);    
             

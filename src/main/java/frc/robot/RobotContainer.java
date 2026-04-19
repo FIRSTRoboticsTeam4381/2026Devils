@@ -89,6 +89,7 @@ public class RobotContainer {
     NamedCommands.registerCommand("DexerBack", indexer.indexerBack().alongWith(turdexer.turdexerBack()));
     NamedCommands.registerCommand("DexerOff", indexer.indexerOff().alongWith(turdexer.turdexerOff()));
     NamedCommands.registerCommand("Rev", shoot.rev());
+    NamedCommands.registerCommand("RotatePrep",new InstantCommand(()-> rotate.point(143)));
 
 
     // Set up autonomous picker
@@ -163,9 +164,11 @@ public class RobotContainer {
     specialist.a().whileTrue(intake.intakeIn());
     specialist.y().whileTrue(intake.intakeOut());
     specialist.leftBumper().toggleOnTrue(new LockOn(this)).toggleOnTrue(turdexer.turdexerThrough());
-    specialist.rightBumper().whileTrue(indexer.indexerThrough()).and(()->shoot.shootMotor1.getEncoder().getVelocity() + shoot.shootMotor2.getEncoder().getVelocity()>500).whileTrue(intake.intakeIn());
+    specialist.rightBumper().whileTrue(indexer.indexerThrough()).and(()->shoot.shootMotor1.getEncoder().getVelocity() + shoot.shootMotor2.getEncoder().getVelocity()>2000).whileTrue(intake.intakeIn());
     specialist.leftTrigger().toggleOnTrue(new CRTChecker(this));     
     specialist.rightTrigger().whileTrue(indexer.indexerBack());
+    specialist.povUp().onTrue(indexer.agitateInc());
+    specialist.povDown().onTrue(indexer.agitateDec());
     
     // Button board controls
     // Board 1:  Turret:axis0 Hood:axis1 Override:button1 Fire:button2 ---- Board 2:  Shooter:axis0
@@ -175,7 +178,7 @@ public class RobotContainer {
     buttonBoard1.button(1) 
     .whileTrue(new InstantCommand( () -> shoot.shootOn(((buttonBoard2.getRawAxis(0) + 1) / 2 * 6000)), shoot).repeatedly()) // (0 to 7000) Figure out velocity (7000 #) later
     .whileTrue(new InstantCommand( () -> hood.angle((buttonBoard1.getRawAxis(1) + 1) / 2 * 0.95), hood).repeatedly()) // (0 to 0.5) Figure out 0.5 # later
-    .whileTrue(new InstantCommand( () -> rotate.point(buttonBoard1.getRawAxis(0) * 105), rotate).repeatedly()); // (-1 to 1 * 105 in degrees) Should be right range    
+    .whileTrue(new InstantCommand( () -> rotate.point((buttonBoard1.getRawAxis(0)+1)/2 * 260), rotate).repeatedly()); // (-1 to 1 * 105 in degrees) Should be right range    
 
     // Climb later
 

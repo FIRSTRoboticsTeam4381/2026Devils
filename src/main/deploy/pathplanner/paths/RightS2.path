@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.0444201680672265,
-        "y": 0.5213277310924362
+        "x": 6.303323823109842,
+        "y": 0.1081169757489282
       },
       "isLocked": false,
       "linkedName": "RightIntakeTwo"
@@ -63,10 +63,10 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -41.48624973939504
+    "rotation": -41.48624973939505
   },
   "reversed": false,
-  "folder": "States",
+  "folder": null,
   "idealStartingState": {
     "velocity": 0,
     "rotation": 91.3803540734444
