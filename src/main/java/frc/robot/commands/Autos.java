@@ -38,6 +38,9 @@ public final class Autos {;
     public static PreviewAuto LeftAuto(){
         return new PreviewAuto("LeftAuto");
     }
+    public static PreviewAuto RightAuto(){
+        return new PreviewAuto("RightAuto");
+    }
     public static PreviewAuto SimpleLeftAuto(){
         return new PreviewAuto("SimpleLeftAuto");
     }

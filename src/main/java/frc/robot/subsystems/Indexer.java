@@ -114,7 +114,7 @@ public class Indexer extends SubsystemBase {
 
   public Command indexerOff()
   {
-    return new InstantCommand(() -> indexerSpeed(0.0),this);
+    return new InstantCommand(() -> indexerMotor.set(0),this);
   }
 
 }

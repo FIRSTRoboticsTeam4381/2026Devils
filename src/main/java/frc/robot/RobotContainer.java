@@ -96,17 +96,18 @@ public class RobotContainer {
     // Add any autos you want to be able to select below
     autoChooser.setDefaultOption("None", Autos.none());
     //autoChooser.addOption("Test", Autos.testAuto());
-    autoChooser.addOption("SimpleRightAuto - NK", Autos.SimpleRightAuto());
-    autoChooser.addOption("SimpleLeftAuto - NK", Autos.SimpleLeftAuto());
-    //autoChooser.addOption("LeftAuto - NK", Autos.LeftAuto());
+    //autoChooser.addOption("SimpleRightAuto - NK", Autos.SimpleRightAuto());
+    //autoChooser.addOption("SimpleLeftAuto - NK", Autos.SimpleLeftAuto());
+    autoChooser.addOption("LeftAuto - NK", Autos.LeftAuto());
+    autoChooser.addOption("RightAuto - NK", Autos.RightAuto());
     autoChooser.addOption("MiddleAuto - JL", Autos.MiddleAuto());
     //autoChooser.addOption("MoreMiddleAuto - JL", Autos.MoreMiddleAuto());
-    autoChooser.addOption("RightOP - NK", Autos.RightOPAuto());
-    autoChooser.addOption("LeftOSOS - NK", Autos.LeftOSOSAuto());
-    autoChooser.addOption("RightOSOS - NK", Autos.RightOSOSAuto());
-    autoChooser.addOption("BallScatter -JL", Autos.BallScatter());
-    autoChooser.addOption("EvilBallScatter - JL", Autos.EvilBallScatter());
-    autoChooser.addOption("Left&DepotAuto - JL", Autos.LeftDepotAuto());
+    //autoChooser.addOption("RightOP - NK", Autos.RightOPAuto());
+    //autoChooser.addOption("LeftOSOS - NK", Autos.LeftOSOSAuto());
+    //autoChooser.addOption("RightOSOS - NK", Autos.RightOSOSAuto());
+    //autoChooser.addOption("BallScatter -JL", Autos.BallScatter());
+    //autoChooser.addOption("EvilBallScatter - JL", Autos.EvilBallScatter());
+    //autoChooser.addOption("Left&DepotAuto - JL", Autos.LeftDepotAuto());
 
     // Add auto controls to the dashboard
     SmartDashboard.putData("Choose Auto:", autoChooser);

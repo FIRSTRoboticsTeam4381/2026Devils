@@ -90,18 +90,6 @@
               }
             ]
           }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "SimpleRightOut"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "SimpleRightBack"
-          }
         }
       ]
     }
